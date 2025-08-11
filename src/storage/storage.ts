@@ -10,6 +10,7 @@ export type AppSettings = {
     meditationTime: ITime;
     language: Language;
     soundEnabled: boolean;
+    fontSize: number;
 };
 
 const SETTINGS_KEY = 'app_settings_v1';

@@ -4,11 +4,13 @@ import { initReactI18next } from 'react-i18next';
 const sermonsEn = {
     PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
     SantaSukha: 'Santasukha: the Happiness of Peace',
+    Recitations: 'Recitations',
 };
 
 const sermonsRu = {
     PanchaNivarana: 'Pañca nīvaraṇāni: пять помех',
     SantaSukha: 'Santasukha: счастье покоя',
+    Recitations: 'Славословия',
 };
 
 export type SermonKey = keyof typeof sermonsEn;
@@ -29,8 +31,6 @@ const resources = {
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsEn,
-            // PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
-            // SantaSukha: 'Santasukha: the Happiness of Peace',
         },
     },
     ru: {

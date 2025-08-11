@@ -12,6 +12,7 @@ const defaultSettings: AppSettings = {
     meditationTime: { hours: 0, minutes: 30 },
     language: 'ru',
     soundEnabled: true,
+    fontSize: 16,
 };
 
 const SettingsContext = createContext<ContextType | undefined>(undefined);

@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {ActivityIndicator, ScrollView, StyleSheet} from "react-native";
+import {ActivityIndicator, ScrollView, StyleSheet, View} from "react-native";
 import Markdown from "react-native-markdown-display";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 import {RootStackParamList} from "../components/AppNavigator";
 import {loadMarkdownAsset} from "../services/MarkdownLoader";
 import {SermonKey} from "../i18n";
+import TextSizeControl from "../components/TextSizeControl";
+import {useSettings} from "../contexts/SettingsContext";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SermonScreen'>;
 
@@ -17,12 +20,14 @@ type SermonsMap = {
 const sermonsMap: SermonsMap = {
     'SantaSukha': [require('./sermons/content/SantaSukhaRu.md'), require('./sermons/content/SantaSukhaEn.md')],
     'PanchaNivarana': [require('./sermons/content/PanchaNivaranaRu.md'), require('./sermons/content/PanchaNivaranaEn.md')],
+    'Recitations': [require('./sermons/content/RecitationsRu.md'), require('./sermons/content/RecitationsRu.md')],
 }
 
 export default function SermonScreen({route}: Props) {
     const { sermonKey, language } = route.params;
     const [content, setContent] = useState<string | null>(null);
-
+    const {settings} = useSettings();
+    const [textSize, setTextSize] = useState(settings.fontSize);
 
     useEffect(() => {
         const loadMarkdown = async () => {
@@ -39,23 +44,6 @@ export default function SermonScreen({route}: Props) {
         loadMarkdown();
     }, []);
 
-    // useEffect(() => {
-    //     const loadLecture = async () => {
-    //         try {
-    //             const map = language === 'ru' ? sermonsRu : sermonsEn;
-    //             const module = await map[sermonKey]();
-    //
-    //             const text = Object.values(module)[0] as string;
-    //             setContent(text);
-    //         } catch (err) {
-    //             console.error(`Ошибка загрузки лекции ${sermonKey}:`, err);
-    //             setContent(`Лекция ${sermonKey} не найдена`);
-    //         }
-    //     };
-    //
-    //     loadLecture();
-    // }, [sermonKey]);
-
     if (!content) {
         return (
             <ScrollView contentContainerStyle={styles.loader}>
@@ -65,16 +53,20 @@ export default function SermonScreen({route}: Props) {
     }
     return (
         <ScrollView style={styles.container}>
+            <TextSizeControl onChange={setTextSize} />
             <Markdown
                 style={{
                     body: {
-                        fontSize: 16,
+                        fontSize: textSize,
                         textAlign: "justify",
-                        padding: 5,
+                        padding: 3,
                     }}}
             >
                 {content}
             </Markdown>
+            <View style={styles.icon}>
+                <FontAwesome6 name="dharmachakra" size={24} color="black" />
+            </View>
         </ScrollView>
     );
 }
@@ -88,5 +80,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center"
-    }
+    },
+    icon: {
+        alignSelf: "center",
+        paddingTop: 5,
+        paddingBottom: 30,
+    },
 });

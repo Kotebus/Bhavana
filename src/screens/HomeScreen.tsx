@@ -78,6 +78,14 @@ export default function HomeScreen({ navigation }: Props) {
             </TouchableOpacity>
             <TouchableOpacity
                 style={globalStyles.button}
+                onPress={() => navigation.navigate('SermonScreen', {sermonKey: 'Recitations', language: settings.language})}
+            >
+                <Text style={globalStyles.buttonText}>
+                    {t('Recitations')}
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={globalStyles.button}
                 onPress={() => navigation.navigate('AboutScreen', languageNavigationParams)}
             >
                 <Text style={globalStyles.buttonText}>
