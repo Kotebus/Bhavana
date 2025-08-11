@@ -13,8 +13,9 @@ const resources = {
             AboutScreen: 'About',
             StudyScreen: 'Study',
             MeditationScreen: 'Meditation',
-            PanchaNivaranaScreen: 'Pañca nīvaraṇāni: Five Hindrances',
-            SantaSukhaScreen: 'Santasukha: the Happiness of Peace',
+            //Sermons, same keys as in sermonsRoutingList!
+            PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
+            SantaSukha: 'Santasukha: the Happiness of Peace',
         },
     },
     ru: {
@@ -28,8 +29,9 @@ const resources = {
             AboutScreen: 'О приложении',
             StudyScreen: 'Материалы',
             MeditationScreen: 'Медитация',
-            PanchaNivaranaScreen: 'Pañca nīvaraṇāni: пять помех',
-            SantaSukhaScreen: 'Santasukha: счастье покоя',
+            //Sermons, same keys as in sermonsRoutingList!
+            PanchaNivarana: 'Pañca nīvaraṇāni: пять помех',
+            SantaSukha: 'Santasukha: счастье покоя',
         },
     },
 };

@@ -1,4 +1,4 @@
-export const santaSukhaContentEn = `
+export const text = `
 # Santasukha: the Happiness of Peace
 
 *So you should train like this: ‘We shall have peaceful faculties and peaceful minds.’ That’s how you should train. When your faculties and mind are peaceful, your acts of body, speech, and mind will be peaceful, thinking: ‘We shall present the gift of peace to our spiritual companions.’ That’s how you should train.*  

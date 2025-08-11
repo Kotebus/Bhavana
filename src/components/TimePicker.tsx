@@ -41,7 +41,7 @@ const TimePicker = ({ time, language, onChange } : Props) => {
                     itemStyle={styles.item}
                 >
                     {Array.from({ length: 60 }).map((_, i) => (
-                        <Picker.Item key={i} label={`${i} ${l18n.m}`} value={i} />
+                        <Picker.Item style={{width: '30%'}} key={i} label={`${i} ${l18n.m}`} value={i} />
                     ))}
                 </Picker>
             </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     pickerWrap: { flex: 1 },
     sep: { fontSize: 28, marginHorizontal: 8 },
     item: { fontSize: 18 },
-    pickerAndroid: { width: 140 },
+    pickerAndroid: { width: '70%', alignSelf: 'center' },
 });
 
 export default TimePicker;

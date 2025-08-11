@@ -9,20 +9,22 @@ import HomeScreen from "../screens/HomeScreen";
 import MeditationScreen from "../screens/MeditationScreen";
 import AboutScreen from "../screens/AboutScreen";
 import StudyScreen from "../screens/StudyScreen";
-import PanchaNivaranaScreen from "../screens/sermons/PanchaNivaranaScreen";
-import SantaSukhaScreen from "../screens/sermons/SantaSukhaScreen";
+import SermonScreen from "../screens/SermonScreen";
 
 export interface IPropsWithLanguage {
     language: Language;
 }
 
+export interface ISermonProps {
+    sermonKey: string;
+    language: Language;
+}
 export type RootStackParamList = {
     HomeScreen: undefined;
     MeditationScreen: ITime;
     AboutScreen: IPropsWithLanguage;
     StudyScreen: IPropsWithLanguage;
-    PanchaNivaranaScreen: IPropsWithLanguage;
-    SantaSukhaScreen: IPropsWithLanguage;
+    SermonScreen: ISermonProps;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -38,10 +40,7 @@ export const AppNavigator = () => {
                               options={{title: t('MeditationScreen')}}/>
                 <Stack.Screen name="AboutScreen" component={AboutScreen} options={{title: t('AboutScreen')}}/>
                 <Stack.Screen name="StudyScreen" component={StudyScreen} options={{title: t('StudyScreen')}}/>
-                <Stack.Screen name="PanchaNivaranaScreen" component={PanchaNivaranaScreen}
-                              options={{title: t('PanchaNivaranaScreen')}}/>
-                <Stack.Screen name="SantaSukhaScreen" component={SantaSukhaScreen}
-                              options={{title: t('SantaSukhaScreen')}}/>
+                <Stack.Screen name="SermonScreen" component={SermonScreen} options={{title: '🪷'}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

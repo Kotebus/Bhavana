@@ -66,11 +66,12 @@ export default function MeditationScreen({ route, navigation }: Props) {
         <View style={styles.container}>
             <Image
                 source={require('../../assets/lotus.png')}
-                style={{ width: '60%', height: '30%' }}/>
+                resizeMode='contain'
+                style={styles.image}/>
             <Text style={styles.timer}>{formatTime(elapsed)}</Text>
             <Text style={styles.goal}>{formatTime(totalMeditationDurationSeconds)}</Text>
             <TouchableOpacity
-                style={globalStyles.button}
+                style={[globalStyles.button, styles.button]}
                 onPress={() => navigation.goBack()}
             >
                 <Text style={globalStyles.buttonText}>
@@ -82,8 +83,13 @@ export default function MeditationScreen({ route, navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-    timer: { fontSize: 48, fontWeight: 'bold', width: '50%' },
-    goal: { fontSize: 20, color: '#666', marginTop: 8 },
+    container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', paddingBottom: '20%' },
+    content: {
+        alignItems: 'center',
+    },
+    image: { width: '60%', height: '35%', top: '10%', position: 'absolute' },
+    timer: { fontSize: 40, fontWeight: 'bold', alignSelf: 'center'},
+    goal: { fontSize: 20, color: '#666', marginTop: 8, alignSelf: 'center' },
+    button: { bottom: '15%', position: 'absolute' },
 });
 
