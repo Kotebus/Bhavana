@@ -35,7 +35,13 @@ export const AppNavigator = () => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerTitleAlign: 'center',
+                    contentStyle: {
+                        backgroundColor: 'white',
+                    }
+                }}>
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{title: t('HomeScreen')}}/>
                 <Stack.Screen name="MeditationScreen" component={MeditationScreen}
                               options={{title: t('MeditationScreen')}}/>

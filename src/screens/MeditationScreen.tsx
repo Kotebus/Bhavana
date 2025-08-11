@@ -83,7 +83,7 @@ export default function MeditationScreen({ route, navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', paddingBottom: '20%' },
+    container: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: '20%' },
     content: {
         alignItems: 'center',
     },

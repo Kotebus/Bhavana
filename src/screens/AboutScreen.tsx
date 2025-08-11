@@ -6,12 +6,14 @@ import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../components/AppNavigator";
 
 const ContactInfo = () => {
+    const {t} = useTranslation();
+
     const openTelegram = () => Linking.openURL('https://t.me/Max_Kotebus');
     const openEmail = () => Linking.openURL('mailto:kotebus666@gmail.com');
 
     return (
         <View style={styles.contactBlock}>
-            <Text style={styles.contactLabel}>Связь с разработчиком:</Text>
+            <Text style={styles.contactLabel}>{t('contactDeveloper')}</Text>
             <View style={styles.contactRow}>
                 <TouchableOpacity onPress={openTelegram}>
                     <Text style={styles.link}>tg @Max_Kotebus</Text>
@@ -87,14 +89,10 @@ const EnContent = ()=> {
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutScreen'>;
 
 export default function AboutScreen({ route } : Props) {
-    const {t} = useTranslation();
     const {language} = route.params;
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.title}>
-                {t('About')}
-            </Text>
             {language === 'ru'
                 ? <RuContent/>
                 : <EnContent/>
@@ -113,10 +111,6 @@ export default function AboutScreen({ route } : Props) {
             </View>
 
             <ContactInfo/>
-            {/*<View style={styles.imagesRow}>*/}
-            {/*    <Image source={require('../../assets/about1.png')} style={styles.image} />*/}
-            {/*    <Image source={require('../../assets/about2.png')} style={styles.image} />*/}
-            {/*</View>*/}
         </ScrollView>
     );
 }
@@ -139,7 +133,6 @@ const styles = StyleSheet.create({
     },
     contactsContainer: {
         width: '100%',
-        marginVertical: 20,
     },
     linkButton: {
         paddingVertical: 10,

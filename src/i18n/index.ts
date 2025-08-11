@@ -25,6 +25,7 @@ const resources = {
             AboutScreen: 'About',
             StudyScreen: 'Study',
             MeditationScreen: 'Meditation',
+            contactDeveloper: 'Developer: Max Suleimanov',
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsEn,
@@ -43,6 +44,8 @@ const resources = {
             AboutScreen: 'О приложении',
             StudyScreen: 'Материалы',
             MeditationScreen: 'Медитация',
+            contactDeveloper: 'Разработчик: Макс Сулейманов',
+
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsRu,
         },
