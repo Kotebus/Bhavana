@@ -20,7 +20,7 @@ type SermonsMap = {
 const sermonsMap: SermonsMap = {
     'SantaSukha': [require('./sermons/content/SantaSukhaRu.md'), require('./sermons/content/SantaSukhaEn.md')],
     'PanchaNivarana': [require('./sermons/content/PanchaNivaranaRu.md'), require('./sermons/content/PanchaNivaranaEn.md')],
-    'Recitations': [require('./sermons/content/RecitationsRu.md'), require('./sermons/content/RecitationsRu.md')],
+    'Recitations': [require('./sermons/content/RecitationsRu.md'), require('./sermons/content/RecitationsEn.md')],
 }
 
 export default function SermonScreen({route}: Props) {
