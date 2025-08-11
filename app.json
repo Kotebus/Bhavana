@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Bhavana - Art of The Mind",
-    "slug": "Bhavana",
+    "slug": "bhavana",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,12 @@
     },
     "plugins": [
       "expo-asset"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "f7ce62df-7f34-4d86-adf7-5bdaba934c8a"
+      }
+    },
+    "owner": "kotebus"
   }
 }
