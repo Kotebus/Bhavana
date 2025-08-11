@@ -11,13 +11,13 @@ type Props = NativeStackScreenProps<RootStackParamList, 'SermonScreen'>;
 type SermonMap = Record<SermonKey, () => Promise<any>>;
 
 const sermonsRu: SermonMap = {
-    'SantaSukha': ()=> import('./sermons/content/SantaSukhaContentRu'),
-    'PanchaNivarana': () => import('./sermons/content/PanchaNivaranaContentRu'),
+    'SantaSukha': ()=> import('./sermons/content/SantaSukhaRu'),
+    'PanchaNivarana': () => import('./sermons/content/PanchaNivaranaRu'),
 };
 
 const sermonsEn: SermonMap = {
-    'SantaSukha': ()=> import('./sermons/content/SantaSukhaContentEn'),
-    'PanchaNivarana': () => import('./sermons/content/PanchaNivaranaContentEn'),
+    'SantaSukha': ()=> import('./sermons/content/SantaSukhaEn'),
+    'PanchaNivarana': () => import('./sermons/content/PanchaNivaranaEn'),
 };
 
 export default function SermonScreen({route}: Props) {
