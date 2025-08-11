@@ -1,4 +1,3 @@
-export const text = `
 # Pañca nīvaraṇāni: Five Hindrances
 
 “Bhikkhus, there are these five corruptions of gold, corrupted by which gold is neither malleable nor wieldy nor radiant but brittle and not properly fit for work. What five? Iron is a corruption of gold, corrupted by which gold is neither malleable nor wieldy nor radiant but brittle and not properly fit for work. Copper is a corruption of gold … Tin is a corruption of gold … Lead is a corruption of gold … Silver is a corruption of gold.… These are the five corruptions of gold, corrupted by which gold is neither malleable nor wieldy nor radiant but brittle and not properly fit for work.  
@@ -380,4 +379,3 @@ never will I turn back.”
 
 [Abhiṇhapaccavekkhitabbaṭhānasutta: Themes (AN 5.57),](https://suttacentral.net/an5.57/en/bodhi?lang=en)  
 [translation by Ven. Bhikkhu Bodhi](https://suttacentral.net/an5.57/en/bodhi?lang=en)
-`;

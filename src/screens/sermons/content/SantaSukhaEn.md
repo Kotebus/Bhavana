@@ -1,4 +1,3 @@
-export const text = `
 # Santasukha: the Happiness of Peace
 
 *So you should train like this: ‘We shall have peaceful faculties and peaceful minds.’ That’s how you should train. When your faculties and mind are peaceful, your acts of body, speech, and mind will be peaceful, thinking: ‘We shall present the gift of peace to our spiritual companions.’ That’s how you should train.*  
@@ -201,4 +200,3 @@ Happiness that relies on pleasure and happiness that relies on equanimity. These
 Happiness that relies on form and happiness that relies on the formless. These are the two kinds of happiness. The better of these two kinds of happiness is happiness that relies on the formless.”
 
 [Sukhavagga: Happiness (AN 2.64–76), translation by Ven. Bhikkhu Sujato](https://suttacentral.net/an2.64-76/en/sujato?lang=en)
-`;

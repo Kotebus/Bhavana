@@ -1,6 +1,8 @@
+import {SermonKey} from "../../i18n";
+
 interface ISermon {
     id: number;
-    sermonKey: string;
+    sermonKey: SermonKey;
 }
 
 export const sermonsRoutingList:ISermon[] = [
@@ -13,6 +15,3 @@ export const sermonsRoutingList:ISermon[] = [
         sermonKey: 'SantaSukha'
     },
 ];
-
-//Same key as in l18n/index.ts!
-export type SermonKey = typeof sermonsRoutingList[number]['sermonKey'];

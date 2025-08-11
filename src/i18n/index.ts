@@ -1,6 +1,18 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+const sermonsEn = {
+    PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
+    SantaSukha: 'Santasukha: the Happiness of Peace',
+};
+
+const sermonsRu = {
+    PanchaNivarana: 'Pañca nīvaraṇāni: пять помех',
+    SantaSukha: 'Santasukha: счастье покоя',
+};
+
+export type SermonKey = keyof typeof sermonsEn;
+
 const resources = {
     en: {
         translation: {
@@ -13,9 +25,11 @@ const resources = {
             AboutScreen: 'About',
             StudyScreen: 'Study',
             MeditationScreen: 'Meditation',
+
             //Sermons, same keys as in sermonsRoutingList!
-            PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
-            SantaSukha: 'Santasukha: the Happiness of Peace',
+            ...sermonsEn,
+            // PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
+            // SantaSukha: 'Santasukha: the Happiness of Peace',
         },
     },
     ru: {
@@ -30,8 +44,7 @@ const resources = {
             StudyScreen: 'Материалы',
             MeditationScreen: 'Медитация',
             //Sermons, same keys as in sermonsRoutingList!
-            PanchaNivarana: 'Pañca nīvaraṇāni: пять помех',
-            SantaSukha: 'Santasukha: счастье покоя',
+            ...sermonsRu,
         },
     },
 };

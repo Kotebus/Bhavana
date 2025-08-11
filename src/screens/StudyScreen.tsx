@@ -5,6 +5,7 @@ import {RootStackParamList} from "../components/AppNavigator";
 import {useTranslation} from "react-i18next";
 import {globalStyles} from "../styles/global";
 import {sermonsRoutingList} from "./sermons/SermonsRoutingList";
+import {SermonKey} from "../i18n";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'StudyScreen'>;
 
@@ -12,7 +13,7 @@ export default function StudyScreen({ route, navigation } : Props) {
     const {language} = route.params;
     const {t} = useTranslation();
 
-    const navigateToSermon = (sermonKey: string) => navigation.navigate('SermonScreen', {sermonKey: sermonKey, language: language});
+    const navigateToSermon = (sermonKey: SermonKey) => navigation.navigate('SermonScreen', {sermonKey: sermonKey, language: language});
 
     return (
         <View

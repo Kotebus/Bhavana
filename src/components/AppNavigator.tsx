@@ -10,13 +10,14 @@ import MeditationScreen from "../screens/MeditationScreen";
 import AboutScreen from "../screens/AboutScreen";
 import StudyScreen from "../screens/StudyScreen";
 import SermonScreen from "../screens/SermonScreen";
+import {SermonKey} from "../i18n";
 
 export interface IPropsWithLanguage {
     language: Language;
 }
 
 export interface ISermonProps {
-    sermonKey: string;
+    sermonKey: SermonKey;
     language: Language;
 }
 export type RootStackParamList = {

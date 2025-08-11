@@ -4,42 +4,57 @@ import Markdown from "react-native-markdown-display";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 
 import {RootStackParamList} from "../components/AppNavigator";
-import {SermonKey} from "./sermons/SermonsRoutingList";
+import {loadMarkdownAsset} from "../services/MarkdownLoader";
+import {SermonKey} from "../i18n";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SermonScreen'>;
 
-type SermonMap = Record<SermonKey, () => Promise<any>>;
-
-const sermonsRu: SermonMap = {
-    'SantaSukha': ()=> import('./sermons/content/SantaSukhaRu'),
-    'PanchaNivarana': () => import('./sermons/content/PanchaNivaranaRu'),
+type SermonEntry = readonly [any, any];
+type SermonsMap = {
+    readonly [K in SermonKey]: SermonEntry;
 };
 
-const sermonsEn: SermonMap = {
-    'SantaSukha': ()=> import('./sermons/content/SantaSukhaEn'),
-    'PanchaNivarana': () => import('./sermons/content/PanchaNivaranaEn'),
-};
+const sermonsMap: SermonsMap = {
+    'SantaSukha': [require('./sermons/content/SantaSukhaRu.md'), require('./sermons/content/SantaSukhaEn.md')],
+    'PanchaNivarana': [require('./sermons/content/PanchaNivaranaRu.md'), require('./sermons/content/PanchaNivaranaEn.md')],
+}
 
 export default function SermonScreen({route}: Props) {
     const { sermonKey, language } = route.params;
     const [content, setContent] = useState<string | null>(null);
 
-    useEffect(() => {
-        const loadLecture = async () => {
-            try {
-                const map = language === 'ru' ? sermonsRu : sermonsEn;
-                const module = await map[sermonKey]();
 
-                const text = Object.values(module)[0] as string;
+    useEffect(() => {
+        const loadMarkdown = async () => {
+            try {
+                const langRequireIndex = language === 'ru' ? 0 : 1;
+                const asset = sermonsMap[sermonKey][langRequireIndex];
+                const text = await loadMarkdownAsset(asset);
                 setContent(text);
-            } catch (err) {
-                console.error(`Ошибка загрузки лекции ${sermonKey}:`, err);
-                setContent(`Лекция ${sermonKey} не найдена`);
+            } catch (error) {
+                console.error('Ошибка загрузки markdown:', error);
             }
         };
 
-        loadLecture();
-    }, [sermonKey]);
+        loadMarkdown();
+    }, []);
+
+    // useEffect(() => {
+    //     const loadLecture = async () => {
+    //         try {
+    //             const map = language === 'ru' ? sermonsRu : sermonsEn;
+    //             const module = await map[sermonKey]();
+    //
+    //             const text = Object.values(module)[0] as string;
+    //             setContent(text);
+    //         } catch (err) {
+    //             console.error(`Ошибка загрузки лекции ${sermonKey}:`, err);
+    //             setContent(`Лекция ${sermonKey} не найдена`);
+    //         }
+    //     };
+    //
+    //     loadLecture();
+    // }, [sermonKey]);
 
     if (!content) {
         return (
