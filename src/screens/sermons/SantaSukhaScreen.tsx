@@ -1,14 +1,15 @@
 import React from "react";
 import {ScrollView, StyleSheet} from "react-native";
 import Markdown from "react-native-markdown-display";
-import {panchaNivaranaContentRu} from "./content/PanchaNivaranaContentRu";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "../../../App";
-import {panchaNivaranaContentEn} from "./content/PanchaNivaranaContentEn";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'PanchaNivarana'>;
+import {santaSukhaContentRu} from "./content/SantaSukhaContentRu";
+import {santaSukhaContentEn} from "./content/SantaSukhaContentEn";
+import {RootStackParamList} from "../../components/AppNavigator";
 
-export default function PanchaNivaranaScreen({route}: Props) {
+type Props = NativeStackScreenProps<RootStackParamList, 'SantaSukhaScreen'>;
+
+export default function SantaSukhaScreen({route}: Props) {
     const { language } = route.params;
 
     return (
@@ -17,9 +18,10 @@ export default function PanchaNivaranaScreen({route}: Props) {
                 style={{
                     body: {
                         fontSize: 16,
+                        textAlign: "justify",
                     }}}
             >
-                {language === 'ru' ? panchaNivaranaContentRu : panchaNivaranaContentEn}
+                {language === 'ru' ? santaSukhaContentRu : santaSukhaContentEn}
             </Markdown>
         </ScrollView>
     );

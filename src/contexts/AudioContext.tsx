@@ -1,46 +1,37 @@
-import React, {createContext, useState, useContext, PropsWithChildren} from 'react';
-import { View,  StyleSheet } from 'react-native';
+import React, {createContext, useContext, PropsWithChildren} from 'react';
+import {useAudioPlayer} from "expo-audio";
+import {AudioPlayer} from "expo-audio/src/AudioModule.types";
 
-type Theme = 'light' | 'dark';
+const START_SRC = '../../assets/sounds/start.mp3';
+const END_SRC = '../../assets/sounds/end.mp3';
 
-interface ThemeContextProps {
-    theme: Theme;
-    toggleTheme: () => void;
+interface AudioContextProps {
+    playerStart: AudioPlayer;
+    playerEnd: AudioPlayer;
+    stopAllPlayers: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+const AudioContext = createContext<AudioContextProps | undefined>(undefined);
 
-export const useTheme = () => {
-    const context = useContext(ThemeContext);
-    if (!context) {
-        throw new Error('useTheme must be used within a ThemeProvider');
+export const AudioProvider = ({ children } : PropsWithChildren) => {
+    const playerStart = useAudioPlayer(require(START_SRC));
+    const playerEnd = useAudioPlayer(require(END_SRC));
+    const stopAllPlayers = () => {
+        playerStart.pause();
+        playerEnd.pause();
     }
-    return context;
-};
-
-export const ThemeProvider = ({ children } : PropsWithChildren) => {
-    const [theme, setTheme] = useState<Theme>('light');
-
-    const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-    };
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            <View style={theme === 'light' ? styles.lightContainer : styles.darkContainer}>
-                {children}
-            </View>
-        </ThemeContext.Provider>
+        <AudioContext.Provider value={{playerStart, playerEnd, stopAllPlayers}}>
+            {children}
+        </AudioContext.Provider>
     );
 };
 
-const styles = StyleSheet.create({
-    lightContainer: {
-        backgroundColor: 'white',
-        flex: 1,
-    },
-    darkContainer: {
-        backgroundColor: 'black',
-        flex: 1,
-    },
-});
+export const useAudio = () => {
+    const context = useContext(AudioContext);
+    if (!context) {
+        throw new Error('useAudio must be used within a AudioProvider');
+    }
+    return context;
+};

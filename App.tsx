@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { I18nextProvider } from 'react-i18next';
+import i18n from 'i18next';
+
+import { SettingsProvider } from './src/contexts/SettingsContext';
+import {AudioProvider} from "./src/contexts/AudioContext";
+import {AppNavigator} from "./src/components/AppNavigator";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        // <ThemeProvider>
+            <AudioProvider>
+                <SettingsProvider>
+                    <I18nextProvider i18n={i18n}>
+                        <AppNavigator/>
+                    </I18nextProvider>
+                </SettingsProvider>
+            </AudioProvider>
+        // </ThemeProvider>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
