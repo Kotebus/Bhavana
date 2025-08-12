@@ -27,7 +27,7 @@ export default function StudyScreen({ route, navigation } : Props) {
                         onPress={() => navigateToSermon(item.sermonKey)}
                         style={[globalStyles.button, {width: '90%'}]}
                     >
-                        <Text style={[globalStyles.buttonText, { fontSize: 18 }]}>
+                        <Text style={globalStyles.buttonText}>
                             {t(item.sermonKey)}
                         </Text>
                     </TouchableOpacity>

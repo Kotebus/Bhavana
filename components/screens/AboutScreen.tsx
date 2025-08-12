@@ -54,9 +54,6 @@ const OpenURLButton = ({url, children}: IOpenURLButtonProps) => {
 const RuContent = ()=> {
     return (
         <>
-            <Text style={styles.title}>
-                О приложении
-            </Text>
             <Text style={styles.text}>
                 Это приложение для медитации от монастыря Читтавивека (Шри-Ланка).
             </Text>
@@ -74,9 +71,6 @@ const RuContent = ()=> {
 const EnContent = ()=> {
     return (
         <>
-            <Text style={styles.title}>
-                About the app
-            </Text>
             <Text style={styles.text}>
                 This is a meditation app from the Chittaviveka Monastery (Sri Lanka).
             </Text>
@@ -96,9 +90,13 @@ type Props = NativeStackScreenProps<RootStackParamList, 'AboutScreen'>;
 
 export default function AboutScreen({ route } : Props) {
     const {language} = route.params;
+    const {t} = useTranslation();
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
+            <Text style={styles.title}>
+                {t('AboutScreen')}
+            </Text>
             {language === 'ru'
                 ? <RuContent/>
                 : <EnContent/>

@@ -14,4 +14,8 @@ export const sermonsRoutingList:ISermon[] = [
         id: 1,
         sermonKey: 'SantaSukha'
     },
+    {
+        id: 2,
+        sermonKey: 'DanaSilaBhavana'
+    },
 ];

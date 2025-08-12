@@ -5,12 +5,14 @@ const sermonsEn = {
     PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
     SantaSukha: 'Santasukha: the Happiness of Peace',
     Recitations: 'Recitations',
+    DanaSilaBhavana: 'Dāna, sīla, bhāvanā: The Three Types of Practice in Buddhism',
 };
 
 const sermonsRu = {
     PanchaNivarana: 'Pañca nīvaraṇāni: пять помех',
     SantaSukha: 'Santasukha: счастье покоя',
     Recitations: 'Славословия',
+    DanaSilaBhavana: 'Dāna, sīla, bhāvanā: три вида практики в буддизме',
 };
 
 export type SermonKey = keyof typeof sermonsEn;
