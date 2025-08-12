@@ -74,18 +74,24 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 2,
         borderRadius: 8,
-        width: '90%',
+        width: '100%',
         alignSelf: 'center',
         backgroundColor: 'black',
         color: 'white',
-        paddingHorizontal:7,
     },
     picker: {
         backgroundColor: 'black',
         color:'white',
         flex: 1,
     },
-    sep: { fontSize: 28, marginHorizontal: 8, paddingBottom: 6, color: 'white' },
+    sep: {
+        fontSize: 20,
+        marginHorizontal: 8,
+        paddingBottom: 6,
+        color: 'white',
+        position: 'absolute',
+        marginLeft: -2
+    },
     item: { backgroundColor: 'lightgray' },
 });
 

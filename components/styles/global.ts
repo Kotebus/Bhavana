@@ -30,7 +30,6 @@ export const globalStyles = StyleSheet.create({
     button: {
         backgroundColor: COLORS.primary,
         paddingVertical: 15,
-        paddingHorizontal: 40,
         borderRadius: 8,
         alignSelf: 'center',
         marginTop: 30,
@@ -38,7 +37,7 @@ export const globalStyles = StyleSheet.create({
     },
     buttonText: {
         color: COLORS.buttonText,
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center',
     },
