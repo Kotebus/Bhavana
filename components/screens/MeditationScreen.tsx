@@ -25,30 +25,33 @@ export default function MeditationScreen({ route, navigation }: Props) {
     const { h, m } = route.params;
     const { settings } = useSettings();
     const { t } = useTranslation();
-    const {playerStart, playerEnd, stopAllPlayers} = useAudio();
+    const {playerGong, playerEnd, stopAllPlayers} = useAudio();
 
     const [elapsed, setElapsed] = useState(0);
 
     const totalMeditationDurationSeconds =(h ?? 0) * 3600 + (m ?? 0) * 60;
-    const isShortSession = playerStart.duration + playerEnd.duration > (totalMeditationDurationSeconds)
+    const isShortSession =  totalMeditationDurationSeconds < 10 * 60;
 
     //If session is too short we wouldn't play sounds
-    const shouldPlaySound = settings.soundEnabled && !isShortSession;
-    //At that moment we should start playing end sound to finish it before session's end.
-    const secondsToStartEndSound = Math.ceil(totalMeditationDurationSeconds - (playerEnd.duration + 5));
+    const shouldPlaySalutations = settings.soundEnabled && !isShortSession;
 
     useEffect(() => {
-        if (shouldPlaySound) {
-            void playSound(playerStart);
+        if (settings.soundEnabled) {
+            void playSound(playerGong);
         }
 
         const interval = setInterval(() => {
             setElapsed((prev) => {
                 const nextSecond = prev + 1;
-                if (shouldPlaySound && nextSecond === secondsToStartEndSound) {
-                    void playSound(playerEnd);
-                }
+
                 if (nextSecond >= totalMeditationDurationSeconds) {
+                    if (settings.soundEnabled) {
+                        playSound(playerGong).then(() => {
+                            if (shouldPlaySalutations) {
+                                playSound(playerEnd);
+                            }
+                        });
+                    }
                     clearInterval(interval);
                     return totalMeditationDurationSeconds;
                 }

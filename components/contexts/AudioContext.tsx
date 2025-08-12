@@ -3,10 +3,10 @@ import {useAudioPlayer} from "expo-audio";
 import {AudioPlayer} from "expo-audio/src/AudioModule.types";
 
 const START_SRC = '../../assets/sounds/start.mp3';
-const END_SRC = '../../assets/sounds/end.mp3';
+const GONG_SRC = '../../assets/sounds/gong.mp3';
 
 interface AudioContextProps {
-    playerStart: AudioPlayer;
+    playerGong: AudioPlayer;
     playerEnd: AudioPlayer;
     stopAllPlayers: () => void;
 }
@@ -14,15 +14,15 @@ interface AudioContextProps {
 const AudioContext = createContext<AudioContextProps | undefined>(undefined);
 
 export const AudioProvider = ({ children } : PropsWithChildren) => {
-    const playerStart = useAudioPlayer(require(START_SRC));
-    const playerEnd = useAudioPlayer(require(END_SRC));
+    const playerEnd = useAudioPlayer(require(START_SRC));
+    const playerGong = useAudioPlayer(require(GONG_SRC));
     const stopAllPlayers = () => {
-        playerStart.pause();
         playerEnd.pause();
+        playerGong.pause();
     }
 
     return (
-        <AudioContext.Provider value={{playerStart, playerEnd, stopAllPlayers}}>
+        <AudioContext.Provider value={{playerEnd, playerGong, stopAllPlayers}}>
             {children}
         </AudioContext.Provider>
     );

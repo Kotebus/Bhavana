@@ -6,6 +6,7 @@ import i18n from '../i18n';
 type ContextType = {
     settings: AppSettings;
     setSettings: (s: AppSettings) => void;
+    inited: boolean;
 };
 
 const defaultSettings: AppSettings = {
@@ -36,6 +37,7 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
             const saved = await loadSettings();
             if (saved) {
                 setSettingsState(saved);
+                setInited(true);
                 if (saved.language !== settings.language) {
                     await i18n.changeLanguage(saved.language);
                 }
@@ -65,7 +67,7 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
     }
 
     return (
-        <SettingsContext.Provider value={{ settings, setSettings }}>
+        <SettingsContext.Provider value={{ settings, setSettings, inited }}>
             {children}
         </SettingsContext.Provider>
     );
