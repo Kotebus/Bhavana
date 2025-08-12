@@ -25,7 +25,7 @@ export default function StudyScreen({ route, navigation } : Props) {
                 renderItem={({item}) => (
                     <TouchableOpacity
                         onPress={() => navigateToSermon(item.sermonKey)}
-                        style={[globalStyles.button, {width: '90%'}]}
+                        style={[globalStyles.button, styles.button]}
                     >
                         <Text style={globalStyles.buttonText}>
                             {t(item.sermonKey)}
@@ -42,4 +42,8 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
     },
+    button: {
+        width: '90%',
+        paddingHorizontal: 5
+    }
 });
