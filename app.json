@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "Bhavana",
-    "slug": "Bhavana",
+    "name": "Bhavana - The Art of The Mind",
+    "slug": "bhavana",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "bhavana",
     "userInterfaceStyle": "automatic",
@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.kotebus.bhavana"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +38,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f7ce62df-7f34-4d86-adf7-5bdaba934c8a"
+      }
+    },
+    "owner": "kotebus"
   }
 }
