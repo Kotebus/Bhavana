@@ -25,7 +25,7 @@ const resources = {
             hour: 'h',
             start: 'Start',
             endSession: 'End session',
-            HomeScreen: 'Bhāvanā — The Art of The Mind',
+            HomeScreen: 'Bhāvanā — Art of The Mind',
             AboutScreen: 'About',
             StudyScreen: 'Study',
             MeditationScreen: 'Meditation',
