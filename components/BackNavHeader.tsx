@@ -1,20 +1,23 @@
-import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import React, {PropsWithChildren} from 'react';
+import {View, TouchableOpacity, StyleSheet, Platform} from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
-import TextSizeControl from "@/components/TextSizeControl";
 
-interface ISizeAndBackNavHeader {
+interface ISizeAndBackNavHeader extends PropsWithChildren{
     onBack: () => void;
-    onChangeSize: (size: number) => void;
 }
 
-export default function SizeAndBackNavHeader({onChangeSize, onBack}: ISizeAndBackNavHeader) {
+export default function BackNavHeader({onBack, children}: ISizeAndBackNavHeader) {
+    const isIos = Platform.OS === 'ios';
+    const containerStyles = [
+        styles.container,
+        isIos ? styles.containerIos : undefined,
+    ];
     return (
-        <View style={styles.container}>
+        <View style={containerStyles}>
             <TouchableOpacity style={styles.backButton} onPress={onBack}>
                 <Ionicons name="arrow-back-outline" size={24} color="black" />
             </TouchableOpacity>
-            <TextSizeControl onChange={onChangeSize} />
+            {children}
         </View>
     );
 }
@@ -27,6 +30,9 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingBottom: 10,
         position: 'relative',
+    },
+    containerIos: {
+        marginTop: 15,
     },
     backButton: {
         position: 'absolute',

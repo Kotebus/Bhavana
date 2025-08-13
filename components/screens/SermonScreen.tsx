@@ -8,7 +8,8 @@ import {SermonKey} from "../i18n";
 import {useSettings} from "../contexts/SettingsContext";
 import {RootStackParamList} from "@/components/AppNavigator";
 import {loadMarkdownAsset} from "@/components/services/MarkdownLoader";
-import SizeAndBackNavHeader from "@/components/SizeAndBackNavHeader";
+import BackNavHeader from "@/components/BackNavHeader";
+import TextSizeControl from "@/components/TextSizeControl";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SermonScreen'>;
 
@@ -52,17 +53,13 @@ export default function SermonScreen({route, navigation}: Props) {
             </ScrollView>
         );
     }
+
     return (
         <ScrollView style={styles.container}>
-            <SizeAndBackNavHeader
-                onBack={() => navigation.goBack()}
-                onChangeSize={setTextSize}
-            />
-            {/*<TouchableOpacity onPress={() => navigation.goBack()}>*/}
-            {/*    <Ionicons name="arrow-back-outline" size={24} color="black" />*/}
-            {/*</TouchableOpacity>*/}
-            {/*<TextSizeControl onChange={setTextSize} />*/}
-            <Markdown
+            <BackNavHeader onBack={() => navigation.goBack()}>
+                <TextSizeControl onChange={setTextSize} />
+            </BackNavHeader>
+                <Markdown
                 style={{
                     body: {
                         fontSize: textSize,
@@ -82,7 +79,7 @@ export default function SermonScreen({route, navigation}: Props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 16
+        padding: 16,
     },
     loader: {
         flex: 1,
