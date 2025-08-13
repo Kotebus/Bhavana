@@ -25,7 +25,7 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
             NativeModules.SettingsManager.settings?.AppleLanguages[0] //iOS 13
             : NativeModules.I18nManager.localeIdentifier;
 
-    const systemLang = deviceLanguage === 'ru_RU' || 'ru' ? 'ru' : 'en';
+    const systemLang = ['ru_RU', 'ru'].includes(deviceLanguage) ? 'ru' : 'en';
 
     const [settings, setSettingsState] = useState<AppSettings>({ ...defaultSettings, language: systemLang});
     const [inited, setInited] = useState(false);
@@ -42,14 +42,9 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
                     await i18n.changeLanguage(saved.language);
                 }
             } else {
-                // first run: save defaults
+                // first run
                 const initial = { ...settings };
-                setSettingsState(initial);
-
-                await Promise.all([
-                    i18n.changeLanguage(initial.language),
-                    saveSettings(initial)
-                ]);
+                await i18n.changeLanguage(initial.language);
             }
             setInited(true);
         })();

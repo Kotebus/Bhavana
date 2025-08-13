@@ -126,7 +126,7 @@ export default function AboutScreen({ route } : Props) {
 const styles = StyleSheet.create({
     title: {
         paddingTop: 12,
-        fontSize: 26,
+        fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 15,
         alignSelf:'flex-end'

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import {useSettings} from "@/components/contexts/SettingsContext";
 
 interface ITextSizeControlProps {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     buttonText: {
-        fontSize: 22,
+        fontSize: 24,
         fontWeight: 'bold',
         color: '#333',
     },

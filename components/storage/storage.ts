@@ -6,6 +6,7 @@ export interface ITime {
     h: number;
     m: number;
 }
+
 export type AppSettings = {
     meditationTime: ITime;
     language: Language;
@@ -13,7 +14,7 @@ export type AppSettings = {
     fontSize: number;
 };
 
-const SETTINGS_KEY = 'app_settings_v1';
+const SETTINGS_KEY = 'bhavana_app_settings_v1';
 
 export async function saveSettings(settings: AppSettings) {
     try {

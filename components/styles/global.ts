@@ -9,6 +9,8 @@ const COLORS = {
     buttonText: '#FFFFFF',
 } as const;
 
+//TODO: font sizes as constants
+
 export const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
