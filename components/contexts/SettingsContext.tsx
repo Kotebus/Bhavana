@@ -2,6 +2,7 @@ import React, {createContext, PropsWithChildren, useContext, useEffect, useState
 import {NativeModules, Platform} from 'react-native';
 import { AppSettings, loadSettings, saveSettings } from '../storage/storage';
 import i18n from '../i18n';
+import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
 
 type ContextType = {
     settings: AppSettings;
@@ -13,7 +14,7 @@ const defaultSettings: AppSettings = {
     meditationTime: { h: 0, m: 30 },
     language: 'ru',
     soundEnabled: true,
-    fontSize: 16,
+    fontSize: FONT_SIZE_DEFAULT,
 };
 
 const SettingsContext = createContext<ContextType | undefined>(undefined);

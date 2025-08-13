@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 
 import {useSettings} from "../contexts/SettingsContext";
-import {globalStyles} from "../styles/global";
+import {FONT_SIZE_HEADER, globalStyles} from "../styles/global";
 import {RootStackParamList} from "@/components/AppNavigator";
 import TimePicker from "@/components/TimePicker";
 import {ITime} from "@/components/storage/storage";
@@ -41,7 +41,7 @@ export default function HomeScreen({ navigation }: Props) {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={toggleLanguage} style={globalStyles.iconButton}>
-                    <Text style={{fontSize: 24}}>
+                    <Text style={{fontSize: FONT_SIZE_HEADER}}>
                         {settings.language === 'ru' ? '🇷🇺' : '🇺🇸'}
                     </Text>
                 </TouchableOpacity>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     title: {
-        fontSize: 24,
+        fontSize: FONT_SIZE_HEADER,
         textAlign: 'center',
         marginBottom: 20,
     },

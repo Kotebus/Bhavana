@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import {useSettings} from "@/components/contexts/SettingsContext";
+import {FONT_SIZE_DEFAULT, FONT_SIZE_HEADER} from "@/components/styles/global";
 
 interface ITextSizeControlProps {
     min?: number;
@@ -51,12 +52,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     buttonText: {
-        fontSize: 24,
+        fontSize: FONT_SIZE_HEADER,
         fontWeight: 'bold',
         color: '#333',
     },
     value: {
-        fontSize: 16,
+        fontSize: FONT_SIZE_DEFAULT,
         fontWeight: '500',
         color: '#333',
         minWidth: 50,

@@ -3,7 +3,7 @@ import {Text, StyleSheet, ScrollView, Linking, View, TouchableOpacity, Platform}
 import {useTranslation} from "react-i18next";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/AppNavigator";
-import {globalStyles} from "@/components/styles/global";
+import {FONT_SIZE_DEFAULT, FONT_SIZE_HEADER, globalStyles} from "@/components/styles/global";
 
 
 const ContactInfo = () => {
@@ -126,13 +126,13 @@ export default function AboutScreen({ route } : Props) {
 const styles = StyleSheet.create({
     title: {
         paddingTop: 12,
-        fontSize: 24,
+        fontSize: FONT_SIZE_HEADER,
         fontWeight: 'bold',
         marginBottom: 15,
         alignSelf:'flex-end'
     },
     text: {
-        fontSize: 16,
+        fontSize: FONT_SIZE_DEFAULT,
         marginBottom: 15,
         textAlign: 'justify',
     },
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
     },
     linkButtonText: {
-        fontSize: 16,
+        fontSize: FONT_SIZE_DEFAULT,
         color: '#007AFF',
     },
     contactBlock: {
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     contactLabel: {
-        fontSize: 16,
+        fontSize: FONT_SIZE_DEFAULT,
         fontWeight: '500',
         marginBottom: 5,
     },
@@ -162,13 +162,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     link: {
-        fontSize: 16,
+        fontSize: FONT_SIZE_DEFAULT,
         color: '#007AFF',
         textDecorationLine: 'underline',
     },
     separator: {
         marginHorizontal: 8,
-        fontSize: 16,
+        fontSize: FONT_SIZE_DEFAULT,
         color: '#888',
     },
 });

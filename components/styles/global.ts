@@ -9,7 +9,8 @@ const COLORS = {
     buttonText: '#FFFFFF',
 } as const;
 
-//TODO: font sizes as constants
+export const FONT_SIZE_DEFAULT = 16;
+export const FONT_SIZE_HEADER = 24;
 
 export const globalStyles = StyleSheet.create({
     container: {
@@ -25,13 +26,13 @@ export const globalStyles = StyleSheet.create({
     },
     title: {
         color: COLORS.titleText,
-        fontSize: 24,
+        fontSize: FONT_SIZE_HEADER,
         textAlign: 'center',
         marginBottom: 20,
     },
     text: {
         color: COLORS.text,
-        fontSize: 16,
+        fontSize: FONT_SIZE_DEFAULT,
     },
     button: {
         backgroundColor: COLORS.primary,
@@ -43,7 +44,7 @@ export const globalStyles = StyleSheet.create({
     },
     buttonText: {
         color: COLORS.buttonText,
-        fontSize: 16,
+        fontSize: FONT_SIZE_DEFAULT,
         fontWeight: 'bold',
         textAlign: 'center',
     },

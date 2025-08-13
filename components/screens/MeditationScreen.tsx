@@ -4,7 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {useTranslation} from "react-i18next";
 
 import {useSettings} from "../contexts/SettingsContext";
-import {globalStyles} from "../styles/global";
+import {FONT_SIZE_HEADER, globalStyles} from "../styles/global";
 import {RootStackParamList} from "@/components/AppNavigator";
 import {playSound} from "@/components/services/AudioHelper";
 import {useAudio} from "@/components/contexts/AudioContext";
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     },
     image: { width: '60%', height: '35%', top: '20%', position: 'absolute' },
     timer: { fontSize: 40, fontWeight: 'bold', alignSelf: 'center'},
-    goal: { fontSize: 20, color: '#666', marginTop: 8, alignSelf: 'center', marginBottom: '-20%' },
+    goal: { fontSize: FONT_SIZE_HEADER, color: '#666', marginTop: 8, alignSelf: 'center', marginBottom: '-20%' },
     button: { bottom: '15%', position: 'absolute' },
 });
 
