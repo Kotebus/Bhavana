@@ -24,6 +24,10 @@ const sermonsMap: SermonsMap = {
     'PanchaNivarana': [require('./sermons/content/PanchaNivaranaRu.md'), require('./sermons/content/PanchaNivaranaEn.md')],
     'DanaSilaBhavana': [require('./sermons/content/DanaSilaBhavanaRu.md'), require('./sermons/content/DanaSilaBhavanaEn.md')],
     'Salayatana': [require('./sermons/content/SalayatanaRu.md'), require('./sermons/content/SalayatanaEn.md')],
+    'Viveka': [require('./sermons/content/VivekaRu.md'), require('./sermons/content/VivekaEn.md')],
+    'Sankhara': [require('./sermons/content/SankharaRu.md'), require('./sermons/content/SankharaEn.md')],
+    'PanchaKkhandha': [require('./sermons/content/PanchaKkhandhaRu.md'), require('./sermons/content/PanchaKkhandhaEn.md')],
+
     'Recitations': [require('./sermons/content/RecitationsRu.md'), require('./sermons/content/RecitationsEn.md')],
 }
 
@@ -34,6 +38,7 @@ const imgSources: Record<string, any> = {
     'ayatana_scheme_en': require('./sermons/content/images/ayatana_scheme_en.png'),
     'sri_bodhiraja_center': require('./sermons/content/images/sri_bodhiraja_center.jpg'),
     'vase_faces': require('./sermons/content/images/vase_faces.png'),
+    'Tapchan_the_cat_my_friend': require('./sermons/content/images/Tapchan_the_cat_best_friend.png'),
 };
 
 export default function SermonScreen({route, navigation}: Props) {
@@ -86,11 +91,17 @@ export default function SermonScreen({route, navigation}: Props) {
                             //To render image on full page width and then height calculated base on that
                             const { width, height } = Image.resolveAssetSource(imgSrc);
 
+                            const isPortraitImage  = height > width;
                             return (
                                 <Image
                                     key={src}
                                     source={imgSrc}
-                                    style={{
+                                    style={isPortraitImage ? {
+                                        resizeMode: 'contain',
+                                        width: '50%',
+                                        height: height * 0.3,
+                                        alignItems: 'center',
+                                    } : {
                                         resizeMode: 'contain',
                                         flex: 1,
                                         aspectRatio: width / height

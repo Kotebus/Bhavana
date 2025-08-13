@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+//TODO: move all colors to constants
 const COLORS = {
     background: '#FFFFFF',
     titleText: '#000000',

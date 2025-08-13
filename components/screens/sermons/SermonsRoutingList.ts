@@ -22,4 +22,16 @@ export const sermonsRoutingList:ISermon[] = [
         id: 3,
         sermonKey: 'Salayatana'
     },
+    {
+        id: 4,
+        sermonKey: 'Viveka'
+    },
+    {
+        id: 5,
+        sermonKey: 'Sankhara'
+    },
+    {
+        id: 6,
+        sermonKey: 'PanchaKkhandha'
+    },
 ];
