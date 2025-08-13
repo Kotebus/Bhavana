@@ -1,8 +1,9 @@
 import React, {useCallback} from 'react';
-import {Text, StyleSheet, ScrollView, Linking, View, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, ScrollView, Linking, View, TouchableOpacity, Platform} from 'react-native';
 import {useTranslation} from "react-i18next";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/AppNavigator";
+import {globalStyles} from "@/components/styles/global";
 
 
 const ContactInfo = () => {
@@ -93,10 +94,13 @@ export default function AboutScreen({ route } : Props) {
     const {t} = useTranslation();
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.title}>
-                {t('AboutScreen')}
-            </Text>
+        <ScrollView contentContainerStyle={globalStyles.commonContainer}>
+            {Platform.OS === 'android' && (
+                <Text style={styles.title}>
+                    {t('AboutScreen')}
+                </Text>
+            )}
+
             {language === 'ru'
                 ? <RuContent/>
                 : <EnContent/>
@@ -120,10 +124,6 @@ export default function AboutScreen({ route } : Props) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        padding: 15,
-        alignItems: 'center',
-    },
     title: {
         paddingTop: 12,
         fontSize: 26,

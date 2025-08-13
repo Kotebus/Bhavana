@@ -17,6 +17,10 @@ export const globalStyles = StyleSheet.create({
         padding: 16,
         justifyContent: 'center',
     },
+    commonContainer: {
+        flex: 1,
+        padding: 16,
+    },
     title: {
         color: COLORS.titleText,
         fontSize: 24,

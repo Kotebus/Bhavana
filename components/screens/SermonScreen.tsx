@@ -10,6 +10,7 @@ import {RootStackParamList} from "@/components/AppNavigator";
 import {loadMarkdownAsset} from "@/components/services/MarkdownLoader";
 import BackNavHeader from "@/components/BackNavHeader";
 import TextSizeControl from "@/components/TextSizeControl";
+import {globalStyles} from "@/components/styles/global";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SermonScreen'>;
 
@@ -55,7 +56,7 @@ export default function SermonScreen({route, navigation}: Props) {
     }
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={globalStyles.commonContainer}>
             <BackNavHeader onBack={() => navigation.goBack()}>
                 <TextSizeControl onChange={setTextSize} />
             </BackNavHeader>
@@ -77,10 +78,6 @@ export default function SermonScreen({route, navigation}: Props) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
-    },
     loader: {
         flex: 1,
         justifyContent: "center",

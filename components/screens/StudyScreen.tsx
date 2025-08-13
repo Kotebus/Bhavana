@@ -17,7 +17,7 @@ export default function StudyScreen({ route, navigation } : Props) {
     const navigateToSermon = (sermonKey: SermonKey) => navigation.navigate('SermonScreen', {sermonKey: sermonKey, language: language});
 
     const isIos = Platform.OS === 'ios';
-    const containerStyles = [styles.container, isIos ? styles.containerIos : undefined];
+    const containerStyles = [globalStyles.container, isIos ? styles.containerIos : undefined];
     return (
         <View style={containerStyles}>
             {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
@@ -40,10 +40,6 @@ export default function StudyScreen({ route, navigation } : Props) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
-    },
     containerIos: {
         marginTop: 16
     },
