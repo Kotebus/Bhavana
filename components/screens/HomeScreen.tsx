@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 5,
         padding: 10,
+        zIndex: 1,
     },
     iconButton: {
         marginLeft: 15,
