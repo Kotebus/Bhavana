@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ActivityIndicator, ScrollView, StyleSheet, View} from "react-native";
+import {ActivityIndicator, ScrollView, StyleSheet, View, Image} from "react-native";
 import Markdown from "react-native-markdown-display";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -23,8 +23,18 @@ const sermonsMap: SermonsMap = {
     'SantaSukha': [require('./sermons/content/SantaSukhaRu.md'), require('./sermons/content/SantaSukhaEn.md')],
     'PanchaNivarana': [require('./sermons/content/PanchaNivaranaRu.md'), require('./sermons/content/PanchaNivaranaEn.md')],
     'DanaSilaBhavana': [require('./sermons/content/DanaSilaBhavanaRu.md'), require('./sermons/content/DanaSilaBhavanaEn.md')],
+    'Salayatana': [require('./sermons/content/SalayatanaRu.md'), require('./sermons/content/SalayatanaEn.md')],
     'Recitations': [require('./sermons/content/RecitationsRu.md'), require('./sermons/content/RecitationsEn.md')],
 }
+
+const imgSources: Record<string, any> = {
+    'ayatana_scheme_mind_ru': require('./sermons/content/images/ayatana_scheme_mind_ru.png'),
+    'ayatana_scheme_mind_en': require('./sermons/content/images/ayatana_scheme_mind_en.png'),
+    'ayatana_scheme_ru': require('./sermons/content/images/ayatana_scheme_ru.jpg'),
+    'ayatana_scheme_en': require('./sermons/content/images/ayatana_scheme_en.png'),
+    'sri_bodhiraja_center': require('./sermons/content/images/sri_bodhiraja_center.jpg'),
+    'vase_faces': require('./sermons/content/images/vase_faces.png'),
+};
 
 export default function SermonScreen({route, navigation}: Props) {
     const { sermonKey, language } = route.params;
@@ -67,6 +77,35 @@ export default function SermonScreen({route, navigation}: Props) {
                         textAlign: "justify",
                         padding: 3,
                     }}}
+                rules={{
+                    image: (node, children, parent, styles) => {
+                        const src = node.attributes.src || '';
+                        if (imgSources[src]) {
+                            const imgSrc = imgSources[src];
+
+                            //To render image on full page width and then height calculated base on that
+                            const { width, height } = Image.resolveAssetSource(imgSrc);
+
+                            return (
+                                <Image
+                                    key={src}
+                                    source={imgSrc}
+                                    style={{
+                                        resizeMode: 'contain',
+                                        flex: 1,
+                                        aspectRatio: width / height
+                                    }}
+                                />
+                            );
+                        }
+                        return (
+                            <Image
+                                key={src}
+                                source={{ uri: src }}
+                            />
+                        );
+                    },
+                }}
             >
                 {content}
             </Markdown>

@@ -6,6 +6,7 @@ const sermonsEn = {
     SantaSukha: 'Santasukha: the Happiness of Peace',
     Recitations: 'Recitations',
     DanaSilaBhavana: 'Dāna, sīla, bhāvanā: The Three Types of Practice in Buddhism',
+    Salayatana: 'Saḷāyatana: Six Sense Spheres'
 };
 
 const sermonsRu = {
@@ -13,6 +14,7 @@ const sermonsRu = {
     SantaSukha: 'Santasukha: счастье покоя',
     Recitations: 'Славословия',
     DanaSilaBhavana: 'Dāna, sīla, bhāvanā: три вида практики в буддизме',
+    Salayatana: 'Saḷāyatana: шесть сфер восприятия',
 };
 
 export type SermonKey = keyof typeof sermonsEn;
