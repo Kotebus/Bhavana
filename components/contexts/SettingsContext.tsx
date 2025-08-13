@@ -39,7 +39,7 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
             if (saved) {
                 setSettingsState(saved);
                 setInited(true);
-                if (saved.language !== settings.language) {
+                if (saved.language !== settings.language || saved.language !== 'ru') {
                     await i18n.changeLanguage(saved.language);
                 }
             } else {
