@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet, Platform} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import {ITime} from "@/components/storage/storage";
 
@@ -12,14 +12,17 @@ interface ISinglePickerProps {
 }
 
 const SinglePicker = ({value, onChange, length, label}: ISinglePickerProps) => {
+    const isAndroid = Platform.OS === 'android';
+    const pickerStyles =[styles.pickerCommon, isAndroid ? styles.pickerAndroid : undefined];
+
     return (
                 <Picker
                     mode='dropdown'
-                    dropdownIconColor={'white'}
-                    style={styles.picker}
+                    dropdownIconColor={isAndroid ? 'white' : 'black'}
+                    style={pickerStyles}
                     selectedValue={value}
                     onValueChange={onChange}
-                    itemStyle={styles.item}
+                    itemStyle={ isAndroid ? styles.item : undefined }
                 >
                     {Array.from({ length: length }).map((_, i) => (
                         <Picker.Item key={i} label={`${i} ${label}`} value={i} />
@@ -45,8 +48,12 @@ const TimePicker = ({ time, language, onChange } : ITimePickerProps) => {
         setTimeVal(newTime);
     }
 
+    const isAndroid = Platform.OS === 'android';
+    const containerStyles =[styles.containerCommon, isAndroid ? styles.containerAndroid : undefined];
+    const separatorStyles = [styles.sepCommon, isAndroid ? styles.sepAndroid : undefined];
+
     return (
-        <View style={styles.container}>
+        <View style={containerStyles}>
             <SinglePicker
                 value={timeVal.h}
                 onChange={(v) => updateTime({...time, h: v})}
@@ -54,7 +61,7 @@ const TimePicker = ({ time, language, onChange } : ITimePickerProps) => {
                 length={6}
             />
 
-            <Text style={styles.sep}>:</Text>
+            <Text style={separatorStyles}>:</Text>
 
             <SinglePicker
                 value={timeVal.m}
@@ -67,32 +74,43 @@ const TimePicker = ({ time, language, onChange } : ITimePickerProps) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
+    containerCommon: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        width: '100%',
+        alignSelf: 'center',
+    },
+    containerAndroid: {
         borderStyle: 'solid',
         borderWidth: 2,
         borderRadius: 8,
-        width: '100%',
-        alignSelf: 'center',
         backgroundColor: 'black',
         color: 'white',
     },
-    picker: {
-        backgroundColor: 'black',
-        color:'white',
+
+    pickerCommon: {
         flex: 1,
     },
-    sep: {
+    pickerAndroid: {
+        backgroundColor: 'black',
+        color:'white',
+    },
+
+    sepCommon: {
         fontSize: 20,
-        marginHorizontal: 8,
         paddingBottom: 6,
-        color: 'white',
         position: 'absolute',
         marginLeft: -2
     },
-    item: { backgroundColor: 'lightgray' },
+    sepAndroid: {
+        marginHorizontal: 8,
+        color: 'white',
+    },
+
+    item: {
+        backgroundColor: 'lightgray'
+    },
 });
 
 export default TimePicker;
