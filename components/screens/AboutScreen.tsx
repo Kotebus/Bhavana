@@ -1,122 +1,152 @@
-import React, {useCallback} from 'react';
-import {Text, StyleSheet, ScrollView, Linking, View, TouchableOpacity, Platform} from 'react-native';
+import React from 'react';
+import {Text, StyleSheet, ScrollView, Platform} from 'react-native';
 import {useTranslation} from "react-i18next";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/AppNavigator";
 import {FONT_SIZE_DEFAULT, FONT_SIZE_HEADER, globalStyles} from "@/components/styles/global";
+import {SermonKey} from "@/components/i18n";
+import {TextWithLink} from "@/components/TextWithLink";
+import {ContactInfo} from "@/components/screens/about/ContactInfo";
 
+type NavigateFuncType = () => Promise<void> | void;
 
-const ContactInfo = () => {
-    const {t} = useTranslation();
-
-    const openTelegram = () => Linking.openURL('https://t.me/Max_Kotebus');
-    const openEmail = () => Linking.openURL('mailto:kotebus666@gmail.com');
-
-    return (
-        <View style={styles.contactBlock}>
-            <Text style={styles.contactLabel}>{t('contactDeveloper')}</Text>
-            <View style={styles.contactRow}>
-                <TouchableOpacity onPress={openTelegram}>
-                    <Text style={styles.link}>tg @Max_Kotebus</Text>
-                </TouchableOpacity>
-                <Text style={styles.separator}>|</Text>
-                <TouchableOpacity onPress={openEmail}>
-                    <Text style={styles.link}>email</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
-    );
-};
-
-interface IOpenURLButtonProps {
-    url: string;
-    children: string;
+interface IContentProps {
+    onVipassanupakkilesaPress: NavigateFuncType;
+    onPanchaNivaranaPress: NavigateFuncType;
+    onRecitationsPress: NavigateFuncType;
+    isRuLanguage: boolean
 }
 
-const OpenURLButton = ({url, children}: IOpenURLButtonProps) => {
-    const handlePress = useCallback(async () => {
-        // Checking if the link is supported for links with custom URL scheme.
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
-            // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-            // by some browser in the mobile
-            await Linking.openURL(url);
-        }
-    }, [url]);
-
-    return (
-        <TouchableOpacity style={styles.linkButton} onPress={handlePress}>
-            <Text style={styles.linkButtonText}>{children}</Text>
-        </TouchableOpacity>
-    );
-};
-
-const RuContent = ()=> {
-    return (
+const MainContent = ({
+                          onVipassanupakkilesaPress,
+                          onPanchaNivaranaPress,
+                          onRecitationsPress,
+                         isRuLanguage,
+                      }: IContentProps)=> {
+    if (isRuLanguage) return (
         <>
             <Text style={styles.text}>
                 Это приложение для медитации от монастыря Читтавивека (Шри-Ланка).
             </Text>
             <Text style={styles.text}>
-                Основанный в 2018 году под руководством настоятеля бханте Ракване Нянасихи тхеро, монастырь стремится
-                создать условия для глубокого изучения и практики Учения Будды для монахов и мирян, особенно для
-                русскоязычных людей, не знающих иностранных языков. В монастыре они могут изучать и практиковать буддизм
-                в привычной языковой среде. Это особенно важно для пожилых буддистов и родителей монахов и мирян,
-                которым трудно адаптироваться в монастырях с другим языком общения.
+                Цель этого приложения — обеспечить знакомство с медитацией в русле ортодоксального буддизма традиции тхеравада, как часть религиозной практики. Палийское слово «bhāvanā» означает «развитие ума», «очищение ума». Именно оно чаще всего переводится словом «медитация».
             </Text>
+            <Text style={styles.text}>
+                Вся информация из этого приложения основана на Трипитаке (палийском каноне) и проповедях бханте Ракване Ньянасихи — настоятеля буддийского лесного монастыря Читтавивека (Шри-Ланка), и доступна на <TextWithLink textStyle={styles.linkButtonText} url={'https://samatha-vipassana.com/'}>официальном сайте монастыря</TextWithLink>, а также в книге <TextWithLink textStyle={styles.linkButtonText} url={'https://samatha-vipassana.com/article/bhavana-art-of-the-mind-ru/bhavana-book/'}>«Bhāvanā — искусство ума»</TextWithLink>.
+            </Text>
+            <Text style={styles.text}>
+                Для практики медитации важно найти себе компетентного учителя, желательно монаха, а также самому тщательно изучать Слово Будды. Важно изучать эти учения, запоминать их, обдумывать и пропускать через своё сердце. Если у вас возникают какие-то вопросы или сомнения — важно обращаться за помощью к учителю, или хотя бы к благим друзьям.
+            </Text>
+            <Text style={styles.text}>
+                Обязательно ознакомьтесь с наиболее частыми ошибками в практике медитации в разделе <Text style={styles.linkButtonText} onPress={onVipassanupakkilesaPress}>«Vipassanupakkilesa: искажения прозрения»</Text>,
+                а также с пятью помехами и методами их преодоления в разделе <Text style={styles.linkButtonText} onPress={onPanchaNivaranaPress}>«Pañca nīvaraṇāni: пять помех»</Text>.
+            </Text>
+            <Text style={styles.text}>
+                Со славословиями звучащими в начале и конце сессии медитации, а также с их переводом, вы можете ознакомиться в секции <Text style={styles.linkButtonText} onPress={onRecitationsPress}>«Славословия»</Text>.
+            </Text>
+            <Text style={styles.text}>
+                Дополнительная информация и ссылки на ресурсы монастыря и проч. представлены ниже.
+            </Text>
+            <Text style={styles.text}>
+                Пусть заслуги от изучения этой Дхаммы помогут вам освободиться от всех страданий!
+            </Text>
+            <Text style={styles.citationText}>
+                Этот путь называется прямым, направление, куда он ведет, называется бесстрашным.
+            </Text>
+            <TextWithLink
+                textStyle={styles.linkButtonTextAlignedRight}
+                url={'https://theravada.ru/Teaching/Canon/Suttanta/Texts/sn1_46-acchara-sutta-sv.htm'}>
+                Аччхара сутта: Нимфы, СН 1.46
+            </TextWithLink>
         </>
     );
-}
 
-const EnContent = ()=> {
     return (
         <>
             <Text style={styles.text}>
                 This is a meditation app from the Chittaviveka Monastery (Sri Lanka).
             </Text>
             <Text style={styles.text}>
-                Founded in 2018 under the guidance of Abbot Bhante Rakwane Gnanaseeha Thero, the monastery strives to
-                create an environment for the in-depth study and practice of the Buddha’s teachings for both monks and
-                laypeople. It is especially dedicated to Russian-speaking practitioners who do not know foreign
-                languages, providing them with the opportunity to study and practice Buddhism in a familiar linguistic
-                environment. This is particularly important for elderly Buddhists and the parents of monks and lay
-                practitioners, who may find it difficult to adapt to monasteries where a different language is spoken.
+                The purpose of this application is to provide an introduction to meditation in the context of orthodox
+                Buddhism of the Theravada tradition, as part of religious practice.
+                The Pali word &#34;bhāvanā&#34; means &#34;development of the mind&#34; or &#34;purification of the
+                mind.&#34; It is this term that is most often translated as &#34;meditation.&#34;
             </Text>
+            <Text style={styles.text}>
+                All information in this application is based on the Tipitaka (Pali Canon) and the sermons of Venerable
+                Rakwane Gnanaseeha, the abbot of the Chittaviveka Buddhist Forest Monastery (Sri Lanka), and is available
+                on the <TextWithLink textStyle={styles.linkButtonText} url={'https://samatha-vipassana.com/en'}>
+                monastery&#39;s official website
+            </TextWithLink>, as well as in the book <TextWithLink
+                textStyle={styles.linkButtonText}
+                url={'https://samatha-vipassana.com/en/article/bhavana-the-art-of-the-mind-en/bhavana-the-art-of-the-mind/'}>&#34;Bhāvanā - The Art of the Mind&#34;</TextWithLink>.
+            </Text>
+            <Text style={styles.text}>
+                For meditation practice, it is critical to find a competent teacher, preferably a monk, and to diligently
+                study the Word of the Buddha. It is essential to study these teachings, memorize them, contemplate them,
+                and pass them through your heart. If you have any questions or doubts, it is important to seek help from
+                a teacher or at least from good friends.
+            </Text>
+            <Text style={styles.text}>
+                Be sure to familiarize yourself with the most common mistakes in meditation practice in the section <Text
+                    style={styles.linkButtonText}
+                    onPress={onVipassanupakkilesaPress}>&#34;Vipassanupakkilesa: distortions of insight,&#34;</Text>
+                as well as the five hindrances and methods to overcome them in the section <Text style={styles.linkButtonText} onPress={onPanchaNivaranaPress}>&#34;Pañca nīvaraṇāni: five hindrances.&#34;</Text>
+            </Text>
+            <Text style={styles.text}>
+                You can find the praises recited at the beginning and end of the meditation session, along with their translations, in the <Text style={styles.linkButtonText} onPress={onRecitationsPress}>&#34;Recitations&#34;</Text> section.
+            </Text>
+            <Text style={styles.text}>
+                Additional information and links to monastery resources and more are provided below. May the merits from studying this Dhamma help you be free from all suffering!
+            </Text>
+            <Text style={styles.text}>
+                Пусть заслуги от изучения этой Дхаммы помогут вам освободиться от всех страданий!
+            </Text>
+            <Text style={styles.citationText}>
+                &#34;The straight way&#34; that path is called, and &#34;fearless&#34; is its destination.
+            </Text>
+            <TextWithLink textStyle={styles.linkButtonTextAlignedRight} url={'https://suttacentral.net/sn1.46/en/bodhi?lang=en'}>Accharāsutta: Nymphs (SN 1.46),</TextWithLink>
+            <TextWithLink textStyle={styles.linkButtonTextAlignedRight} url={'https://suttacentral.net/sn1.46/en/bodhi?lang=en'}>translation by Ven. Bhikkhu Bodhi</TextWithLink>
         </>
     );
 }
 
+
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutScreen'>;
 
-export default function AboutScreen({ route } : Props) {
+export default function AboutScreen({ route, navigation } : Props) {
     const {language} = route.params;
     const {t} = useTranslation();
 
+    const navigateToSermon = (sermonKey: SermonKey) => navigation.navigate('SermonScreen', {
+        sermonKey: sermonKey,
+        language: language
+    });
+
     return (
-        <ScrollView contentContainerStyle={globalStyles.commonContainer}>
+        <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
             {Platform.OS === 'android' && (
                 <Text style={styles.title}>
                     {t('AboutScreen')}
                 </Text>
             )}
 
-            {language === 'ru'
-                ? <RuContent/>
-                : <EnContent/>
-            }
+            <MainContent
+                onRecitationsPress={() => navigateToSermon('Recitations')}
+                onPanchaNivaranaPress={() => navigateToSermon('PanchaNivarana')}
+                onVipassanupakkilesaPress={() => navigateToSermon('Vipassanupakkilesa')}
+                isRuLanguage={language === 'ru'}
+            />
 
-            <View style={styles.contactsContainer}>
-                <OpenURLButton url={'https://theravada.ru/'}>theravada.ru</OpenURLButton>
-                <OpenURLButton url={'https://samatha-vipassana.com/'}>samatha-vipassana.com</OpenURLButton>
-                <OpenURLButton url={'http://t.me/chittaviveka'}>Telegram: @chittaviveka</OpenURLButton>
-                <OpenURLButton url={'https://www.instagram.com/chittaviveka.monastery'}>Instagram:
-                    @chittaviveka</OpenURLButton>
-                <OpenURLButton url={'https://www.facebook.com/chittaviveka'}>Facebook: Chittaviveka
-                    Monastery</OpenURLButton>
-                <OpenURLButton url={'https://www.youtube.com/@ChittaViveka'}>Youtube Буддизм Тхеравада</OpenURLButton>
-                <OpenURLButton url={'https://vk.com/dhammatheravada'}>VK Dhamma Theravada</OpenURLButton>
-            </View>
+            {/*<View style={styles.contactsContainer}>*/}
+            {/*    <OpenURLButton buttonStyle={styles.linkButton} textStyle={styles.linkButtonText} url={'https://theravada.ru/'}>theravada.ru</OpenURLButton>*/}
+            {/*    <OpenURLButton url={'https://samatha-vipassana.com/'}>samatha-vipassana.com</OpenURLButton>*/}
+            {/*    <OpenURLButton url={'http://t.me/chittaviveka'}>Telegram: @chittaviveka</OpenURLButton>*/}
+            {/*    <OpenURLButton url={'https://www.instagram.com/chittaviveka.monastery'}>Instagram: @chittaviveka</OpenURLButton>*/}
+            {/*    <OpenURLButton url={'https://www.facebook.com/chittaviveka'}>Facebook: Chittaviveka Monastery</OpenURLButton>*/}
+            {/*    <OpenURLButton url={'https://www.youtube.com/@ChittaViveka'}>Youtube Буддизм Тхеравада</OpenURLButton>*/}
+            {/*    <OpenURLButton url={'https://vk.com/dhammatheravada'}>VK Dhamma Theravada</OpenURLButton>*/}
+            {/*</View>*/}
 
             <ContactInfo/>
         </ScrollView>
@@ -136,6 +166,13 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         textAlign: 'justify',
     },
+    citationText: {
+        fontSize: FONT_SIZE_DEFAULT,
+        marginBottom: 15,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontStyle: 'italic',
+    },
     contactsContainer: {
         width: '100%',
     },
@@ -147,28 +184,12 @@ const styles = StyleSheet.create({
     linkButtonText: {
         fontSize: FONT_SIZE_DEFAULT,
         color: '#007AFF',
+        textAlignVertical: 'center', // выравнивание по центру
+        includeFontPadding: false,   // убирает лишние отступы Android
     },
-    contactBlock: {
-        marginTop: 20,
-        alignItems: 'center',
-    },
-    contactLabel: {
-        fontSize: FONT_SIZE_DEFAULT,
-        fontWeight: '500',
-        marginBottom: 5,
-    },
-    contactRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    link: {
+    linkButtonTextAlignedRight: {
         fontSize: FONT_SIZE_DEFAULT,
         color: '#007AFF',
-        textDecorationLine: 'underline',
-    },
-    separator: {
-        marginHorizontal: 8,
-        fontSize: FONT_SIZE_DEFAULT,
-        color: '#888',
+        alignSelf: 'flex-end',
     },
 });

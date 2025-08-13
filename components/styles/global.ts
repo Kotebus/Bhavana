@@ -25,6 +25,10 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         padding: 16,
     },
+    scrollContainer: {
+        flexGrow: 1,
+        padding: 16,
+    },
     title: {
         color: COLORS.titleText,
         fontSize: FONT_SIZE_HEADER,

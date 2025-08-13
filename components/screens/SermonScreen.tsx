@@ -80,7 +80,7 @@ export default function SermonScreen({route, navigation}: Props) {
     }
 
     return (
-        <ScrollView style={globalStyles.commonContainer}>
+        <ScrollView style={globalStyles.scrollContainer}>
             <BackNavHeader onBack={() => navigation.goBack()}>
                 <TextSizeControl onChange={setTextSize} />
             </BackNavHeader>
@@ -92,7 +92,7 @@ export default function SermonScreen({route, navigation}: Props) {
                         padding: 3,
                     }}}
                 rules={{
-                    image: (node, children, parent, styles) => {
+                    image: (node) => {
                         const src = node.attributes.src || '';
                         if (imgSources[src]) {
                             const imgSrc = imgSources[src];

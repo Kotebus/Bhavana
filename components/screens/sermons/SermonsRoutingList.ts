@@ -1,73 +1,75 @@
 import {SermonKey} from "../../i18n";
 
 interface ISermon {
-    id: string;
+    id: number;
     sermonKey: SermonKey;
 }
 
+const generateId = () => Math.floor(Math.random() * 1000000000);
+
 export const sermonsRoutingList:ISermon[] = [
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Vipassanupakkilesa'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'PanchaNivarana'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'SantaSukha'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'DanaSilaBhavana'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Viveka'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Sankhara'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'PanchaKkhandha'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Anicca'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'YonisoManasikara'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Sankharaloka'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Vedananupassana'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Kama'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Salayatana'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Dhatu18'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'Upasamanussati'
     },
     {
-        id: crypto.randomUUID(),
+        id: generateId(),
         sermonKey: 'SankappaRago'
     },
 ];
