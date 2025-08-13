@@ -8,6 +8,10 @@ interface ISermon {
 export const sermonsRoutingList:ISermon[] = [
     {
         id: crypto.randomUUID(),
+        sermonKey: 'Vipassanupakkilesa'
+    },
+    {
+        id: crypto.randomUUID(),
         sermonKey: 'PanchaNivarana'
     },
     {
@@ -40,10 +44,6 @@ export const sermonsRoutingList:ISermon[] = [
     },
     {
         id: crypto.randomUUID(),
-        sermonKey: 'Vipassanupakkilesa'
-    },
-    {
-        id: crypto.randomUUID(),
         sermonKey: 'Sankharaloka'
     },
     {
@@ -61,5 +61,13 @@ export const sermonsRoutingList:ISermon[] = [
     {
         id: crypto.randomUUID(),
         sermonKey: 'Dhatu18'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'Upasamanussati'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'SankappaRago'
     },
 ];

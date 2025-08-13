@@ -17,6 +17,8 @@ const sermonsEn = {
     Vedananupassana: 'Vedanānupassanā: Observation of Sensations',
     Kama: 'Kāma: Sensual Pleasures',
     Dhatu18: 'Aṭṭhārasa dhātuyo: Eighteen Elements',
+    Upasamanussati: 'Upasamānussati: Recollection of The Peace of Nibbāna',
+    SankappaRago: 'Saṅkappa rāgo purisassa kāmo',
 };
 
 const sermonsRu = {
@@ -34,7 +36,9 @@ const sermonsRu = {
     Sankharaloka: 'Saṅkhāra loka: мир формаций ума',
     Vedananupassana: 'Vedanānupassanā: наблюдение ощущений',
     Kama: 'Kāma: чувственные удовольствия',
-    Dhatu18: 'Aṭṭhārasa dhātuyo: во­сем­на­дцать эле­мен­тов',
+    Dhatu18: 'Aṭṭhārasa dhātuyo: восемнадцать элементов',
+    Upasamanussati: 'Upasamānussati: памятование о покое Ниббаны',
+    SankappaRago: 'Saṅkappa rāgo purisassa kāmo',
 };
 
 export type SermonKey = keyof typeof sermonsEn;

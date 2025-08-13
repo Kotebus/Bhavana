@@ -34,9 +34,8 @@ const sermonsMap: SermonsMap = {
     'Vedananupassana': [require('./sermons/content/VedananupassanaRu.md'), require('./sermons/content/VedananupassanaEn.md')],
     'Kama': [require('./sermons/content/KamaRu.md'), require('./sermons/content/KamaEn.md')],
     'Dhatu18': [require('./sermons/content/Dhatu18Ru.md'), require('./sermons/content/Dhatu18En.md')],
-    // '': [require('./sermons/content/'), require('./sermons/content/')],
-    // '': [require('./sermons/content/'), require('./sermons/content/')],
-    // '': [require('./sermons/content/'), require('./sermons/content/')],
+    'Upasamanussati': [require('./sermons/content/UpasamanussatiRu.md'), require('./sermons/content/UpasamanussatiEn.md')],
+    'SankappaRago': [require('./sermons/content/SankappaRagoRu.md'), require('./sermons/content/SankappaRagoEn.md')],
 
     'Recitations': [require('./sermons/content/RecitationsRu.md'), require('./sermons/content/RecitationsEn.md')],
 }
