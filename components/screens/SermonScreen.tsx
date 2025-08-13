@@ -27,6 +27,16 @@ const sermonsMap: SermonsMap = {
     'Viveka': [require('./sermons/content/VivekaRu.md'), require('./sermons/content/VivekaEn.md')],
     'Sankhara': [require('./sermons/content/SankharaRu.md'), require('./sermons/content/SankharaEn.md')],
     'PanchaKkhandha': [require('./sermons/content/PanchaKkhandhaRu.md'), require('./sermons/content/PanchaKkhandhaEn.md')],
+    'Anicca': [require('./sermons/content/AniccaRu.md'), require('./sermons/content/AniccaEn.md')],
+    'YonisoManasikara': [require('./sermons/content/YonisoManasikaraRu.md'), require('./sermons/content/YonisoManasikaraEn.md')],
+    'Vipassanupakkilesa': [require('./sermons/content/VipassanupakkilesaRu.md'), require('./sermons/content/VipassanupakkilesaEn.md')],
+    'Sankharaloka': [require('./sermons/content/SankharaLokaRu.md'), require('./sermons/content/SankharaLokaEn.md')],
+    'Vedananupassana': [require('./sermons/content/VedananupassanaRu.md'), require('./sermons/content/VedananupassanaEn.md')],
+    'Kama': [require('./sermons/content/KamaRu.md'), require('./sermons/content/KamaEn.md')],
+    'Dhatu18': [require('./sermons/content/Dhatu18Ru.md'), require('./sermons/content/Dhatu18En.md')],
+    // '': [require('./sermons/content/'), require('./sermons/content/')],
+    // '': [require('./sermons/content/'), require('./sermons/content/')],
+    // '': [require('./sermons/content/'), require('./sermons/content/')],
 
     'Recitations': [require('./sermons/content/RecitationsRu.md'), require('./sermons/content/RecitationsEn.md')],
 }

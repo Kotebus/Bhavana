@@ -1,37 +1,65 @@
 import {SermonKey} from "../../i18n";
 
 interface ISermon {
-    id: number;
+    id: string;
     sermonKey: SermonKey;
 }
 
 export const sermonsRoutingList:ISermon[] = [
     {
-        id: 0,
+        id: crypto.randomUUID(),
         sermonKey: 'PanchaNivarana'
     },
     {
-        id: 1,
+        id: crypto.randomUUID(),
         sermonKey: 'SantaSukha'
     },
     {
-        id: 2,
+        id: crypto.randomUUID(),
         sermonKey: 'DanaSilaBhavana'
     },
     {
-        id: 3,
-        sermonKey: 'Salayatana'
-    },
-    {
-        id: 4,
+        id: crypto.randomUUID(),
         sermonKey: 'Viveka'
     },
     {
-        id: 5,
+        id: crypto.randomUUID(),
         sermonKey: 'Sankhara'
     },
     {
-        id: 6,
+        id: crypto.randomUUID(),
         sermonKey: 'PanchaKkhandha'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'Anicca'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'YonisoManasikara'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'Vipassanupakkilesa'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'Sankharaloka'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'Vedananupassana'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'Kama'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'Salayatana'
+    },
+    {
+        id: crypto.randomUUID(),
+        sermonKey: 'Dhatu18'
     },
 ];

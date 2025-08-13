@@ -10,6 +10,13 @@ const sermonsEn = {
     Viveka: 'Viveka: Rest',
     Sankhara: 'Saṅkhāra: Mental Formations',
     PanchaKkhandha: 'Pañcakkhandhā: The Five Aggregates',
+    Anicca: 'Anicca: Impermanence',
+    YonisoManasikara: 'Yoniso manasikāra: The Wise Contemplation',
+    Vipassanupakkilesa: 'Vipassanupakkilesa: The Imperfections of Insight',
+    Sankharaloka: 'Saṅkhāra loka: The World of Mental Formations',
+    Vedananupassana: 'Vedanānupassanā: Observation of Sensations',
+    Kama: 'Kāma: Sensual Pleasures',
+    Dhatu18: 'Aṭṭhārasa dhātuyo: Eighteen Elements',
 };
 
 const sermonsRu = {
@@ -21,6 +28,13 @@ const sermonsRu = {
     Viveka: 'Viveka: отдых',
     Sankhara: 'Saṅkhāra: формации ума',
     PanchaKkhandha: 'Pañcakkhandhā: пять совокупностей',
+    Anicca: 'Anicca: непостоянство',
+    YonisoManasikara: 'Yoniso manasikāra: мудрое размышление',
+    Vipassanupakkilesa: 'Vipassanupakkilesa: искажения прозрения',
+    Sankharaloka: 'Saṅkhāra loka: мир формаций ума',
+    Vedananupassana: 'Vedanānupassanā: наблюдение ощущений',
+    Kama: 'Kāma: чувственные удовольствия',
+    Dhatu18: 'Aṭṭhārasa dhātuyo: во­сем­на­дцать эле­мен­тов',
 };
 
 export type SermonKey = keyof typeof sermonsEn;
