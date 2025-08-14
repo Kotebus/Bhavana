@@ -10,6 +10,7 @@ import {SermonKey} from "@/components/i18n";
 import HomeScreen from "@/components/screens/HomeScreen";
 import {Platform} from "react-native";
 import {useTranslation} from "react-i18next";
+import SettingsScreen from "@/components/screens/SettingsScreen";
 
 export interface IPropsWithLanguage {
     language: Language;
@@ -25,6 +26,7 @@ export type RootStackParamList = {
     AboutScreen: IPropsWithLanguage;
     StudyScreen: IPropsWithLanguage;
     SermonScreen: ISermonProps;
+    SettingsScreen: IPropsWithLanguage;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -45,6 +47,7 @@ export const AppNavigator = () => {
                 <Stack.Screen name="AboutScreen" component={AboutScreen} options={{headerShown: isIos, title: t('AboutScreen') }}/>
                 <Stack.Screen name="StudyScreen" component={StudyScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="SermonScreen" component={SermonScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{headerShown: false}}/>
             </Stack.Navigator>
     );
 }

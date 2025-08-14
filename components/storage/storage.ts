@@ -11,10 +11,11 @@ export type AppSettings = {
     meditationTime: ITime;
     language: Language;
     soundEnabled: boolean;
+    recitationsSoundEnabled: boolean
     fontSize: number;
 };
 
-const SETTINGS_KEY = 'bhavana_app_settings_v1';
+const SETTINGS_KEY = 'bhavana_app_settings_v2';
 
 export async function saveSettings(settings: AppSettings) {
     try {

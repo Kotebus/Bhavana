@@ -13,6 +13,7 @@ import {LotusAnimated} from "@/components/LotusAnimated";
 //TODO: check effects logic, maybe it's possible to reduce dependencies count
 //TODO: think about naming
 const DELAY_BEFORE_START_SESSION_SECONDS = 2;
+export const MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES = 10;
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MeditationScreen'>;
 
@@ -25,9 +26,6 @@ const formatTime = (sec: number) => {
         .padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 };
 
-const checkIsShortSession = (durationSeconds: number) =>
-    durationSeconds < (10 * 60)
-
 //TODO: add documentation everywhere!
 //TODO: create readme
 export default function MeditationScreen({ route, navigation }: Props) {
@@ -39,6 +37,7 @@ export default function MeditationScreen({ route, navigation }: Props) {
     //потом идёт медитация, потом в конце медитации идут завершающие славословия подношения практики (recitationsEndSession).
     //В аудиофайлах славословий уже есть звук гонга.
     //Если сессия короче 10 минут, то мы не проигрываем славословия, только гонг из отдельного аудиофайла, т.к. это слишком короткая сессия.
+    //Также мы из не проигрываем если пользователь отключил их в настройках (settings.recitationsSoundEnabled).
     //Если пользователь отключил звук в настройках, то никакие звуки не проигрываются.
     // !settings.soundEnabled = no sounds
     // !shouldPlayRecitations = gong -> session time -> gong
@@ -46,30 +45,32 @@ export default function MeditationScreen({ route, navigation }: Props) {
     const {playerGong, recitationsBeforeSession, recitationsEndSession, stopAllPlayers} = useAudio();
 
     const [elapsed, setElapsed] = useState(0);
-    const [totalMeditationDurationSeconds] = useState((h ?? 0) * 3600 + (m ?? 0) * 60);
+
+    const totalMeditationDurationSeconds = (h ?? 0) * 3600 + (m ?? 0) * 60;
+
+    const shouldPlayRecitation =
+        settings.soundEnabled &&
+        settings.recitationsSoundEnabled &&
+        totalMeditationDurationSeconds > (MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES * 60);
 
     //Sounds at the beginning of the session. We need an effect here to be able to stop sounds when user leave the screen.
     useEffect(() => {
-        const isShortSession = checkIsShortSession(totalMeditationDurationSeconds);
-
         if (settings.soundEnabled) {
-            const playSounds = isShortSession ?
-                () => playSound(playerGong) :
-                () => playSound(recitationsBeforeSession);
+            const playSounds = shouldPlayRecitation ?
+                () => playSound(recitationsBeforeSession) :
+                () => playSound(playerGong);
 
             playSounds();
         }
 
         return () => stopAllPlayers();
-    }, [totalMeditationDurationSeconds, playerGong, recitationsBeforeSession, settings.soundEnabled, stopAllPlayers]);
+    }, [totalMeditationDurationSeconds, playerGong, recitationsBeforeSession, settings.soundEnabled, shouldPlayRecitation, stopAllPlayers]);
 
     //Timer and sounds at the end of the session
     useEffect(() => {
-        const isShortSession = checkIsShortSession(totalMeditationDurationSeconds);
-
-        const endSound = isShortSession ?
-            playerGong :
-            recitationsEndSession;
+        const endSound = shouldPlayRecitation ?
+            recitationsEndSession :
+            playerGong;
 
         const intervalFunction = () => {
             return setInterval(() => {
@@ -97,7 +98,7 @@ export default function MeditationScreen({ route, navigation }: Props) {
             stopAllPlayers();
             clearInterval(interval);
         }
-    }, [settings.soundEnabled, recitationsEndSession, playerGong, stopAllPlayers, totalMeditationDurationSeconds]);
+    }, [settings.soundEnabled, recitationsEndSession, playerGong, stopAllPlayers, totalMeditationDurationSeconds, shouldPlayRecitation]);
 
     return (
         <View style={styles.container}>

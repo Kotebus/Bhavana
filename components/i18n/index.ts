@@ -55,6 +55,9 @@ const resources = {
             AboutScreen: 'About',
             StudyScreen: 'Study',
             MeditationScreen: 'Meditation',
+            SettingsScreen: 'Settings',
+            Language: 'Language',
+            RecitationsHint: 'only during sessions of {{minutes}} minutes or more',
             contactDeveloper: 'Developer: Max Suleimanov',
 
             //Sermons, same keys as in sermonsRoutingList!
@@ -72,6 +75,9 @@ const resources = {
             AboutScreen: 'О приложении',
             StudyScreen: 'Материалы',
             MeditationScreen: 'Медитация',
+            SettingsScreen: 'Настройки',
+            Language: 'Язык',
+            RecitationsHint: ' только при сессиях от {{minutes}} минут',
             contactDeveloper: 'Разработчик: Макс Сулейманов',
 
             //Sermons, same keys as in sermonsRoutingList!

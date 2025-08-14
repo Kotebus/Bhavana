@@ -4,11 +4,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 
-import {useSettings} from "../contexts/SettingsContext";
 import {FONT_SIZE_HEADER, globalStyles} from "../styles/global";
 import {RootStackParamList} from "@/components/AppNavigator";
 import TimePicker from "@/components/TimePicker";
 import {ITime} from "@/components/storage/storage";
+import {useSettings} from "@/components/contexts/SettingsContext";
+import {LanguageToggle} from "@/components/LanguageToggle";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
 
@@ -22,9 +23,6 @@ export default function HomeScreen({ navigation }: Props) {
 
     const toggleSound = () =>
         setSettings({...settings, soundEnabled: !settings.soundEnabled});
-
-    const toggleLanguage = () =>
-        setSettings({...settings, language: settings.language === 'ru' ? 'en' : 'ru'});
 
     const languageNavigationParams = {language: settings.language};
 
@@ -40,11 +38,7 @@ export default function HomeScreen({ navigation }: Props) {
                     />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={toggleLanguage} style={globalStyles.iconButton}>
-                    <Text style={{fontSize: FONT_SIZE_HEADER}}>
-                        {settings.language === 'ru' ? '🇷🇺' : '🇺🇸'}
-                    </Text>
-                </TouchableOpacity>
+                <LanguageToggle style={globalStyles.iconButton}/>
             </View>
 
             {/* Заголовок */}
@@ -88,6 +82,14 @@ export default function HomeScreen({ navigation }: Props) {
             >
                 <Text style={globalStyles.buttonText}>
                     {t('Recitations')}
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={globalStyles.button}
+                onPress={() => navigation.navigate('SettingsScreen', languageNavigationParams)}
+            >
+                <Text style={globalStyles.buttonText}>
+                    {t('SettingsScreen')}
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity
