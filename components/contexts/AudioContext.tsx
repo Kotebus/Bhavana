@@ -2,9 +2,9 @@ import React, {createContext, useContext, PropsWithChildren} from 'react';
 import {useAudioPlayer} from "expo-audio";
 import {AudioPlayer} from "expo-audio/src/AudioModule.types";
 
-const START_SRC = '../../assets/sounds/recitationsBeforeSession.mp3';
-const END_SRC = '../../assets/sounds/recitationsAfterSession.mp3';
-const GONG_SRC = '../../assets/sounds/gong.mp3';
+const recitationsBeforeSessionSource = require('../../assets/sounds/recitationsBeforeSession.mp3');
+const recitationsAfterSessionSource = require('../../assets/sounds/recitationsAfterSession.mp3');
+const gongSource = require('../../assets/sounds/gong.mp3');
 
 interface AudioContextProps {
     playerGong: AudioPlayer;
@@ -18,16 +18,14 @@ const AudioContext = createContext<AudioContextProps | undefined>(undefined);
 const stopPlayerIfLoaded = (player: AudioPlayer) => {
     if (player.isLoaded) {
         player.pause();
-        void player.seekTo(0);
+        player.seekTo(0);
     }
 }
 
-//TODO: check lint warning about require: https://typescript-eslint.io/rules/no-require-imports/
-
 export const AudioProvider = ({ children } : PropsWithChildren) => {
-    const recitationsBeforeSession = useAudioPlayer(require(START_SRC));
-    const recitationsEndSession = useAudioPlayer(require(END_SRC));
-    const playerGong = useAudioPlayer(require(GONG_SRC));
+    const recitationsBeforeSession = useAudioPlayer(recitationsBeforeSessionSource);
+    const recitationsEndSession = useAudioPlayer(recitationsAfterSessionSource);
+    const playerGong = useAudioPlayer(gongSource);
 
     //TODO: do we need it? Maybe try catch and error state to monitor?
     const stopAllPlayers = () => {
