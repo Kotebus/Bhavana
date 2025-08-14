@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {useTranslation} from "react-i18next";
@@ -9,6 +9,9 @@ import {RootStackParamList} from "@/components/AppNavigator";
 import {playSound} from "@/components/services/AudioHelper";
 import {useAudio} from "@/components/contexts/AudioContext";
 
+//TODO: check effects logic, maybe it's possible to reduce dependencies count
+//TODO: think about naming
+const DELAY_BEFORE_START_SESSION_SECONDS = 2;
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MeditationScreen'>;
 
@@ -21,49 +24,89 @@ const formatTime = (sec: number) => {
         .padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 };
 
+//TODO: add documentation everywhere!
+//TODO: create readme
 export default function MeditationScreen({ route, navigation }: Props) {
     const { h, m } = route.params;
     const { settings } = useSettings();
     const { t } = useTranslation();
-    const {playerGong, playerEnd, stopAllPlayers} = useAudio();
+
+    const totalMeditationDurationSeconds =(h ?? 0) * 3600 + (m ?? 0) * 60;
+
+    const isShortSession = totalMeditationDurationSeconds < (10 * 60);
+    //If session is too short we wouldn't play sounds
+    const shouldPlayRecitations = settings.soundEnabled && !isShortSession;
+
+    //Когда начинается сессия медитации мы проигрываем славословия перед медитацией (recitationsBeforeSession),
+    //потом идёт медитация, потом в конце медитации идут завершающие славословия подношения практики (recitationsEndSession).
+    //В аудиофайлах славословий уже есть звук гонга.
+    //Если сессия короче 10 минут, то мы не проигрываем славословия, только гонг из отдельного аудиофайла, т.к. это слишком короткая сессия.
+    //Если пользователь отключил звук в настройках, то никакие звуки не проигрываются.
+    // !settings.soundEnabled = no sounds
+    // !shouldPlayRecitations = gong -> session time -> gong
+    // shouldPlayRecitations = recitationsBeforeSession -> session time -> recitationsEndSession
+    const {playerGong, recitationsBeforeSession, recitationsEndSession, stopAllPlayers} = useAudio();
+
+    const endSound = shouldPlayRecitations ?
+        recitationsEndSession :
+        playerGong;
 
     const [elapsed, setElapsed] = useState(0);
 
-    const totalMeditationDurationSeconds =(h ?? 0) * 3600 + (m ?? 0) * 60;
-    const isShortSession =  totalMeditationDurationSeconds < 10 * 60;
-
-    //If session is too short we wouldn't play sounds
-    const shouldPlaySalutations = settings.soundEnabled && !isShortSession;
-
+    //Sounds at the beginning of the session. We need an effect here to be able to stop sounds when user leave the screen.
     useEffect(() => {
         if (settings.soundEnabled) {
-            void playSound(playerGong);
+            const playSounds = shouldPlayRecitations ?
+                () => playSound(recitationsBeforeSession) :
+                () => playSound(playerGong);
+
+            setTimeout(playSounds, 1000);
         }
 
-        const interval = setInterval(() => {
-            setElapsed((prev) => {
-                const nextSecond = prev + 1;
+        return () => stopAllPlayers();
+    },[
+        playerGong,
+        recitationsBeforeSession,
+        settings.soundEnabled,
+        shouldPlayRecitations,
+        stopAllPlayers,
+    ]);
 
-                if (nextSecond >= totalMeditationDurationSeconds) {
-                    if (settings.soundEnabled) {
-                        playSound(playerGong).then(() => {
-                            if (shouldPlaySalutations) {
-                                playSound(playerEnd);
-                            }
-                        });
+    //Timer and sounds at the end of the session
+    useEffect(() => {
+        const intervalFunction = () => {
+            return setInterval(() => {
+                setElapsed((prev) => {
+                    const nextSecond = prev + 1;
+
+                    if (settings.soundEnabled &&
+                        nextSecond === totalMeditationDurationSeconds - Math.round(endSound.duration)) {
+                        playSound(endSound);
                     }
-                    clearInterval(interval);
-                    return totalMeditationDurationSeconds;
-                }
-                return nextSecond;
-            });
-        }, 1000);
+
+                    if (nextSecond >= totalMeditationDurationSeconds) {
+                        clearInterval(interval);
+                        return totalMeditationDurationSeconds;
+                    }
+                    return nextSecond;
+                });
+            }, 1000);
+        };
+
+        //We want to delay start of the timer for DELAY_BEFORE_START_SESSION_SECONDS, to give person some time to settle down
+        const interval = setTimeout(intervalFunction, DELAY_BEFORE_START_SESSION_SECONDS * 1000)
 
         return () => {
-            clearInterval(interval);
             stopAllPlayers();
+            clearInterval(interval);
         }
-    }, []);
+    }, [
+        settings.soundEnabled,
+        shouldPlayRecitations,
+        endSound,
+        stopAllPlayers,
+        totalMeditationDurationSeconds,
+    ]);
 
     return (
         <View style={styles.container}>

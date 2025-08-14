@@ -19,6 +19,7 @@ type SermonsMap = {
     readonly [K in SermonKey]: SermonEntry;
 };
 
+//TODO: check lint warning about require: https://typescript-eslint.io/rules/no-require-imports/
 const sermonsMap: SermonsMap = {
     'SantaSukha': [require('./sermons/content/SantaSukhaRu.md'), require('./sermons/content/SantaSukhaEn.md')],
     'PanchaNivarana': [require('./sermons/content/PanchaNivaranaRu.md'), require('./sermons/content/PanchaNivaranaEn.md')],
