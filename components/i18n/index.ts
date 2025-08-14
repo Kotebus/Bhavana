@@ -88,7 +88,8 @@ const resources = {
     },
 };
 
-i18n
+// eslint-disable-next-line import/no-named-as-default-member
+void i18n
     .use(initReactI18next)
     .init({
         compatibilityJSON: 'v4',

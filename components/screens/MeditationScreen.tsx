@@ -60,7 +60,7 @@ export default function MeditationScreen({ route, navigation }: Props) {
                 () => playSound(recitationsBeforeSession) :
                 () => playSound(playerGong);
 
-            playSounds();
+            void playSounds();
         }
 
         return () => stopAllPlayers();
@@ -79,7 +79,7 @@ export default function MeditationScreen({ route, navigation }: Props) {
 
                     if (settings.soundEnabled &&
                         nextSecond === totalMeditationDurationSeconds - Math.round(endSound.duration)) {
-                        playSound(endSound);
+                        void playSound(endSound);
                     }
 
                     if (nextSecond >= totalMeditationDurationSeconds) {
