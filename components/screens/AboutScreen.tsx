@@ -141,10 +141,10 @@ export default function AboutScreen({ route, navigation } : Props) {
 
             <TouchableOpacity
                 style={globalStyles.button}
-                onPress={() => navigation.navigate('LinksListScreen')}
+                onPress={() => navigation.navigate('AboutTeacherScreen', languageNavigationParams)}
             >
                 <Text style={globalStyles.buttonText}>
-                    {t('LinksListScreen')}
+                    {t('AboutTeacherScreen')}
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -153,6 +153,14 @@ export default function AboutScreen({ route, navigation } : Props) {
             >
                 <Text style={globalStyles.buttonText}>
                     {t('AboutMonasteryButton')}
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={globalStyles.button}
+                onPress={() => navigation.navigate('LinksListScreen')}
+            >
+                <Text style={globalStyles.buttonText}>
+                    {t('LinksListScreen')}
                 </Text>
             </TouchableOpacity>
 

@@ -13,6 +13,7 @@ import HomeScreen from "@/components/screens/HomeScreen";
 import SettingsScreen from "@/components/screens/SettingsScreen";
 import LinksListScreen from "@/components/screens/about/LinksListScreen";
 import {AboutMonasteryScreen} from "@/components/screens/about/AboutMonasteryScreen";
+import {AboutTeacherScreen} from "@/components/screens/about/AboutTeacherScreen";
 
 export interface IPropsWithLanguage {
     language: Language;
@@ -31,6 +32,7 @@ export type RootStackParamList = {
     SettingsScreen: IPropsWithLanguage;
     LinksListScreen: undefined;
     AboutMonasteryScreen: IPropsWithLanguage;
+    AboutTeacherScreen: IPropsWithLanguage;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -54,6 +56,7 @@ export const AppNavigator = () => {
                 <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="LinksListScreen" component={LinksListScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="AboutMonasteryScreen" component={AboutMonasteryScreen} options={{headerShown: isIos, title: t('AboutMonasteryScreen')}}/>
+                <Stack.Screen name="AboutTeacherScreen" component={AboutTeacherScreen} options={{headerShown: isIos, title: t('AboutTeacherScreen')}}/>
             </Stack.Navigator>
     );
 }
