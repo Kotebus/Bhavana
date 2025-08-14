@@ -17,7 +17,6 @@ export default function HomeScreen({ navigation }: Props) {
     const {settings, setSettings, inited} = useSettings();
     const {t} = useTranslation();
 
-
     const updateTime = (newTime: ITime) =>
         setSettings({...settings, meditationTime: newTime});
 

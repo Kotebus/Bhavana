@@ -1,5 +1,7 @@
 import React from "react";
+import {Platform} from "react-native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {useTranslation} from "react-i18next";
 
 import {ITime, Language} from "@/components/storage/storage";
 import MeditationScreen from "@/components/screens/MeditationScreen";
@@ -8,9 +10,9 @@ import StudyScreen from "@/components/screens/StudyScreen";
 import SermonScreen from "@/components/screens/SermonScreen";
 import {SermonKey} from "@/components/i18n";
 import HomeScreen from "@/components/screens/HomeScreen";
-import {Platform} from "react-native";
-import {useTranslation} from "react-i18next";
 import SettingsScreen from "@/components/screens/SettingsScreen";
+import LinksListScreen from "@/components/screens/about/LinksListScreen";
+import {AboutMonasteryScreen} from "@/components/screens/about/AboutMonasteryScreen";
 
 export interface IPropsWithLanguage {
     language: Language;
@@ -27,6 +29,8 @@ export type RootStackParamList = {
     StudyScreen: IPropsWithLanguage;
     SermonScreen: ISermonProps;
     SettingsScreen: IPropsWithLanguage;
+    LinksListScreen: undefined;
+    AboutMonasteryScreen: IPropsWithLanguage;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -48,6 +52,8 @@ export const AppNavigator = () => {
                 <Stack.Screen name="StudyScreen" component={StudyScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="SermonScreen" component={SermonScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="LinksListScreen" component={LinksListScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="AboutMonasteryScreen" component={AboutMonasteryScreen} options={{headerShown: isIos, title: t('AboutMonasteryScreen')}}/>
             </Stack.Navigator>
     );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet, ScrollView, Platform} from 'react-native';
+import {Text, StyleSheet, ScrollView, Platform, TouchableOpacity} from 'react-native';
 import {useTranslation} from "react-i18next";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/AppNavigator";
@@ -117,6 +117,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'AboutScreen'>;
 export default function AboutScreen({ route, navigation } : Props) {
     const {language} = route.params;
     const {t} = useTranslation();
+    const languageNavigationParams = {language: language};
 
     const navigateToSermon = (sermonKey: SermonKey) => navigation.navigate('SermonScreen', {
         sermonKey: sermonKey,
@@ -138,15 +139,22 @@ export default function AboutScreen({ route, navigation } : Props) {
                 isRuLanguage={language === 'ru'}
             />
 
-            {/*<View style={styles.contactsContainer}>*/}
-            {/*    <OpenURLButton buttonStyle={styles.linkButton} textStyle={styles.linkButtonText} url={'https://theravada.ru/'}>theravada.ru</OpenURLButton>*/}
-            {/*    <OpenURLButton url={'https://samatha-vipassana.com/'}>samatha-vipassana.com</OpenURLButton>*/}
-            {/*    <OpenURLButton url={'http://t.me/chittaviveka'}>Telegram: @chittaviveka</OpenURLButton>*/}
-            {/*    <OpenURLButton url={'https://www.instagram.com/chittaviveka.monastery'}>Instagram: @chittaviveka</OpenURLButton>*/}
-            {/*    <OpenURLButton url={'https://www.facebook.com/chittaviveka'}>Facebook: Chittaviveka Monastery</OpenURLButton>*/}
-            {/*    <OpenURLButton url={'https://www.youtube.com/@ChittaViveka'}>Youtube Буддизм Тхеравада</OpenURLButton>*/}
-            {/*    <OpenURLButton url={'https://vk.com/dhammatheravada'}>VK Dhamma Theravada</OpenURLButton>*/}
-            {/*</View>*/}
+            <TouchableOpacity
+                style={globalStyles.button}
+                onPress={() => navigation.navigate('LinksListScreen')}
+            >
+                <Text style={globalStyles.buttonText}>
+                    {t('LinksListScreen')}
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={globalStyles.button}
+                onPress={() => navigation.navigate('AboutMonasteryScreen', languageNavigationParams)}
+            >
+                <Text style={globalStyles.buttonText}>
+                    {t('AboutMonasteryButton')}
+                </Text>
+            </TouchableOpacity>
 
             <ContactInfo/>
         </ScrollView>

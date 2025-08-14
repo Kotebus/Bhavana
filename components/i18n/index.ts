@@ -59,7 +59,10 @@ const resources = {
             Language: 'Language',
             Sound: 'Sound',
             RecitationsHint: 'only during sessions of {{minutes}} minutes or more',
+            LinksListScreen: 'Links',
             contactDeveloper: 'Developer: Max Suleimanov',
+            AboutMonasteryScreen: 'Chittaviveka Monastery in Sri Lanka',
+            AboutMonasteryButton: 'Chittaviveka Monastery',
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsEn,
@@ -80,7 +83,10 @@ const resources = {
             Language: 'Язык',
             Sound: 'Звук',
             RecitationsHint: ' только при сессиях от {{minutes}} минут',
+            LinksListScreen: 'Сслыки',
             contactDeveloper: 'Разработчик: Макс Сулейманов',
+            AboutMonasteryScreen: 'Монастырь Читтавивека на Шри-Ланке',
+            AboutMonasteryButton: 'Монастырь Читтавивека',
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsRu,

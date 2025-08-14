@@ -1,6 +1,9 @@
 import React, {useCallback} from "react";
-import {Linking, TouchableOpacity, StyleSheet, Text, View} from "react-native";
-import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
+import {Linking, TouchableOpacity, StyleSheet, Text, View, ScrollView, Platform} from "react-native";
+import {FONT_SIZE_DEFAULT, globalStyles} from "@/components/styles/global";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {RootStackParamList} from "@/components/AppNavigator";
+import BackNavHeader from "@/components/BackNavHeader";
 
 interface IOpenURLButtonProps {
     url: string;
@@ -26,8 +29,13 @@ const OpenURLButton = ({url, children}: IOpenURLButtonProps) => {
     );
 };
 
-export default function LinksList() {
+type Props = NativeStackScreenProps<RootStackParamList, 'LinksListScreen'>;
+
+export default function LinksListScreen({ navigation }: Props) {
+    const isIos = Platform.OS === 'ios';
     return (
+        <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
+            {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
             <View style={styles.contactsContainer}>
                 <OpenURLButton url={'https://theravada.ru/'}>theravada.ru</OpenURLButton>
                 <OpenURLButton url={'https://samatha-vipassana.com/'}>samatha-vipassana.com</OpenURLButton>
@@ -37,6 +45,7 @@ export default function LinksList() {
                 <OpenURLButton url={'https://www.youtube.com/@ChittaViveka'}>Youtube Буддизм Тхеравада</OpenURLButton>
                 <OpenURLButton url={'https://vk.com/dhammatheravada'}>VK Dhamma Theravada</OpenURLButton>
             </View>
+        </ScrollView>
     );
 }
 

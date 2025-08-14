@@ -101,17 +101,11 @@ export default function SermonScreen({route, navigation}: Props) {
                             //To render image on full page width and then height calculated base on that
                             const { width, height } = Image.resolveAssetSource(imgSrc);
 
-                            const isPortraitImage  = height > width;
                             return (
                                 <Image
                                     key={src}
                                     source={imgSrc}
-                                    style={isPortraitImage ? {
-                                        resizeMode: 'contain',
-                                        width: '50%',
-                                        height: height * 0.3,
-                                        alignItems: 'center',
-                                    } : {
+                                    style={{
                                         resizeMode: 'contain',
                                         flex: 1,
                                         aspectRatio: width / height
