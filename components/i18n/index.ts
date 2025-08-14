@@ -57,6 +57,7 @@ const resources = {
             MeditationScreen: 'Meditation',
             SettingsScreen: 'Settings',
             Language: 'Language',
+            Sound: 'Sound',
             RecitationsHint: 'only during sessions of {{minutes}} minutes or more',
             contactDeveloper: 'Developer: Max Suleimanov',
 
@@ -77,6 +78,7 @@ const resources = {
             MeditationScreen: 'Медитация',
             SettingsScreen: 'Настройки',
             Language: 'Язык',
+            Sound: 'Звук',
             RecitationsHint: ' только при сессиях от {{minutes}} минут',
             contactDeveloper: 'Разработчик: Макс Сулейманов',
 

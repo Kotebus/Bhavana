@@ -57,26 +57,6 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
         if (inited) saveSettings(settings);
     }, [settings, inited]);
 
-    // const setSettings = (s: AppSettings) => {
-    //     //     const newSettings = {...s};
-    //     //
-    //     //     if (settings.language !== s.language) {
-    //     //         i18n.changeLanguage(s.language);
-    //     //     }
-    //     //
-    //     //     //When user update sound setting and disable it - we should disable all sounds
-    //     //     if (s.soundEnabled !== settings.soundEnabled && !s.soundEnabled) {
-    //     //         newSettings.recitationsSoundEnabled = false;
-    //     //     }
-    //     //
-    //     //     //When user update recitation sound setting and enable it - we should enable all sounds
-    //     //     if (s.recitationsSoundEnabled !== settings.recitationsSoundEnabled && s.recitationsSoundEnabled) {
-    //     //         newSettings.soundEnabled = true;
-    //     //     }
-    //     //
-    //     //     setSettingsState(newSettings);
-    //     // }
-
     const setSettings = (s: AppSettings) => {
         if (settings.language !== s.language) {
             i18n.changeLanguage(s.language);
