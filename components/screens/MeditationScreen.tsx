@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {useTranslation} from "react-i18next";
 
@@ -8,6 +8,7 @@ import {FONT_SIZE_HEADER, globalStyles} from "../styles/global";
 import {RootStackParamList} from "@/components/AppNavigator";
 import {playSound} from "@/components/services/AudioHelper";
 import {useAudio} from "@/components/contexts/AudioContext";
+import {LotusAnimated} from "@/components/LotusAnimated";
 
 //TODO: check effects logic, maybe it's possible to reduce dependencies count
 //TODO: think about naming
@@ -60,7 +61,7 @@ export default function MeditationScreen({ route, navigation }: Props) {
                 () => playSound(recitationsBeforeSession) :
                 () => playSound(playerGong);
 
-            setTimeout(playSounds, 1000);
+            playSounds();
         }
 
         return () => stopAllPlayers();
@@ -110,10 +111,10 @@ export default function MeditationScreen({ route, navigation }: Props) {
 
     return (
         <View style={styles.container}>
-            <Image
-                source={require('../../assets/images/lotus.png')}
-                resizeMode='contain'
-                style={styles.image}/>
+            <LotusAnimated
+                imageStyle={styles.image}
+                animationDuration={DELAY_BEFORE_START_SESSION_SECONDS * 1000}
+            />
             <Text style={styles.timer}>{formatTime(elapsed)}</Text>
             <Text style={styles.goal}>{formatTime(totalMeditationDurationSeconds)}</Text>
             <TouchableOpacity
