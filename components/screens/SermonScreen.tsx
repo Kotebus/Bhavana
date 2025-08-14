@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ActivityIndicator, ScrollView, StyleSheet, View, Image} from "react-native";
+import {ActivityIndicator, ScrollView, StyleSheet, View, Image, Text} from "react-native";
 import Markdown from "react-native-markdown-display";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -11,6 +11,7 @@ import {loadMarkdownAsset} from "@/components/services/MarkdownLoader";
 import BackNavHeader from "@/components/BackNavHeader";
 import TextSizeControl from "@/components/TextSizeControl";
 import {globalStyles} from "@/components/styles/global";
+import {useTranslation} from "react-i18next";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SermonScreen'>;
 
@@ -52,7 +53,8 @@ const imgSources: Record<string, any> = {
 };
 
 export default function SermonScreen({route, navigation}: Props) {
-    const { sermonKey, language } = route.params;
+    const {sermonKey, language} = route.params;
+    const {t} = useTranslation();
     const [content, setContent] = useState<string | null>(null);
     const {settings} = useSettings();
     const [textSize, setTextSize] = useState(settings.fontSize);
@@ -75,7 +77,7 @@ export default function SermonScreen({route, navigation}: Props) {
     if (!content) {
         return (
             <ScrollView contentContainerStyle={styles.loader}>
-                <ActivityIndicator size="large" />
+                <ActivityIndicator size="large"/>
             </ScrollView>
         );
     }
@@ -83,15 +85,24 @@ export default function SermonScreen({route, navigation}: Props) {
     return (
         <ScrollView style={globalStyles.scrollContainer}>
             <BackNavHeader onBack={() => navigation.goBack()}>
-                <TextSizeControl onChange={setTextSize} />
+                <TextSizeControl onChange={setTextSize}/>
             </BackNavHeader>
-                <Markdown
+            {sermonKey !== 'Recitations' &&
+                <Text style={{
+                    alignSelf: 'flex-end',
+                    fontSize: textSize
+                }}>
+                    {t('TeacherName')}
+                </Text>
+            }
+            <Markdown
                 style={{
                     body: {
                         fontSize: textSize,
                         textAlign: "justify",
                         padding: 3,
-                    }}}
+                    }
+                }}
                 rules={{
                     image: (node) => {
                         const src = node.attributes.src || '';
@@ -99,7 +110,7 @@ export default function SermonScreen({route, navigation}: Props) {
                             const imgSrc = imgSources[src];
 
                             //To render image on full page width and then height calculated base on that
-                            const { width, height } = Image.resolveAssetSource(imgSrc);
+                            const {width, height} = Image.resolveAssetSource(imgSrc);
 
                             return (
                                 <Image
@@ -116,7 +127,7 @@ export default function SermonScreen({route, navigation}: Props) {
                         return (
                             <Image
                                 key={src}
-                                source={{ uri: src }}
+                                source={{uri: src}}
                             />
                         );
                     },
@@ -125,7 +136,7 @@ export default function SermonScreen({route, navigation}: Props) {
                 {content}
             </Markdown>
             <View style={styles.icon}>
-                <FontAwesome6 name="dharmachakra" size={24} color="black" />
+                <FontAwesome6 name="dharmachakra" size={24} color="black"/>
             </View>
         </ScrollView>
     );

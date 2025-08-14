@@ -63,6 +63,7 @@ const resources = {
             contactDeveloper: 'Developer: Max Suleimanov',
             AboutMonasteryScreen: 'Chittaviveka Monastery in Sri Lanka',
             AboutMonasteryButton: 'Chittaviveka Monastery',
+            TeacherName: 'Venerable Rakwane Gnanaseeha',
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsEn,
@@ -87,6 +88,7 @@ const resources = {
             contactDeveloper: 'Разработчик: Макс Сулейманов',
             AboutMonasteryScreen: 'Монастырь Читтавивека на Шри-Ланке',
             AboutMonasteryButton: 'Монастырь Читтавивека',
+            TeacherName: 'Бхиккху Ракване Ньянасиха',
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsRu,
