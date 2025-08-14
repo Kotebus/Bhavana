@@ -97,10 +97,10 @@ const MainContent = ({
                 You can find the praises recited at the beginning and end of the meditation session, along with their translations, in the <Text style={styles.linkButtonText} onPress={onRecitationsPress}>&#34;Recitations&#34;</Text> section.
             </Text>
             <Text style={styles.text}>
-                Additional information and links to monastery resources and more are provided below. May the merits from studying this Dhamma help you be free from all suffering!
+                Additional information and links to monastery resources and more are provided below.
             </Text>
             <Text style={styles.text}>
-                Пусть заслуги от изучения этой Дхаммы помогут вам освободиться от всех страданий!
+                May the merits from studying this Dhamma help you be free from all suffering!
             </Text>
             <Text style={styles.citationText}>
                 &#34;The straight way&#34; that path is called, and &#34;fearless&#34; is its destination.
