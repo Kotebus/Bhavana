@@ -108,8 +108,6 @@ export default function MeditationScreen({ route, navigation }: Props) {
             />
             <Text style={styles.timer}>{formatTime(elapsed)}</Text>
             <Text style={styles.goal}>{formatTime(totalMeditationDurationSeconds)}</Text>
-            <Text style={styles.goal}>Sound {settings.soundEnabled ? 'on' : 'off'}</Text>
-            <Text style={styles.goal}>Recitations sound {settings.recitationsSoundEnabled ? 'on' : 'off'}</Text>
             <TouchableOpacity
                 style={[globalStyles.button, styles.button]}
                 onPress={() => navigation.goBack()}
