@@ -54,12 +54,12 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
     }, [settings, inited]);
 
     useEffect(() => {
-        if (inited) saveSettings(settings);
+        if (inited) void saveSettings(settings);
     }, [settings, inited]);
 
     const setSettings = (s: AppSettings) => {
         if (settings.language !== s.language) {
-            i18n.changeLanguage(s.language);
+            void i18n.changeLanguage(s.language);
         }
 
         setSettingsState(s);

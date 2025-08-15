@@ -18,7 +18,7 @@ const AudioContext = createContext<AudioContextProps | undefined>(undefined);
 const stopPlayerIfLoaded = (player: AudioPlayer) => {
     if (player.isLoaded) {
         player.pause();
-        player.seekTo(0);
+        void player.seekTo(0);
     }
 }
 

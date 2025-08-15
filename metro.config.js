@@ -2,7 +2,7 @@ const { getDefaultConfig } = require('expo/metro-config');
 
 const config = getDefaultConfig(__dirname);
 
-// Добавляем поддержку .md файлов
+// Adding .md files support
 config.resolver.assetExts.push('md');
 
 module.exports = config;

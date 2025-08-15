@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-const materialEn = {
+const materialsEn = {
     PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
     SantaSukha: 'Santasukha: the Happiness of Peace',
     DanaSilaBhavana: 'Dāna, sīla, bhāvanā: The Three Types of Practice in Buddhism',
@@ -26,7 +26,7 @@ const materialEn = {
     Offering: 'Offering of Practice to the Three Jewels (after meditation)',
 };
 
-const materialRu = {
+const materialsRu = {
     PanchaNivarana: 'Pañca nīvaraṇāni: пять помех',
     SantaSukha: 'Santasukha: счастье покоя',
     DanaSilaBhavana: 'Dāna, sīla, bhāvanā: три вида практики в буддизме',
@@ -51,8 +51,24 @@ const materialRu = {
     Offering: 'Подношение практики Трём Драгоценностям (после медитации)',
 };
 
-export type MaterialKey = keyof typeof materialEn;
-//export type LocalisationKey = keyof typeof resources.en.translation;
+export type MaterialKey = keyof typeof materialsEn;
+
+const sectionAboutEn = {
+    AboutScreen: 'About app',
+    AboutTeacherScreen: 'About teacher',
+    AboutSermonsScreen: 'About materials in the application',
+    AboutMonasteryScreen: 'Chittaviveka Monastery',
+    LinksListScreen: 'Links',
+}
+const sectionAboutRu = {
+    AboutScreen: 'О приложении',
+    AboutTeacherScreen: 'Об учителе',
+    AboutSermonsScreen: 'О проповедях в приложении',
+    AboutMonasteryScreen: 'Монастырь Читтавивека',
+    LinksListScreen: 'Ссылки',
+}
+
+//export type AboutSectionKey = keyof typeof sectionAboutEn;
 
 const resources = {
     en: {
@@ -63,7 +79,6 @@ const resources = {
             start: 'Start',
             endSession: 'End session',
             HomeScreen: 'Bhāvanā — Art of The Mind',
-            AboutScreen: 'About',
             StudyScreen: 'Study',
             MeditationScreen: 'Meditation',
             SettingsScreen: 'Settings',
@@ -71,22 +86,22 @@ const resources = {
             Language: 'Language',
             Sound: 'Sound',
             RecitationsHint: 'only during sessions of {{minutes}} minutes or more',
-            LinksListScreen: 'Links',
             contactDeveloper: 'Developer:',
-            AboutProjectScreen: 'About project',
-            AboutMonasteryScreen: 'Chittaviveka Monastery in Sri Lanka',
-            AboutMonasteryButton: 'Chittaviveka Monastery',
+            AboutMonasteryTitle: 'Chittaviveka Monastery in Sri Lanka',
             TeacherName: 'Venerable Rakwane Gnanaseeha',
-            AboutTeacherScreen: 'About teacher',
-            AboutSermonsScreen: 'About materials in the application',
             blessings: 'By the power of this truth, may you be safe and well!',
             MyNameIs: 'Maksim Suleymanov',
             Donation: 'Donations',
             DownloadBook: 'Download book «Bhāvanā — The Art of The Mind» by Venerable Rakwane Gnanaseeha',
             WebSite: 'Official website',
+            Back: 'Back',
 
-            //Sermons and recitations, same keys as in contentRoutingList!
-            ...materialEn,
+            AboutProjectScreen: 'About project',
+            //Section about project
+            ...sectionAboutEn,
+
+            //Sermons and recitations (aka materials)
+            ...materialsEn,
         },
     },
     ru: {
@@ -97,7 +112,6 @@ const resources = {
             start: 'Старт',
             endSession: 'Закончить сессию',
             HomeScreen: 'Bhāvanā — искусство ума',
-            AboutScreen: 'О приложении',
             StudyScreen: 'Материалы',
             MeditationScreen: 'Медитация',
             SettingsScreen: 'Настройки',
@@ -105,22 +119,22 @@ const resources = {
             Language: 'Язык',
             Sound: 'Звук',
             RecitationsHint: ' только при сессиях от {{minutes}} минут',
-            LinksListScreen: 'Сслыки',
             contactDeveloper: 'Разработчик:',
-            AboutProjectScreen: 'О проекте',
-            AboutMonasteryScreen: 'Монастырь Читтавивека на Шри-Ланке',
-            AboutMonasteryButton: 'Монастырь Читтавивека',
+            AboutMonasteryTitle: 'Монастырь Читтавивека на Шри-Ланке',
             TeacherName: 'Бхиккху Ракване Ньянасиха',
-            AboutTeacherScreen: 'Об учителе',
-            AboutSermonsScreen: 'О проповедях в приложении',
             blessings: 'Пусть силой этой правды будет вам благополучие!',
             MyNameIs: 'Максим Сулейманов',
             Donation: 'Пожертвования',
             DownloadBook: 'Скачать книгу «Bhāvanā — искусство ума»',
             WebSite: 'Официальный сайт монастыря',
+            Back: 'Назад',
 
-            //Sermons, same keys as in contentRoutingList!
-            ...materialRu,
+            AboutProjectScreen: 'О проекте',
+            //Section about project
+            ...sectionAboutRu,
+
+            //Sermons and recitations (aka materials)
+            ...materialsRu,
         },
     },
 };

@@ -10,8 +10,6 @@ import {LinksList} from "@/components/common/LinksList";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutMonasteryScreen'>;
 
-//TODO: cleanup deps in package json!
-
 export const AboutMonasteryScreen = ({ route }: Props) => {
     const { language } = route.params;
     const {t} = useTranslation();
@@ -21,7 +19,7 @@ export const AboutMonasteryScreen = ({ route }: Props) => {
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
             {Platform.OS === 'android' && (
                 <TitleText>
-                    {t('AboutMonasteryScreen')}
+                    {t('AboutMonasteryTitle')}
                 </TitleText>
             )}
             <Image

@@ -51,7 +51,7 @@ export const globalStyles = StyleSheet.create({
         borderRadius: 8,
         alignSelf: 'center',
         marginTop: 30,
-        width: '70%',
+        width: '80%',
     },
     buttonText: {
         color: COLORS.buttonText,

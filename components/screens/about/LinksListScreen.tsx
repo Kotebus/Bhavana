@@ -10,7 +10,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'LinksListScreen'>;
 
 const linksData: IUrlText[] = [
     {url: 'https://samatha-vipassana.com/', text: 'Chittaviveka monastery: samatha-vipassana.com'},
-    {url: 'http://t.me/chittaviveka', text: 'Telegram: @chittaviveka'},
+    {url: 'https://t.me/chittaviveka', text: 'Telegram: @chittaviveka'},
     {url: 'https://www.instagram.com/chittaviveka.monastery', text: 'Instagram: @chittaviveka'},
     {url: 'https://www.facebook.com/chittaviveka', text: 'Facebook: Chittaviveka Monastery'},
     {url: 'https://www.youtube.com/@ChittaViveka', text: 'Youtube Буддизм Тхеравада'},

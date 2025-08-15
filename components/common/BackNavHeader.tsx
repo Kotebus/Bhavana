@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingBottom: 10,
         position: 'relative',
+        marginBottom: 10,
     },
     containerIos: {
         marginTop: 15,
