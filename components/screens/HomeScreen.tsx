@@ -65,10 +65,7 @@ export default function HomeScreen({ navigation }: Props) {
             </NavButton>
 
             <NavButton navigate={
-                () => navigation.navigate('SermonScreen', {
-                    sermonKey: 'Recitations',
-                    language: settings.language
-                })
+                () => navigation.navigate('RecitationsScreen', languageNavigationParams)
             }>
                 {t('Recitations')}
             </NavButton>

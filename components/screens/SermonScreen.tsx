@@ -1,60 +1,62 @@
 import React, {useEffect, useState} from "react";
-import {ActivityIndicator, ScrollView, StyleSheet, View, Image, Text} from "react-native";
+import {ActivityIndicator, ScrollView, StyleSheet, View, Image} from "react-native";
 import Markdown from "react-native-markdown-display";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
-import {SermonKey} from "../i18n";
+import {ContentKey} from "../i18n";
 import {useSettings} from "../contexts/SettingsContext";
 import {RootStackParamList} from "@/components/AppNavigator";
 import {loadMarkdownAsset} from "@/components/services/MarkdownLoader";
 import BackNavHeader from "@/components/BackNavHeader";
 import TextSizeControl from "@/components/TextSizeControl";
 import {globalStyles} from "@/components/styles/global";
-import {useTranslation} from "react-i18next";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SermonScreen'>;
 
 type SermonEntry = readonly [any, any];
-type SermonsMap = {
-    readonly [K in SermonKey]: SermonEntry;
+type ContentMap = {
+    readonly [K in ContentKey]: SermonEntry;
 };
 
 //TODO: check lint warning about require: https://typescript-eslint.io/rules/no-require-imports/
-const sermonsMap: SermonsMap = {
-    'SantaSukha': [require('./sermons/content/SantaSukhaRu.md'), require('./sermons/content/SantaSukhaEn.md')],
-    'PanchaNivarana': [require('./sermons/content/PanchaNivaranaRu.md'), require('./sermons/content/PanchaNivaranaEn.md')],
-    'DanaSilaBhavana': [require('./sermons/content/DanaSilaBhavanaRu.md'), require('./sermons/content/DanaSilaBhavanaEn.md')],
-    'Salayatana': [require('./sermons/content/SalayatanaRu.md'), require('./sermons/content/SalayatanaEn.md')],
-    'Viveka': [require('./sermons/content/VivekaRu.md'), require('./sermons/content/VivekaEn.md')],
-    'Sankhara': [require('./sermons/content/SankharaRu.md'), require('./sermons/content/SankharaEn.md')],
-    'PanchaKkhandha': [require('./sermons/content/PanchaKkhandhaRu.md'), require('./sermons/content/PanchaKkhandhaEn.md')],
-    'Anicca': [require('./sermons/content/AniccaRu.md'), require('./sermons/content/AniccaEn.md')],
-    'YonisoManasikara': [require('./sermons/content/YonisoManasikaraRu.md'), require('./sermons/content/YonisoManasikaraEn.md')],
-    'Vipassanupakkilesa': [require('./sermons/content/VipassanupakkilesaRu.md'), require('./sermons/content/VipassanupakkilesaEn.md')],
-    'Sankharaloka': [require('./sermons/content/SankharaLokaRu.md'), require('./sermons/content/SankharaLokaEn.md')],
-    'Vedananupassana': [require('./sermons/content/VedananupassanaRu.md'), require('./sermons/content/VedananupassanaEn.md')],
-    'Kama': [require('./sermons/content/KamaRu.md'), require('./sermons/content/KamaEn.md')],
-    'Dhatu18': [require('./sermons/content/Dhatu18Ru.md'), require('./sermons/content/Dhatu18En.md')],
-    'Upasamanussati': [require('./sermons/content/UpasamanussatiRu.md'), require('./sermons/content/UpasamanussatiEn.md')],
-    'SankappaRago': [require('./sermons/content/SankappaRagoRu.md'), require('./sermons/content/SankappaRagoEn.md')],
-
-    'Recitations': [require('./sermons/content/RecitationsRu.md'), require('./sermons/content/RecitationsEn.md')],
+const contentMap: ContentMap = {
+    'SantaSukha': [require('@/components/screens/materials/content/sermons/SantaSukhaRu.md'), require('@/components/screens/materials/content/sermons/SantaSukhaEn.md')],
+    'PanchaNivarana': [require('@/components/screens/materials/content/sermons/PanchaNivaranaRu.md'), require('@/components/screens/materials/content/sermons/PanchaNivaranaEn.md')],
+    'DanaSilaBhavana': [require('@/components/screens/materials/content/sermons/DanaSilaBhavanaRu.md'), require('@/components/screens/materials/content/sermons/DanaSilaBhavanaEn.md')],
+    'Salayatana': [require('@/components/screens/materials/content/sermons/SalayatanaRu.md'), require('@/components/screens/materials/content/sermons/SalayatanaEn.md')],
+    'Viveka': [require('@/components/screens/materials/content/sermons/VivekaRu.md'), require('@/components/screens/materials/content/sermons/VivekaEn.md')],
+    'Sankhara': [require('@/components/screens/materials/content/sermons/SankharaRu.md'), require('@/components/screens/materials/content/sermons/SankharaEn.md')],
+    'PanchaKkhandha': [require('@/components/screens/materials/content/sermons/PanchaKkhandhaRu.md'), require('@/components/screens/materials/content/sermons/PanchaKkhandhaEn.md')],
+    'Anicca': [require('@/components/screens/materials/content/sermons/AniccaRu.md'), require('@/components/screens/materials/content/sermons/AniccaEn.md')],
+    'YonisoManasikara': [require('@/components/screens/materials/content/sermons/YonisoManasikaraRu.md'), require('@/components/screens/materials/content/sermons/YonisoManasikaraEn.md')],
+    'Vipassanupakkilesa': [require('@/components/screens/materials/content/sermons/VipassanupakkilesaRu.md'), require('@/components/screens/materials/content/sermons/VipassanupakkilesaEn.md')],
+    'Sankharaloka': [require('@/components/screens/materials/content/sermons/SankharaLokaRu.md'), require('@/components/screens/materials/content/sermons/SankharaLokaEn.md')],
+    'Vedananupassana': [require('@/components/screens/materials/content/sermons/VedananupassanaRu.md'), require('@/components/screens/materials/content/sermons/VedananupassanaEn.md')],
+    'Kama': [require('@/components/screens/materials/content/sermons/KamaRu.md'), require('@/components/screens/materials/content/sermons/KamaEn.md')],
+    'Dhatu18': [require('@/components/screens/materials/content/sermons/Dhatu18Ru.md'), require('@/components/screens/materials/content/sermons/Dhatu18En.md')],
+    'Upasamanussati': [require('@/components/screens/materials/content/sermons/UpasamanussatiRu.md'), require('@/components/screens/materials/content/sermons/UpasamanussatiEn.md')],
+    'SankappaRago': [require('@/components/screens/materials/content/sermons/SankappaRagoRu.md'), require('@/components/screens/materials/content/sermons/SankappaRagoEn.md')],
+    'AllRecitations': [require('@/components/screens/materials/content/recitations/RecitationsRu.md'), require('@/components/screens/materials/content/recitations/RecitationsEn.md')],
+    'Namaskaras': [require('@/components/screens/materials/content/recitations/NamaskarasRu.md'), require('@/components/screens/materials/content/recitations/NamaskarasEn.md')],
+    'Qualities': [require('@/components/screens/materials/content/recitations/ThreeJevelsQualitiesRu.md'), require('@/components/screens/materials/content/recitations/ThreeJevelsQualitiesEn.md')],
+    'Veneration': [require('@/components/screens/materials/content/recitations/RelictsAndBodhiThreeVenerationRu.md'), require('@/components/screens/materials/content/recitations/RelictsAndBodhiThreeVenerationEn.md')],
+    'Confession': [require('@/components/screens/materials/content/recitations/ConfessionOfFaultsRu.md'), require('@/components/screens/materials/content/recitations/ConfessionOfFaultsEn.md')],
+    'Offering': [require('@/components/screens/materials/content/recitations/PracticeOfferingRu.md'), require('@/components/screens/materials/content/recitations/PracticeOfferingEn.md')],
 }
 
 const imgSources: Record<string, any> = {
-    'ayatana_scheme_mind_ru': require('./sermons/content/images/ayatana_scheme_mind_ru.png'),
-    'ayatana_scheme_mind_en': require('./sermons/content/images/ayatana_scheme_mind_en.png'),
-    'ayatana_scheme_ru': require('./sermons/content/images/ayatana_scheme_ru.jpg'),
-    'ayatana_scheme_en': require('./sermons/content/images/ayatana_scheme_en.png'),
-    'sri_bodhiraja_center': require('./sermons/content/images/sri_bodhiraja_center.jpg'),
-    'vase_faces': require('./sermons/content/images/vase_faces.png'),
-    'Tapchan_the_cat_my_friend': require('./sermons/content/images/Tapchan_the_cat_best_friend.png'),
+    'ayatana_scheme_mind_ru': require('@/components/screens/materials/content/images/ayatana_scheme_mind_ru.png'),
+    'ayatana_scheme_mind_en': require('@/components/screens/materials/content/images/ayatana_scheme_mind_en.png'),
+    'ayatana_scheme_ru': require('@/components/screens/materials/content/images/ayatana_scheme_ru.jpg'),
+    'ayatana_scheme_en': require('@/components/screens/materials/content/images/ayatana_scheme_en.png'),
+    'sri_bodhiraja_center': require('@/components/screens/materials/content/images/sri_bodhiraja_center.jpg'),
+    'vase_faces': require('@/components/screens/materials/content/images/vase_faces.png'),
+    'Tapchan_the_cat_my_friend': require('@/components/screens/materials/content/images/Tapchan_the_cat_best_friend.png'),
 };
 
 export default function SermonScreen({route, navigation}: Props) {
-    const {sermonKey, language} = route.params;
-    const {t} = useTranslation();
+    const {contentKey, language} = route.params;
     const [content, setContent] = useState<string | null>(null);
     const {settings} = useSettings();
     const [textSize, setTextSize] = useState(settings.fontSize);
@@ -63,7 +65,7 @@ export default function SermonScreen({route, navigation}: Props) {
         const loadMarkdown = async () => {
             try {
                 const langRequireIndex = language === 'ru' ? 0 : 1;
-                const asset = sermonsMap[sermonKey][langRequireIndex];
+                const asset = contentMap[contentKey][langRequireIndex];
                 const text = await loadMarkdownAsset(asset);
                 setContent(text);
             } catch (error) {
@@ -72,7 +74,7 @@ export default function SermonScreen({route, navigation}: Props) {
         };
 
         loadMarkdown();
-    }, [language, sermonKey]);
+    }, [language, contentKey]);
 
     if (!content) {
         return (
@@ -87,14 +89,14 @@ export default function SermonScreen({route, navigation}: Props) {
             <BackNavHeader onBack={() => navigation.goBack()}>
                 <TextSizeControl onChange={setTextSize}/>
             </BackNavHeader>
-            {sermonKey !== 'Recitations' &&
-                <Text style={{
-                    alignSelf: 'flex-end',
-                    fontSize: textSize
-                }}>
-                    {t('TeacherName')}
-                </Text>
-            }
+            {/*{isSermon &&*/}
+            {/*    <Text style={{*/}
+            {/*        alignSelf: 'flex-end',*/}
+            {/*        fontSize: textSize*/}
+            {/*    }}>*/}
+            {/*        {t('TeacherName')}*/}
+            {/*    </Text>*/}
+            {/*}*/}
             <Markdown
                 style={{
                     body: {

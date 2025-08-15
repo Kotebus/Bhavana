@@ -1,4 +1,4 @@
-# Namasakāras
+## Namasakāras
 
 >*Namo tassa **bhagavato** arahato **sammāsaṃbuddhassa***   
 *Namo tassa **bhagavato** arahato **sammāsaṃbuddhassa***   
@@ -8,7 +8,7 @@ Homage to **the Blessed**, Worthy, **Fully Enlightened One**\
 Homage to **the Blessed**, Worthy, **Fully Enlightened One**\
 Homage to **the Blessed**, Worthy, **Fully Enlightened One**
 
-# Remembrance of the Qualities of the Three Jewels
+## Remembrance of the Qualities of the Three Jewels
 
 ### __Qualities of the Buddha__
 
@@ -90,7 +90,7 @@ The unsurpassed **field of merit** for the world
 
 To **the Saṅgha** I go for **the refuge** for life until full cessation (nibbāna).
 
-# Expression of Veneration for the Relics
+## Expression of Veneration for the Relics
 
 >*Vandāmi **cetiyaṃ** sabbaṃ sabbaṭṭhānesu patiṭṭhitaṃ*    
 
@@ -100,7 +100,7 @@ I honor all **the shrines** (objects of worship associated with the Buddha) in a
 
 The bodily relics, **the great Bodhi tree**, and all images of the Buddha, entirely and always
 
-# Paying homage to the Bodhi tree under which Buddha attained enlightenment
+## Paying homage to the Bodhi tree under which Buddha attained enlightenment
 
 >*Yassamūle nisinnova – sabbārivijayaṃ akā*  
 
@@ -118,7 +118,7 @@ These great Bodhi trees, honored by the Protector of the World (the Buddha)
 
 I also venerate you; may there be homage to the King of Trees!
 
-# Confession of Faults before the Three Jewels
+## Confession of your Faults before the Three Jewels
 
 >*Kāyena vācā cittena*   
 
@@ -168,7 +168,7 @@ Forgive me for this misconduct, O **Saṅgha**
 
 Practiced well, **unsurpassed**.
 
-# Offering of Practice to the Three Jewels (after meditation)
+## Offering of Practice to the Three Jewels (after meditation)
 
 >*Imāya dhammānudhammapaṭipattiyā **Buddhaṃ pūjemi**.*  
 

@@ -8,7 +8,7 @@ import MeditationScreen from "@/components/screens/MeditationScreen";
 import AboutScreen from "@/components/screens/about/AboutScreen";
 import StudyScreen from "@/components/screens/StudyScreen";
 import SermonScreen from "@/components/screens/SermonScreen";
-import {SermonKey} from "@/components/i18n";
+import {ContentKey} from "@/components/i18n";
 import HomeScreen from "@/components/screens/HomeScreen";
 import SettingsScreen from "@/components/screens/SettingsScreen";
 import LinksListScreen from "@/components/screens/about/LinksListScreen";
@@ -16,13 +16,14 @@ import {AboutMonasteryScreen} from "@/components/screens/about/AboutMonasteryScr
 import {AboutTeacherScreen} from "@/components/screens/about/AboutTeacherScreen";
 import {AboutSermonsScreen} from "@/components/screens/about/AboutSermonsScreen";
 import AboutProjectScreen from "@/components/screens/AboutProjectScreen";
+import RecitationsScreen from "@/components/screens/RecitationsScreen";
 
 export interface IPropsWithLanguage {
     language: Language;
 }
 
 export interface ISermonProps {
-    sermonKey: SermonKey;
+    contentKey: ContentKey;
     language: Language;
 }
 export type RootStackParamList = {
@@ -37,6 +38,7 @@ export type RootStackParamList = {
     AboutTeacherScreen: IPropsWithLanguage;
     AboutSermonsScreen: IPropsWithLanguage;
     AboutProjectScreen: IPropsWithLanguage;
+    RecitationsScreen: IPropsWithLanguage;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -55,6 +57,7 @@ export const AppNavigator = () => {
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false, title: ''}}/>
                 <Stack.Screen name="MeditationScreen" component={MeditationScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="AboutScreen" component={AboutScreen} options={{headerShown: isIos, title: t('AboutScreen') }}/>
+                <Stack.Screen name="RecitationsScreen" component={RecitationsScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="StudyScreen" component={StudyScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="SermonScreen" component={SermonScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{headerShown: false}}/>

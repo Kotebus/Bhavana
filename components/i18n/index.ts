@@ -1,10 +1,9 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-const sermonsEn = {
+const contentEn = {
     PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
     SantaSukha: 'Santasukha: the Happiness of Peace',
-    Recitations: 'Recitations',
     DanaSilaBhavana: 'Dāna, sīla, bhāvanā: The Three Types of Practice in Buddhism',
     Salayatana: 'Saḷāyatana: Six Sense Spheres',
     Viveka: 'Viveka: Rest',
@@ -19,12 +18,17 @@ const sermonsEn = {
     Dhatu18: 'Aṭṭhārasa dhātuyo: Eighteen Elements',
     Upasamanussati: 'Upasamānussati: Recollection of The Peace of Nibbāna',
     SankappaRago: 'Saṅkappa rāgo purisassa kāmo',
+    AllRecitations: 'All Recitations',
+    Namaskaras: 'Namasakāras',
+    Qualities: 'Qualities of the Three Jewels',
+    Veneration: 'Expression of Veneration for the Relics and Bodhi tree',
+    Confession: ' Confession of Faults before the Three Jewels',
+    Offering: 'Offering of Practice to the Three Jewels (after meditation)',
 };
 
-const sermonsRu = {
+const contentRu = {
     PanchaNivarana: 'Pañca nīvaraṇāni: пять помех',
     SantaSukha: 'Santasukha: счастье покоя',
-    Recitations: 'Славословия',
     DanaSilaBhavana: 'Dāna, sīla, bhāvanā: три вида практики в буддизме',
     Salayatana: 'Saḷāyatana: шесть сфер восприятия',
     Viveka: 'Viveka: отдых',
@@ -39,9 +43,15 @@ const sermonsRu = {
     Dhatu18: 'Aṭṭhārasa dhātuyo: восемнадцать элементов',
     Upasamanussati: 'Upasamānussati: памятование о покое Ниббаны',
     SankappaRago: 'Saṅkappa rāgo purisassa kāmo',
+    AllRecitations: 'Все славословия',
+    Namaskaras: 'Намаскары',
+    Qualities: 'Памятование о качествах Трёх Драгоценностей',
+    Veneration: 'Выражение почтения святыням и древу Бодхи',
+    Confession: 'Прошение прощения у Трёх Драгоценностей',
+    Offering: 'Подношение практики Трём Драгоценностям (после медитации)',
 };
 
-export type SermonKey = keyof typeof sermonsEn;
+export type ContentKey = keyof typeof contentEn;
 //export type LocalisationKey = keyof typeof resources.en.translation;
 
 const resources = {
@@ -57,6 +67,7 @@ const resources = {
             StudyScreen: 'Study',
             MeditationScreen: 'Meditation',
             SettingsScreen: 'Settings',
+            Recitations: 'Recitations',
             Language: 'Language',
             Sound: 'Sound',
             RecitationsHint: 'only during sessions of {{minutes}} minutes or more',
@@ -67,15 +78,15 @@ const resources = {
             AboutMonasteryButton: 'Chittaviveka Monastery',
             TeacherName: 'Venerable Rakwane Gnanaseeha',
             AboutTeacherScreen: 'About teacher',
-            AboutSermonsScreen: 'About sermons in the application',
+            AboutSermonsScreen: 'About materials in the application',
             blessings: 'By the power of this truth, may you be safe and well!',
             MyNameIs: 'Maksim Suleymanov',
             Donation: 'Donations',
             DownloadBook: 'Download book «Bhāvanā — The Art of The Mind» by Venerable Rakwane Gnanaseeha',
             WebSite: 'Official website',
 
-            //Sermons, same keys as in sermonsRoutingList!
-            ...sermonsEn,
+            //Sermons and recitations, same keys as in contentRoutingList!
+            ...contentEn,
         },
     },
     ru: {
@@ -90,6 +101,7 @@ const resources = {
             StudyScreen: 'Материалы',
             MeditationScreen: 'Медитация',
             SettingsScreen: 'Настройки',
+            Recitations: 'Славословия',
             Language: 'Язык',
             Sound: 'Звук',
             RecitationsHint: ' только при сессиях от {{minutes}} минут',
@@ -107,8 +119,8 @@ const resources = {
             DownloadBook: 'Скачать книгу «Bhāvanā — искусство ума»',
             WebSite: 'Официальный сайт монастыря',
 
-            //Sermons, same keys as in sermonsRoutingList!
-            ...sermonsRu,
+            //Sermons, same keys as in contentRoutingList!
+            ...contentRu,
         },
     },
 };
