@@ -11,7 +11,7 @@ export const ContactInfo = () => {
 
     return (
         <View style={styles.contactBlock}>
-            <Text style={styles.contactLabel}>{t('contactDeveloper')}</Text>
+            <Text style={styles.contactLabel}>{t('contactDeveloper')}{' '}{t('MyNameIs')}</Text>
             <View style={styles.contactRow}>
                 <TouchableOpacity onPress={openTelegram}>
                     <Text style={styles.link}>tg @Max_Kotebus</Text>

@@ -1,14 +1,14 @@
-import {StyleProp} from "react-native/Libraries/StyleSheet/StyleSheet";
-import {Linking, Text, TextStyle} from "react-native";
+import {Linking, StyleSheet, Text} from "react-native";
 import React, {useCallback} from "react";
+import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
 
 export interface ITextWithLink {
     url: string;
     children: string;
-    textStyle?: StyleProp<TextStyle>;
+    isRightAligned?: boolean;
 }
 
-export const TextWithLink = ({url, children, textStyle}: ITextWithLink) => {
+export const TextWithLink = ({url, children, isRightAligned = false}: ITextWithLink) => {
     const handlePress = useCallback(async () => {
         // Checking if the link is supported for links with custom URL scheme.
         const supported = await Linking.canOpenURL(url);
@@ -21,8 +21,22 @@ export const TextWithLink = ({url, children, textStyle}: ITextWithLink) => {
     }, [url]);
 
     return (
-        <Text style={textStyle} onPress={handlePress}>
+        <Text style={isRightAligned ? textWithLinkStyles.linkButtonTextAlignedRight : textWithLinkStyles.linkButtonText} onPress={handlePress}>
             {children}
         </Text>
     );
 };
+
+export const textWithLinkStyles = StyleSheet.create({
+    linkButtonText: {
+        fontSize: FONT_SIZE_DEFAULT,
+        color: '#007AFF',
+        textAlignVertical: 'center', // выравнивание по центру
+        includeFontPadding: false,   // убирает лишние отступы Android
+    },
+    linkButtonTextAlignedRight: {
+        fontSize: FONT_SIZE_DEFAULT,
+        color: '#007AFF',
+        alignSelf: 'flex-end',
+    },
+});

@@ -60,11 +60,15 @@ const resources = {
             Sound: 'Sound',
             RecitationsHint: 'only during sessions of {{minutes}} minutes or more',
             LinksListScreen: 'Links',
-            contactDeveloper: 'Developer: Max Suleimanov',
+            contactDeveloper: 'Developer:',
             AboutMonasteryScreen: 'Chittaviveka Monastery in Sri Lanka',
             AboutMonasteryButton: 'Chittaviveka Monastery',
             TeacherName: 'Venerable Rakwane Gnanaseeha',
             AboutTeacherScreen: 'About teacher',
+            AboutSermonsScreen: 'About sermons in the application',
+            blessings: 'By the power of this truth, may you be safe and well!',
+            MyNameIs: 'Maksim Suleymanov',
+            Donation: 'You can support the monastery by making a donation',
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsEn,
@@ -86,11 +90,15 @@ const resources = {
             Sound: 'Звук',
             RecitationsHint: ' только при сессиях от {{minutes}} минут',
             LinksListScreen: 'Сслыки',
-            contactDeveloper: 'Разработчик: Макс Сулейманов',
+            contactDeveloper: 'Разработчик:',
             AboutMonasteryScreen: 'Монастырь Читтавивека на Шри-Ланке',
             AboutMonasteryButton: 'Монастырь Читтавивека',
             TeacherName: 'Бхиккху Ракване Ньянасиха',
             AboutTeacherScreen: 'Об учителе',
+            AboutSermonsScreen: 'О проповедях в приложении',
+            blessings: 'Пусть силой этой правды будет вам благополучие!',
+            MyNameIs: 'Максим Сулейманов',
+            Donation: 'Вы можете поддержать монастырь сделав пожертвование',
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsRu,

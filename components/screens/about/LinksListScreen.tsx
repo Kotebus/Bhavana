@@ -50,7 +50,6 @@ export default function LinksListScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-
     contactsContainer: {
         width: '100%',
     },
