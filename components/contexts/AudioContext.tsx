@@ -27,7 +27,6 @@ export const AudioProvider = ({ children } : PropsWithChildren) => {
     const recitationsEndSession = useAudioPlayer(recitationsAfterSessionSource);
     const playerGong = useAudioPlayer(gongSource);
 
-    //TODO: do we need it? Maybe try catch and error state to monitor?
     const stopAllPlayers = () => {
         stopPlayerIfLoaded(recitationsBeforeSession);
         stopPlayerIfLoaded(recitationsEndSession);
