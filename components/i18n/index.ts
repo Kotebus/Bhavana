@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-const contentEn = {
+const materialEn = {
     PanchaNivarana: 'Pañca nīvaraṇāni: Five Hindrances',
     SantaSukha: 'Santasukha: the Happiness of Peace',
     DanaSilaBhavana: 'Dāna, sīla, bhāvanā: The Three Types of Practice in Buddhism',
@@ -26,7 +26,7 @@ const contentEn = {
     Offering: 'Offering of Practice to the Three Jewels (after meditation)',
 };
 
-const contentRu = {
+const materialRu = {
     PanchaNivarana: 'Pañca nīvaraṇāni: пять помех',
     SantaSukha: 'Santasukha: счастье покоя',
     DanaSilaBhavana: 'Dāna, sīla, bhāvanā: три вида практики в буддизме',
@@ -51,7 +51,7 @@ const contentRu = {
     Offering: 'Подношение практики Трём Драгоценностям (после медитации)',
 };
 
-export type ContentKey = keyof typeof contentEn;
+export type MaterialKey = keyof typeof materialEn;
 //export type LocalisationKey = keyof typeof resources.en.translation;
 
 const resources = {
@@ -86,7 +86,7 @@ const resources = {
             WebSite: 'Official website',
 
             //Sermons and recitations, same keys as in contentRoutingList!
-            ...contentEn,
+            ...materialEn,
         },
     },
     ru: {
@@ -120,7 +120,7 @@ const resources = {
             WebSite: 'Официальный сайт монастыря',
 
             //Sermons, same keys as in contentRoutingList!
-            ...contentRu,
+            ...materialRu,
         },
     },
 };

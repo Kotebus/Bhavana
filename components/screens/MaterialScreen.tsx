@@ -4,7 +4,7 @@ import Markdown from "react-native-markdown-display";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
-import {ContentKey} from "../i18n";
+import {MaterialKey} from "../i18n";
 import {useSettings} from "../contexts/SettingsContext";
 import {RootStackParamList} from "@/components/AppNavigator";
 import {loadMarkdownAsset} from "@/components/services/MarkdownLoader";
@@ -12,15 +12,15 @@ import BackNavHeader from "@/components/BackNavHeader";
 import TextSizeControl from "@/components/TextSizeControl";
 import {globalStyles} from "@/components/styles/global";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'SermonScreen'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'MaterialScreen'>;
 
-type SermonEntry = readonly [any, any];
-type ContentMap = {
-    readonly [K in ContentKey]: SermonEntry;
+type MaterialEntry = readonly [any, any];
+type MaterialMap = {
+    readonly [K in MaterialKey]: MaterialEntry;
 };
 
 //TODO: check lint warning about require: https://typescript-eslint.io/rules/no-require-imports/
-const contentMap: ContentMap = {
+const materialsListMap: MaterialMap = {
     'SantaSukha': [require('@/components/screens/materials/content/sermons/SantaSukhaRu.md'), require('@/components/screens/materials/content/sermons/SantaSukhaEn.md')],
     'PanchaNivarana': [require('@/components/screens/materials/content/sermons/PanchaNivaranaRu.md'), require('@/components/screens/materials/content/sermons/PanchaNivaranaEn.md')],
     'DanaSilaBhavana': [require('@/components/screens/materials/content/sermons/DanaSilaBhavanaRu.md'), require('@/components/screens/materials/content/sermons/DanaSilaBhavanaEn.md')],
@@ -55,8 +55,8 @@ const imgSources: Record<string, any> = {
     'Tapchan_the_cat_my_friend': require('@/components/screens/materials/content/images/Tapchan_the_cat_best_friend.png'),
 };
 
-export default function SermonScreen({route, navigation}: Props) {
-    const {contentKey, language} = route.params;
+export default function MaterialScreen({route, navigation}: Props) {
+    const {materialKey, language} = route.params;
     const [content, setContent] = useState<string | null>(null);
     const {settings} = useSettings();
     const [textSize, setTextSize] = useState(settings.fontSize);
@@ -65,7 +65,7 @@ export default function SermonScreen({route, navigation}: Props) {
         const loadMarkdown = async () => {
             try {
                 const langRequireIndex = language === 'ru' ? 0 : 1;
-                const asset = contentMap[contentKey][langRequireIndex];
+                const asset = materialsListMap[materialKey][langRequireIndex];
                 const text = await loadMarkdownAsset(asset);
                 setContent(text);
             } catch (error) {
@@ -73,8 +73,8 @@ export default function SermonScreen({route, navigation}: Props) {
             }
         };
 
-        loadMarkdown();
-    }, [language, contentKey]);
+        void loadMarkdown();
+    }, [language, materialKey]);
 
     if (!content) {
         return (

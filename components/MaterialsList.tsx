@@ -2,15 +2,15 @@ import React from 'react';
 import {View, FlatList, StyleSheet, Platform} from 'react-native';
 import {useNavigation} from "expo-router";
 import {useTranslation} from "react-i18next";
-import {IContent} from "@/components/screens/materials/SermonsRoutingList";
+import {IMaterial} from "@/components/screens/materials/SermonsRoutingList";
 import BackNavHeader from "@/components/BackNavHeader";
 import {NavButton} from "@/components/NavButton";
-import {ContentKey} from "@/components/i18n";
+import {MaterialKey} from "@/components/i18n";
 import {globalStyles} from "@/components/styles/global";
 
 export interface IMaterialsListProps {
-    contentList: IContent[];
-    navigate: (contentKey: ContentKey) => void;
+    contentList: IMaterial[];
+    navigate: (materialKey: MaterialKey) => void;
 }
 
 export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=> {
@@ -26,8 +26,8 @@ export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=>
                 data={contentList}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => (
-                    <NavButton navigate={() => navigate(item.contentKey)} additionalButtonStyle={styles.button}>
-                        {t(item.contentKey)}
+                    <NavButton navigate={() => navigate(item.materialKey)} additionalButtonStyle={styles.button}>
+                        {t(item.materialKey)}
                     </NavButton>
                 )}
             />

@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/AppNavigator";
 import {globalStyles} from "@/components/styles/global";
-import {ContentKey} from "@/components/i18n";
+import {MaterialKey} from "@/components/i18n";
 import {TextWithLink, textWithLinkStyles} from "@/components/TextWithLink";
 import {ContactInfo} from "@/components/screens/about/ContactInfo";
 import {SimpleText} from "@/components/screens/about/SimpleText";
@@ -120,10 +120,8 @@ export default function AboutScreen({ route, navigation } : Props) {
     const {language} = route.params;
     const {t} = useTranslation();
 
-    const navigateToSermon = (contentKey: ContentKey) => navigation.navigate('SermonScreen', {
-        contentKey: contentKey,
-        language: language
-    });
+    const navigateToSermon = (materialKey: MaterialKey) =>
+        navigation.navigate('MaterialScreen', {materialKey, language});
 
     return (
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>

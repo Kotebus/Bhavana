@@ -1,102 +1,102 @@
-import {ContentKey} from "../../i18n";
+import {MaterialKey} from "../../i18n";
 
-export interface IContent {
+export interface IMaterial {
     id: number;
-    contentKey: ContentKey;
+    materialKey: MaterialKey;
 }
 
 const generateId = () => Math.floor(Math.random() * 1000000000);
 
-export const sermonsRoutingList:IContent[] = [
+export const sermonsRoutingList:IMaterial[] = [
     {
         id: generateId(),
-        contentKey: 'Vipassanupakkilesa'
+        materialKey: 'Vipassanupakkilesa'
     },
     {
         id: generateId(),
-        contentKey: 'PanchaNivarana'
+        materialKey: 'PanchaNivarana'
     },
     {
         id: generateId(),
-        contentKey: 'SantaSukha'
+        materialKey: 'SantaSukha'
     },
     {
         id: generateId(),
-        contentKey: 'DanaSilaBhavana'
+        materialKey: 'DanaSilaBhavana'
     },
     {
         id: generateId(),
-        contentKey: 'Viveka'
+        materialKey: 'Viveka'
     },
     {
         id: generateId(),
-        contentKey: 'Sankhara'
+        materialKey: 'Sankhara'
     },
     {
         id: generateId(),
-        contentKey: 'PanchaKkhandha'
+        materialKey: 'PanchaKkhandha'
     },
     {
         id: generateId(),
-        contentKey: 'Anicca'
+        materialKey: 'Anicca'
     },
     {
         id: generateId(),
-        contentKey: 'YonisoManasikara'
+        materialKey: 'YonisoManasikara'
     },
     {
         id: generateId(),
-        contentKey: 'Sankharaloka'
+        materialKey: 'Sankharaloka'
     },
     {
         id: generateId(),
-        contentKey: 'Vedananupassana'
+        materialKey: 'Vedananupassana'
     },
     {
         id: generateId(),
-        contentKey: 'Kama'
+        materialKey: 'Kama'
     },
     {
         id: generateId(),
-        contentKey: 'Salayatana'
+        materialKey: 'Salayatana'
     },
     {
         id: generateId(),
-        contentKey: 'Dhatu18'
+        materialKey: 'Dhatu18'
     },
     {
         id: generateId(),
-        contentKey: 'Upasamanussati'
+        materialKey: 'Upasamanussati'
     },
     {
         id: generateId(),
-        contentKey: 'SankappaRago'
+        materialKey: 'SankappaRago'
     },
 ];
 
-export const recitationsRoutingList:IContent[] = [
+export const recitationsRoutingList:IMaterial[] = [
     {
         id: generateId(),
-        contentKey: 'AllRecitations',
+        materialKey: 'AllRecitations',
     },
      {
         id: generateId(),
-        contentKey: 'Namaskaras',
+        materialKey: 'Namaskaras',
     },
      {
         id: generateId(),
-        contentKey: 'Qualities',
+        materialKey: 'Qualities',
     },
      {
         id: generateId(),
-        contentKey: 'Veneration',
+        materialKey: 'Veneration',
     },
      {
         id: generateId(),
-        contentKey: 'Confession',
+        materialKey: 'Confession',
     },
      {
         id: generateId(),
-        contentKey: 'Offering',
+        materialKey: 'Offering',
     },
 ]
