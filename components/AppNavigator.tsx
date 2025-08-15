@@ -6,7 +6,6 @@ import {useTranslation} from "react-i18next";
 import {ITime, Language} from "@/components/storage/storage";
 import MeditationScreen from "@/components/screens/MeditationScreen";
 import AboutScreen from "@/components/screens/about/AboutScreen";
-import StudyScreen from "@/components/screens/StudyScreen";
 import SermonScreen from "@/components/screens/SermonScreen";
 import {ContentKey} from "@/components/i18n";
 import HomeScreen from "@/components/screens/HomeScreen";
@@ -16,21 +15,25 @@ import {AboutMonasteryScreen} from "@/components/screens/about/AboutMonasteryScr
 import {AboutTeacherScreen} from "@/components/screens/about/AboutTeacherScreen";
 import {AboutSermonsScreen} from "@/components/screens/about/AboutSermonsScreen";
 import AboutProjectScreen from "@/components/screens/AboutProjectScreen";
-import RecitationsScreen from "@/components/screens/RecitationsScreen";
+import MaterialsListScreen from "@/components/screens/MaterialsListScreen";
+import {IContent} from "@/components/screens/materials/SermonsRoutingList";
 
 export interface IPropsWithLanguage {
     language: Language;
 }
 
-export interface ISermonProps {
+export interface ISermonProps extends IPropsWithLanguage {
     contentKey: ContentKey;
-    language: Language;
 }
+
+export interface IMaterialsListProps extends IPropsWithLanguage {
+    materialsList: IContent[];
+}
+
 export type RootStackParamList = {
     HomeScreen: undefined;
     MeditationScreen: ITime;
     AboutScreen: IPropsWithLanguage;
-    StudyScreen: IPropsWithLanguage;
     SermonScreen: ISermonProps;
     SettingsScreen: IPropsWithLanguage;
     LinksListScreen: undefined;
@@ -38,7 +41,7 @@ export type RootStackParamList = {
     AboutTeacherScreen: IPropsWithLanguage;
     AboutSermonsScreen: IPropsWithLanguage;
     AboutProjectScreen: IPropsWithLanguage;
-    RecitationsScreen: IPropsWithLanguage;
+    MaterialsListScreen: IMaterialsListProps;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -57,8 +60,7 @@ export const AppNavigator = () => {
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false, title: ''}}/>
                 <Stack.Screen name="MeditationScreen" component={MeditationScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="AboutScreen" component={AboutScreen} options={{headerShown: isIos, title: t('AboutScreen') }}/>
-                <Stack.Screen name="RecitationsScreen" component={RecitationsScreen} options={{headerShown: false}}/>
-                <Stack.Screen name="StudyScreen" component={StudyScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="MaterialsListScreen" component={MaterialsListScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="SermonScreen" component={SermonScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="LinksListScreen" component={LinksListScreen} options={{headerShown: false}}/>

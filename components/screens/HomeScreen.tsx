@@ -11,6 +11,7 @@ import {ITime} from "@/components/storage/storage";
 import {useSettings} from "@/components/contexts/SettingsContext";
 import {LanguageToggle} from "@/components/LanguageToggle";
 import {NavButton} from "@/components/NavButton";
+import {recitationsRoutingList, sermonsRoutingList} from "@/components/screens/materials/SermonsRoutingList";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
 
@@ -60,12 +61,18 @@ export default function HomeScreen({ navigation }: Props) {
                 {t('start')}
             </NavButton>
 
-            <NavButton navigate={() => navigation.navigate('StudyScreen', languageNavigationParams)}>
+            <NavButton navigate={() => navigation.navigate('MaterialsListScreen', {
+                materialsList: sermonsRoutingList,
+                ...languageNavigationParams
+            })}>
                 {t('StudyScreen')}
             </NavButton>
 
             <NavButton navigate={
-                () => navigation.navigate('RecitationsScreen', languageNavigationParams)
+                () => navigation.navigate('MaterialsListScreen', {
+                    materialsList: recitationsRoutingList,
+                    ...languageNavigationParams
+                })
             }>
                 {t('Recitations')}
             </NavButton>
