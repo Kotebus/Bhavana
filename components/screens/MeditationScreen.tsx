@@ -10,6 +10,7 @@ import {playSound} from "@/components/services/AudioHelper";
 import {useAudio} from "@/components/contexts/AudioContext";
 import {LotusAnimated} from "@/components/common/LotusAnimated";
 import {NavButton} from "@/components/common/NavButton";
+import {useKeepAwake} from "expo-keep-awake";
 
 const DELAY_BEFORE_START_SESSION_SECONDS = 2;
 export const MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES = 10;
@@ -28,6 +29,8 @@ const formatTime = (sec: number) => {
 //TODO: add documentation everywhere!
 //TODO: create readme
 export default function MeditationScreen({ route, navigation }: Props) {
+    //Prevent from sleep mode
+    useKeepAwake();
     const { h, m } = route.params;
     const { settings } = useSettings();
     const { t } = useTranslation();
