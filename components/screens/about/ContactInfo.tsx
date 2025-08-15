@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
     contactBlock: {
         marginTop: 20,
         alignItems: 'center',
+        borderTopWidth: 1,
+        borderTopColor: '#ccc',
+        paddingVertical: 16,
     },
     contactLabel: {
         fontSize: FONT_SIZE_DEFAULT,

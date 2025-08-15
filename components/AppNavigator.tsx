@@ -5,7 +5,7 @@ import {useTranslation} from "react-i18next";
 
 import {ITime, Language} from "@/components/storage/storage";
 import MeditationScreen from "@/components/screens/MeditationScreen";
-import AboutScreen from "@/components/screens/AboutScreen";
+import AboutScreen from "@/components/screens/about/AboutScreen";
 import StudyScreen from "@/components/screens/StudyScreen";
 import SermonScreen from "@/components/screens/SermonScreen";
 import {SermonKey} from "@/components/i18n";
@@ -15,6 +15,7 @@ import LinksListScreen from "@/components/screens/about/LinksListScreen";
 import {AboutMonasteryScreen} from "@/components/screens/about/AboutMonasteryScreen";
 import {AboutTeacherScreen} from "@/components/screens/about/AboutTeacherScreen";
 import {AboutSermonsScreen} from "@/components/screens/about/AboutSermonsScreen";
+import AboutProjectScreen from "@/components/screens/AboutProjectScreen";
 
 export interface IPropsWithLanguage {
     language: Language;
@@ -35,6 +36,7 @@ export type RootStackParamList = {
     AboutMonasteryScreen: IPropsWithLanguage;
     AboutTeacherScreen: IPropsWithLanguage;
     AboutSermonsScreen: IPropsWithLanguage;
+    AboutProjectScreen: IPropsWithLanguage;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -57,6 +59,7 @@ export const AppNavigator = () => {
                 <Stack.Screen name="SermonScreen" component={SermonScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="LinksListScreen" component={LinksListScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="AboutProjectScreen" component={AboutProjectScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="AboutMonasteryScreen" component={AboutMonasteryScreen} options={{headerShown: isIos, title: t('AboutMonasteryScreen')}}/>
                 <Stack.Screen name="AboutTeacherScreen" component={AboutTeacherScreen} options={{headerShown: isIos, title: t('AboutTeacherScreen')}}/>
                 <Stack.Screen name="AboutSermonsScreen" component={AboutSermonsScreen} options={{headerShown: isIos, title: t('AboutSermonsScreen')}}/>

@@ -1,65 +1,29 @@
-import React, {useCallback} from "react";
-import {Linking, TouchableOpacity, StyleSheet, Text, View, ScrollView, Platform} from "react-native";
-import {FONT_SIZE_DEFAULT, globalStyles} from "@/components/styles/global";
+import React from "react";
+import {ScrollView, Platform} from "react-native";
+import {globalStyles} from "@/components/styles/global";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/AppNavigator";
 import BackNavHeader from "@/components/BackNavHeader";
-
-interface IOpenURLButtonProps {
-    url: string;
-    children: string;
-}
-
-const OpenURLButton = ({url, children}: IOpenURLButtonProps) => {
-    const handlePress = useCallback(async () => {
-        // Checking if the link is supported for links with custom URL scheme.
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
-            // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-            // by some browser in the mobile
-            await Linking.openURL(url);
-        }
-    }, [url]);
-
-    return (
-        <TouchableOpacity style={styles.linkButton} onPress={handlePress}>
-            <Text style={styles.linkButtonText}>{children}</Text>
-        </TouchableOpacity>
-    );
-};
+import {IUrlText, LinksList} from "@/components/LinksList";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'LinksListScreen'>;
+
+const linksData: IUrlText[] = [
+    {url: 'https://samatha-vipassana.com/', text: 'Chittaviveka monastery: samatha-vipassana.com'},
+    {url: 'http://t.me/chittaviveka', text: 'Telegram: @chittaviveka'},
+    {url: 'https://www.instagram.com/chittaviveka.monastery', text: 'Instagram: @chittaviveka'},
+    {url: 'https://www.facebook.com/chittaviveka', text: 'Facebook: Chittaviveka Monastery'},
+    {url: 'https://www.youtube.com/@ChittaViveka', text: 'Youtube Буддизм Тхеравада'},
+    {url: 'https://vk.com/dhammatheravada', text: 'VK Dhamma Theravada'},
+    {url: 'https://theravada.ru/', text: 'theravada.ru'},
+];
 
 export default function LinksListScreen({ navigation }: Props) {
     const isIos = Platform.OS === 'ios';
     return (
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
             {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
-            <View style={styles.contactsContainer}>
-                <OpenURLButton url={'https://theravada.ru/'}>theravada.ru</OpenURLButton>
-                <OpenURLButton url={'https://samatha-vipassana.com/'}>samatha-vipassana.com</OpenURLButton>
-                <OpenURLButton url={'http://t.me/chittaviveka'}>Telegram: @chittaviveka</OpenURLButton>
-                <OpenURLButton url={'https://www.instagram.com/chittaviveka.monastery'}>Instagram: @chittaviveka</OpenURLButton>
-                <OpenURLButton url={'https://www.facebook.com/chittaviveka'}>Facebook: Chittaviveka Monastery</OpenURLButton>
-                <OpenURLButton url={'https://www.youtube.com/@ChittaViveka'}>Youtube Буддизм Тхеравада</OpenURLButton>
-                <OpenURLButton url={'https://vk.com/dhammatheravada'}>VK Dhamma Theravada</OpenURLButton>
-            </View>
+            <LinksList data={linksData}/>
         </ScrollView>
     );
 }
-
-const styles = StyleSheet.create({
-    contactsContainer: {
-        width: '100%',
-    },
-    linkButton: {
-        paddingVertical: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-    },
-    linkButtonText: {
-        fontSize: FONT_SIZE_DEFAULT,
-        color: '#007AFF',
-    },
-});

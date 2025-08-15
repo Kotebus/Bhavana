@@ -29,6 +29,12 @@ export const globalStyles = StyleSheet.create({
         flexGrow: 1,
         padding: 16,
     },
+    contentContainerStyle: {
+        flexGrow: 1,
+        justifyContent: 'center',
+        paddingTop: 20,
+        padding: 10
+    },
     title: {
         color: COLORS.titleText,
         fontSize: FONT_SIZE_HEADER,

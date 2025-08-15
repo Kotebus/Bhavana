@@ -6,7 +6,7 @@ import {globalStyles} from "@/components/styles/global";
 import {useTranslation} from "react-i18next";
 import {TitleText} from "@/components/screens/about/TitleText";
 import {SimpleText} from "@/components/screens/about/SimpleText";
-import {TextWithLink} from "@/components/TextWithLink";
+import {LinksList} from "@/components/LinksList";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutMonasteryScreen'>;
 
@@ -47,7 +47,15 @@ export const AboutMonasteryScreen = ({ route }: Props) => {
                     </SimpleText>
                 </>
             )}
-            <TextWithLink url={isRuLang ? 'https://samatha-vipassana.com/donations/' : 'https://samatha-vipassana.com/en/donations/'}>{t('Donation')}</TextWithLink>
+            <LinksList data={[
+                {
+                    url: isRuLang ? 'https://samatha-vipassana.com/' : 'https://samatha-vipassana.com/',
+                    text: t('WebSite')
+                },
+                {
+                    url: isRuLang ? 'https://samatha-vipassana.com/donations/' : 'https://samatha-vipassana.com/en/donations/',
+                    text: t('Donation')},
+            ]}/>
         </ScrollView>
     );
 }

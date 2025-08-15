@@ -42,6 +42,7 @@ const sermonsRu = {
 };
 
 export type SermonKey = keyof typeof sermonsEn;
+//export type LocalisationKey = keyof typeof resources.en.translation;
 
 const resources = {
     en: {
@@ -61,6 +62,7 @@ const resources = {
             RecitationsHint: 'only during sessions of {{minutes}} minutes or more',
             LinksListScreen: 'Links',
             contactDeveloper: 'Developer:',
+            AboutProjectScreen: 'About project',
             AboutMonasteryScreen: 'Chittaviveka Monastery in Sri Lanka',
             AboutMonasteryButton: 'Chittaviveka Monastery',
             TeacherName: 'Venerable Rakwane Gnanaseeha',
@@ -68,7 +70,9 @@ const resources = {
             AboutSermonsScreen: 'About sermons in the application',
             blessings: 'By the power of this truth, may you be safe and well!',
             MyNameIs: 'Maksim Suleymanov',
-            Donation: 'You can support the monastery by making a donation',
+            Donation: 'Donations',
+            DownloadBook: 'Download book «Bhāvanā — The Art of The Mind» by Venerable Rakwane Gnanaseeha',
+            WebSite: 'Official website',
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsEn,
@@ -91,6 +95,7 @@ const resources = {
             RecitationsHint: ' только при сессиях от {{minutes}} минут',
             LinksListScreen: 'Сслыки',
             contactDeveloper: 'Разработчик:',
+            AboutProjectScreen: 'О проекте',
             AboutMonasteryScreen: 'Монастырь Читтавивека на Шри-Ланке',
             AboutMonasteryButton: 'Монастырь Читтавивека',
             TeacherName: 'Бхиккху Ракване Ньянасиха',
@@ -98,7 +103,9 @@ const resources = {
             AboutSermonsScreen: 'О проповедях в приложении',
             blessings: 'Пусть силой этой правды будет вам благополучие!',
             MyNameIs: 'Максим Сулейманов',
-            Donation: 'Вы можете поддержать монастырь сделав пожертвование',
+            Donation: 'Пожертвования',
+            DownloadBook: 'Скачать книгу «Bhāvanā — искусство ума»',
+            WebSite: 'Официальный сайт монастыря',
 
             //Sermons, same keys as in sermonsRoutingList!
             ...sermonsRu,

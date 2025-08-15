@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {useTranslation} from "react-i18next";
 
 import {useSettings} from "../contexts/SettingsContext";
-import {FONT_SIZE_HEADER, globalStyles} from "../styles/global";
+import {FONT_SIZE_HEADER} from "../styles/global";
 import {RootStackParamList} from "@/components/AppNavigator";
 import {playSound} from "@/components/services/AudioHelper";
 import {useAudio} from "@/components/contexts/AudioContext";
 import {LotusAnimated} from "@/components/LotusAnimated";
+import {NavButton} from "@/components/NavButton";
 
 //TODO: check effects logic, maybe it's possible to reduce dependencies count
 //TODO: think about naming
@@ -108,14 +109,9 @@ export default function MeditationScreen({ route, navigation }: Props) {
             />
             <Text style={styles.timer}>{formatTime(elapsed)}</Text>
             <Text style={styles.goal}>{formatTime(totalMeditationDurationSeconds)}</Text>
-            <TouchableOpacity
-                style={[globalStyles.button, styles.button]}
-                onPress={() => navigation.goBack()}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('endSession')}
-                </Text>
-            </TouchableOpacity>
+            <NavButton navigate={() => navigation.goBack()} additionalButtonStyle={styles.button}>
+                {t('endSession')}
+            </NavButton>
         </View>
     );
 }

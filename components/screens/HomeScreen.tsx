@@ -10,6 +10,7 @@ import TimePicker from "@/components/TimePicker";
 import {ITime} from "@/components/storage/storage";
 import {useSettings} from "@/components/contexts/SettingsContext";
 import {LanguageToggle} from "@/components/LanguageToggle";
+import {NavButton} from "@/components/NavButton";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
 
@@ -26,7 +27,7 @@ export default function HomeScreen({ navigation }: Props) {
     const languageNavigationParams = {language: settings.language};
 
     return (
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <ScrollView contentContainerStyle={globalStyles.contentContainerStyle}>
             {/* Верхняя панель с иконками */}
             <View style={styles.topBar}>
                 <TouchableOpacity onPress={toggleSound} style={globalStyles.iconButton}>
@@ -55,61 +56,35 @@ export default function HomeScreen({ navigation }: Props) {
             }
 
             {/* Кнопка старт */}
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => navigation.navigate('MeditationScreen', settings.meditationTime)}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('start')}
-                </Text>
-            </TouchableOpacity>
+            <NavButton navigate={() => navigation.navigate('MeditationScreen', settings.meditationTime)}>
+                {t('start')}
+            </NavButton>
 
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => navigation.navigate('StudyScreen', languageNavigationParams)}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('StudyScreen')}
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => navigation.navigate('SermonScreen', {
+            <NavButton navigate={() => navigation.navigate('StudyScreen', languageNavigationParams)}>
+                {t('StudyScreen')}
+            </NavButton>
+
+            <NavButton navigate={
+                () => navigation.navigate('SermonScreen', {
                     sermonKey: 'Recitations',
                     language: settings.language
-                })}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('Recitations')}
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => navigation.navigate('SettingsScreen', languageNavigationParams)}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('SettingsScreen')}
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => navigation.navigate('AboutScreen', languageNavigationParams)}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('AboutScreen')}
-                </Text>
-            </TouchableOpacity>
+                })
+            }>
+                {t('Recitations')}
+            </NavButton>
+
+           <NavButton navigate={() => navigation.navigate('SettingsScreen', languageNavigationParams)}>
+               {t('SettingsScreen')}
+           </NavButton>
+
+            <NavButton navigate={() => navigation.navigate('AboutProjectScreen', languageNavigationParams)}>
+                {t('AboutProjectScreen')}
+            </NavButton>
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    contentContainerStyle: {
-        flexGrow: 1,
-        justifyContent: 'center',
-        paddingTop: 20,
-        padding: 10
-    },
     container: {
         flex: 1,
         padding: 20,

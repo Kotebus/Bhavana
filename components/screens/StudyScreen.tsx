@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, Text, TouchableOpacity, StyleSheet, Platform} from 'react-native';
+import {View, FlatList, StyleSheet, Platform} from 'react-native';
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {useTranslation} from "react-i18next";
 import {globalStyles} from "../styles/global";
@@ -7,6 +7,7 @@ import {sermonsRoutingList} from "./sermons/SermonsRoutingList";
 import {SermonKey} from "../i18n";
 import {RootStackParamList} from "@/components/AppNavigator";
 import BackNavHeader from "@/components/BackNavHeader";
+import {NavButton} from "@/components/NavButton";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'StudyScreen'>;
 
@@ -25,14 +26,9 @@ export default function StudyScreen({ route, navigation } : Props) {
                 data={sermonsRoutingList}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => (
-                    <TouchableOpacity
-                        onPress={() => navigateToSermon(item.sermonKey)}
-                        style={[globalStyles.button, styles.button]}
-                    >
-                        <Text style={globalStyles.buttonText}>
-                            {t(item.sermonKey)}
-                        </Text>
-                    </TouchableOpacity>
+                    <NavButton navigate={() => navigateToSermon(item.sermonKey)} additionalButtonStyle={styles.button}>
+                        {t(item.sermonKey)}
+                    </NavButton>
                 )}
             />
         </View>

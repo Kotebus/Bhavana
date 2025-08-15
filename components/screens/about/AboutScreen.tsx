@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, ScrollView, Platform, TouchableOpacity} from 'react-native';
+import {Text, ScrollView, Platform} from 'react-native';
 import {useTranslation} from "react-i18next";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/AppNavigator";
@@ -57,6 +57,7 @@ const MainContent = ({
                 Этот путь называется прямым, направление, куда он ведет, называется бесстрашным.
             </CitationText>
             <TextWithLink
+                isRightAligned={true}
                 url={'https://theravada.ru/Teaching/Canon/Suttanta/Texts/sn1_46-acchara-sutta-sv.htm'}>
                 Аччхара сутта: Нимфы, СН 1.46
             </TextWithLink>
@@ -118,7 +119,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'AboutScreen'>;
 export default function AboutScreen({ route, navigation } : Props) {
     const {language} = route.params;
     const {t} = useTranslation();
-    const languageNavigationParams = {language: language};
 
     const navigateToSermon = (sermonKey: SermonKey) => navigation.navigate('SermonScreen', {
         sermonKey: sermonKey,
@@ -139,39 +139,6 @@ export default function AboutScreen({ route, navigation } : Props) {
                 onVipassanupakkilesaPress={() => navigateToSermon('Vipassanupakkilesa')}
                 isRuLanguage={language === 'ru'}
             />
-
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => navigation.navigate('AboutTeacherScreen', languageNavigationParams)}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('AboutTeacherScreen')}
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => navigation.navigate('AboutSermonsScreen', languageNavigationParams)}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('AboutSermonsScreen')}
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => navigation.navigate('AboutMonasteryScreen', languageNavigationParams)}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('AboutMonasteryButton')}
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => navigation.navigate('LinksListScreen')}
-            >
-                <Text style={globalStyles.buttonText}>
-                    {t('LinksListScreen')}
-                </Text>
-            </TouchableOpacity>
 
             <ContactInfo/>
         </ScrollView>

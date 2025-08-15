@@ -7,6 +7,7 @@ import {useTranslation} from "react-i18next";
 import {SimpleText} from "@/components/screens/about/SimpleText";
 import {CitationText} from "@/components/screens/about/CitationText";
 import {TitleText} from "@/components/screens/about/TitleText";
+import {LinksList} from "@/components/LinksList";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutSermonsScreen'>;
 
@@ -69,7 +70,7 @@ const Content = ({isRuLang}: {isRuLang: boolean}) => {
             {(mainContent).map((item, index) =>
                 (<SimpleText key={index}>{item}</SimpleText>))}
             {(gathaContent).map((item, index) =>
-                (<SimpleText key={index}>{item}</SimpleText>))}
+                (<CitationText key={index}>{item}</CitationText>))}
 
             <CitationText isAlignedRight={true}>{isRuLang ? 'Дхаммапада 354' : 'Dhammapada 354, editor’s translation'}</CitationText>
         </>
@@ -91,6 +92,7 @@ export const AboutSermonsScreen = ({ route }: Props) => {
             <Content isRuLang={language === 'ru'}/>
             <SimpleText>{t('blessings')}</SimpleText>
             <SimpleText isAlignedRight={true}>{t('MyNameIs')}</SimpleText>
+            <LinksList data={[{url: 'https://samatha-vipassana.com/books/', text: t('DownloadBook')}]}/>
         </ScrollView>
     );
 }
