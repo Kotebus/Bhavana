@@ -5,14 +5,12 @@ import {useTranslation} from "react-i18next";
 
 import {useSettings} from "../contexts/SettingsContext";
 import {FONT_SIZE_HEADER} from "../styles/global";
-import {RootStackParamList} from "@/components/AppNavigator";
+import {RootStackParamList} from "@/components/common/AppNavigator";
 import {playSound} from "@/components/services/AudioHelper";
 import {useAudio} from "@/components/contexts/AudioContext";
-import {LotusAnimated} from "@/components/LotusAnimated";
-import {NavButton} from "@/components/NavButton";
+import {LotusAnimated} from "@/components/common/LotusAnimated";
+import {NavButton} from "@/components/common/NavButton";
 
-//TODO: check effects logic, maybe it's possible to reduce dependencies count
-//TODO: think about naming
 const DELAY_BEFORE_START_SESSION_SECONDS = 2;
 export const MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES = 10;
 

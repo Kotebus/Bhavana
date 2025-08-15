@@ -1,4 +1,4 @@
-import {AppNavigator} from "@/components/AppNavigator";
+import {AppNavigator} from "@/components/common/AppNavigator";
 import {SettingsProvider} from "@/components/contexts/SettingsContext";
 import {I18nextProvider} from "react-i18next";
 import i18n from "i18next";

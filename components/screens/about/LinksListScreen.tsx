@@ -2,9 +2,9 @@ import React from "react";
 import {ScrollView, Platform} from "react-native";
 import {globalStyles} from "@/components/styles/global";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "@/components/AppNavigator";
-import BackNavHeader from "@/components/BackNavHeader";
-import {IUrlText, LinksList} from "@/components/LinksList";
+import {RootStackParamList} from "@/components/common/AppNavigator";
+import BackNavHeader from "@/components/common/BackNavHeader";
+import {IUrlText, LinksList} from "@/components/common/LinksList";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'LinksListScreen'>;
 

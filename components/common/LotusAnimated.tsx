@@ -22,7 +22,7 @@ export const LotusAnimated = ({ animationDuration, imageStyle, delayBeforeAnimat
     return (
         <Animated.Image
             onLoad={() => setTimeout(onLoad, delayBeforeAnimation)}
-            source={require('../assets/images/lotus.png')}
+            source={require('../../assets/images/lotus.png')}
             resizeMode='contain'
             style={[imageStyle, {opacity: opacity.current}]}
         />

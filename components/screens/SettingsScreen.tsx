@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 import { useSettings } from '../contexts/SettingsContext';
 import {FONT_SIZE_DEFAULT, globalStyles} from '../styles/global';
-import { RootStackParamList } from '@/components/AppNavigator';
-import {SoundToggle} from "@/components/SoundToggle";
+import { RootStackParamList } from '@/components/common/AppNavigator';
+import {SoundToggle} from "@/components/common/SoundToggle";
 import {MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES} from "@/components/screens/MeditationScreen";
-import BackNavHeader from "@/components/BackNavHeader";
-import {LanguageToggle} from "@/components/LanguageToggle";
+import BackNavHeader from "@/components/common/BackNavHeader";
+import {LanguageToggle} from "@/components/common/LanguageToggle";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
 

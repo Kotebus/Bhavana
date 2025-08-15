@@ -2,9 +2,6 @@ import React, {PropsWithChildren} from 'react';
 import {View, TouchableOpacity, StyleSheet, Platform} from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-//TODO: export default everywhere
-//TODO: proper file structure
-
 interface ISizeAndBackNavHeader extends PropsWithChildren{
     onBack: () => void;
 }

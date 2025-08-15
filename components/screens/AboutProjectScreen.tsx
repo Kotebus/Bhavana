@@ -1,11 +1,11 @@
 import React from "react";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "@/components/AppNavigator";
+import {RootStackParamList} from "@/components/common/AppNavigator";
 import {useTranslation} from "react-i18next";
 import {Platform, ScrollView} from "react-native";
 import {globalStyles} from "@/components/styles/global";
-import BackNavHeader from "@/components/BackNavHeader";
-import {NavButton} from "@/components/NavButton";
+import BackNavHeader from "@/components/common/BackNavHeader";
+import {NavButton} from "@/components/common/NavButton";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutProjectScreen'>;

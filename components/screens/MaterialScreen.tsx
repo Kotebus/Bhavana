@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from "react";
-import {ActivityIndicator, ScrollView, StyleSheet, View, Image} from "react-native";
+import {ActivityIndicator, ScrollView, StyleSheet, View, Image, Text} from "react-native";
 import Markdown from "react-native-markdown-display";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 import {MaterialKey} from "../i18n";
 import {useSettings} from "../contexts/SettingsContext";
-import {RootStackParamList} from "@/components/AppNavigator";
+import {RootStackParamList} from "@/components/common/AppNavigator";
 import {loadMarkdownAsset} from "@/components/services/MarkdownLoader";
-import BackNavHeader from "@/components/BackNavHeader";
-import TextSizeControl from "@/components/TextSizeControl";
+import BackNavHeader from "@/components/common/BackNavHeader";
+import TextSizeControl from "@/components/common/TextSizeControl";
 import {globalStyles} from "@/components/styles/global";
+import {SERMONS_MATERIALS_LIST} from "@/components/screens/materials/SermonsRoutingList";
+import {useTranslation} from "react-i18next";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MaterialScreen'>;
 
@@ -19,7 +21,6 @@ type MaterialMap = {
     readonly [K in MaterialKey]: MaterialEntry;
 };
 
-//TODO: check lint warning about require: https://typescript-eslint.io/rules/no-require-imports/
 const materialsListMap: MaterialMap = {
     'SantaSukha': [require('@/components/screens/materials/content/sermons/SantaSukhaRu.md'), require('@/components/screens/materials/content/sermons/SantaSukhaEn.md')],
     'PanchaNivarana': [require('@/components/screens/materials/content/sermons/PanchaNivaranaRu.md'), require('@/components/screens/materials/content/sermons/PanchaNivaranaEn.md')],
@@ -57,6 +58,7 @@ const imgSources: Record<string, any> = {
 
 export default function MaterialScreen({route, navigation}: Props) {
     const {materialKey, language} = route.params;
+    const {t} = useTranslation();
     const [content, setContent] = useState<string | null>(null);
     const {settings} = useSettings();
     const [textSize, setTextSize] = useState(settings.fontSize);
@@ -69,7 +71,7 @@ export default function MaterialScreen({route, navigation}: Props) {
                 const text = await loadMarkdownAsset(asset);
                 setContent(text);
             } catch (error) {
-                console.error('Ошибка загрузки markdown:', error);
+                console.error('Markdown loading error:', error);
             }
         };
 
@@ -84,19 +86,22 @@ export default function MaterialScreen({route, navigation}: Props) {
         );
     }
 
+    //If it's a sermon of Venerable Rakwane Gnanaseeha we will show his name at the top.
+    const isSermon = SERMONS_MATERIALS_LIST.includes(materialKey);
+
     return (
         <ScrollView style={globalStyles.scrollContainer}>
             <BackNavHeader onBack={() => navigation.goBack()}>
                 <TextSizeControl onChange={setTextSize}/>
             </BackNavHeader>
-            {/*{isSermon &&*/}
-            {/*    <Text style={{*/}
-            {/*        alignSelf: 'flex-end',*/}
-            {/*        fontSize: textSize*/}
-            {/*    }}>*/}
-            {/*        {t('TeacherName')}*/}
-            {/*    </Text>*/}
-            {/*}*/}
+            {isSermon &&
+                <Text style={{
+                    alignSelf: 'flex-end',
+                    fontSize: textSize
+                }}>
+                    {t('TeacherName')}
+                </Text>
+            }
             <Markdown
                 style={{
                     body: {

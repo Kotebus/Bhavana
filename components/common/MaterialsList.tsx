@@ -3,8 +3,8 @@ import {View, FlatList, StyleSheet, Platform} from 'react-native';
 import {useNavigation} from "expo-router";
 import {useTranslation} from "react-i18next";
 import {IMaterial} from "@/components/screens/materials/SermonsRoutingList";
-import BackNavHeader from "@/components/BackNavHeader";
-import {NavButton} from "@/components/NavButton";
+import BackNavHeader from "@/components/common/BackNavHeader";
+import {NavButton} from "@/components/common/NavButton";
 import {MaterialKey} from "@/components/i18n";
 import {globalStyles} from "@/components/styles/global";
 

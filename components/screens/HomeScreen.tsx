@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 
 import {FONT_SIZE_HEADER, globalStyles} from "../styles/global";
-import {RootStackParamList} from "@/components/AppNavigator";
-import TimePicker from "@/components/TimePicker";
+import {RootStackParamList} from "@/components/common/AppNavigator";
+import TimePicker from "@/components/common/TimePicker";
 import {ITime} from "@/components/storage/storage";
 import {useSettings} from "@/components/contexts/SettingsContext";
-import {LanguageToggle} from "@/components/LanguageToggle";
-import {NavButton} from "@/components/NavButton";
+import {LanguageToggle} from "@/components/common/LanguageToggle";
+import {NavButton} from "@/components/common/NavButton";
 import {recitationsRoutingList, sermonsRoutingList} from "@/components/screens/materials/SermonsRoutingList";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;

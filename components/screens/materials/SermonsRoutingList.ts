@@ -6,97 +6,38 @@ export interface IMaterial {
 }
 
 const generateId = () => Math.floor(Math.random() * 1000000000);
+const createNewMaterialItem = (materialKey: MaterialKey) : IMaterial =>
+    ({ id: generateId(), materialKey } as const);
 
-export const sermonsRoutingList:IMaterial[] = [
-    {
-        id: generateId(),
-        materialKey: 'Vipassanupakkilesa'
-    },
-    {
-        id: generateId(),
-        materialKey: 'PanchaNivarana'
-    },
-    {
-        id: generateId(),
-        materialKey: 'SantaSukha'
-    },
-    {
-        id: generateId(),
-        materialKey: 'DanaSilaBhavana'
-    },
-    {
-        id: generateId(),
-        materialKey: 'Viveka'
-    },
-    {
-        id: generateId(),
-        materialKey: 'Sankhara'
-    },
-    {
-        id: generateId(),
-        materialKey: 'PanchaKkhandha'
-    },
-    {
-        id: generateId(),
-        materialKey: 'Anicca'
-    },
-    {
-        id: generateId(),
-        materialKey: 'YonisoManasikara'
-    },
-    {
-        id: generateId(),
-        materialKey: 'Sankharaloka'
-    },
-    {
-        id: generateId(),
-        materialKey: 'Vedananupassana'
-    },
-    {
-        id: generateId(),
-        materialKey: 'Kama'
-    },
-    {
-        id: generateId(),
-        materialKey: 'Salayatana'
-    },
-    {
-        id: generateId(),
-        materialKey: 'Dhatu18'
-    },
-    {
-        id: generateId(),
-        materialKey: 'Upasamanussati'
-    },
-    {
-        id: generateId(),
-        materialKey: 'SankappaRago'
-    },
+export const SERMONS_MATERIALS_LIST: MaterialKey[] = [
+    'Vipassanupakkilesa',
+    'PanchaNivarana',
+    'SantaSukha',
+    'DanaSilaBhavana',
+    'Viveka',
+    'Sankhara',
+    'PanchaKkhandha',
+    'Anicca',
+    'YonisoManasikara',
+    'Sankharaloka',
+    'Vedananupassana',
+    'Kama',
+    'Salayatana',
+    'Dhatu18',
+    'Upasamanussati',
+    'SankappaRago',
 ];
 
-export const recitationsRoutingList:IMaterial[] = [
-    {
-        id: generateId(),
-        materialKey: 'AllRecitations',
-    },
-     {
-        id: generateId(),
-        materialKey: 'Namaskaras',
-    },
-     {
-        id: generateId(),
-        materialKey: 'Qualities',
-    },
-     {
-        id: generateId(),
-        materialKey: 'Veneration',
-    },
-     {
-        id: generateId(),
-        materialKey: 'Confession',
-    },
-     {
-        id: generateId(),
-        materialKey: 'Offering',
-    },
-]
+const RECITATIONS_MATERIALS_LIST: MaterialKey[] = [
+    'AllRecitations',
+    'Namaskaras',
+    'Qualities',
+    'Veneration',
+    'Confession',
+    'Offering',
+];
+
+const createRoutingList = (materialsList: MaterialKey[]) => materialsList.map((key)=> createNewMaterialItem(key));
+
+export const sermonsRoutingList:IMaterial[] = createRoutingList(SERMONS_MATERIALS_LIST);
+export const recitationsRoutingList:IMaterial[] = createRoutingList(RECITATIONS_MATERIALS_LIST);

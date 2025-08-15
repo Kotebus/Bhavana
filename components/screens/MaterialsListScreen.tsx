@@ -1,8 +1,8 @@
 import React from 'react';
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {MaterialKey} from "../i18n";
-import {RootStackParamList} from "@/components/AppNavigator";
-import {MaterialsList} from "@/components/MaterialsList";
+import {RootStackParamList} from "@/components/common/AppNavigator";
+import {MaterialsList} from "@/components/common/MaterialsList";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MaterialsListScreen'>;
 
