@@ -6,7 +6,6 @@
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "bhavana",
-    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,

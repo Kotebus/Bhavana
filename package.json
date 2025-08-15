@@ -16,6 +16,7 @@
     "@react-native-picker/picker": "^2.11.1",
     "@react-navigation/native-stack": "^7.3.25",
     "expo": "~53.0.20",
+    "expo-router": "~5.1.4",
     "expo-audio": "^0.4.8",
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
