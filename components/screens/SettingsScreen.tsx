@@ -16,6 +16,7 @@ import {
     RECITATION_SOURCE_BHANTE_GNANASEEHA
 } from "@/components/constatnts";
 import {RecitationsAudioSource} from "@/components/storage/storage";
+import {TitleText} from "@/components/screens/about/TitleText";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
 
@@ -48,7 +49,7 @@ export default function SettingsScreen({ navigation }: Props) {
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
             {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
 
-            <Text style={globalStyles.title}>{t('SettingsScreen')}</Text>
+            <TitleText textAlign={'center'}>{t('SettingsScreen')}</TitleText>
 
             {/* Язык */}
             <View style={styles.settingRow}>
@@ -82,14 +83,13 @@ export default function SettingsScreen({ navigation }: Props) {
                         selectedValue={settings.recitationsAudioSource}
                         onValueChange={ChangeRecitationsSource}
                         style={isAndroid ? styles.pickerAndroid : undefined}
+                        selectionColor={isAndroid ? 'lightgrey' : undefined}
                     >
                         <Picker.Item
-                            key={RECITATION_SOURCE_BHANTE_GNANASEEHA}
                             label={t('TeacherName')}
                             value={RECITATION_SOURCE_BHANTE_GNANASEEHA}
                         />
                         <Picker.Item
-                            key={RECITATION_SOURCE_BHANTE_ASANKHATA}
                             label={t('BhanteAsankhataName')}
                             value={RECITATION_SOURCE_BHANTE_ASANKHATA}
                         />

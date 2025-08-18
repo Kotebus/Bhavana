@@ -1,15 +1,18 @@
 import {PropsWithChildren} from "react";
 import {FONT_SIZE_HEADER} from "@/components/styles/global";
-import {Text} from "react-native";
+import {Text, TextStyle} from "react-native";
 
-export const TitleText = ({children}: PropsWithChildren) =>
+export interface ITitleTextProps extends PropsWithChildren {
+    textAlign: TextStyle["textAlign"];
+}
+export const TitleText = ({children, textAlign}: ITitleTextProps) =>
     (
         <Text style={{
             paddingTop: 12,
             fontSize: FONT_SIZE_HEADER,
             fontWeight: 'bold',
             marginBottom: 15,
-            alignSelf: 'flex-end'
+            textAlign: textAlign ? textAlign : undefined,
         }}>
             {children}
         </Text>

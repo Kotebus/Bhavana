@@ -61,7 +61,7 @@ export default function MeditationScreen({ route, navigation }: Props) {
     const shouldPlayRecitation =
         settings.soundEnabled &&
         settings.recitationsSoundEnabled &&
-        totalMeditationDurationSeconds > (MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES * 60);
+        totalMeditationDurationSeconds >= (MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES * 60);
 
     //We don't need to keep app awake besides meditation screen
     useEffect(() => {
