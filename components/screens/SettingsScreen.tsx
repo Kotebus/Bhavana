@@ -42,11 +42,13 @@ export default function SettingsScreen({ navigation }: Props) {
             recitationsAudioSource: val,
         });
 
+    const isAndroid = Platform.OS === 'android';
+
     return (
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
             {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
 
-            <Text style={globalStyles.title}>{t('Settings')}</Text>
+            <Text style={globalStyles.title}>{t('SettingsScreen')}</Text>
 
             {/* Язык */}
             <View style={styles.settingRow}>
@@ -79,6 +81,7 @@ export default function SettingsScreen({ navigation }: Props) {
                         dropdownIconColor={'black'}
                         selectedValue={settings.recitationsAudioSource}
                         onValueChange={ChangeRecitationsSource}
+                        style={isAndroid ? styles.pickerAndroid : undefined}
                     >
                         <Picker.Item
                             key={RECITATION_SOURCE_BHANTE_GNANASEEHA}
@@ -115,4 +118,8 @@ const styles = StyleSheet.create({
         color: '#777',
         marginTop: 2,
     },
+    pickerAndroid: {
+        backgroundColor: 'white',
+        color: 'black',
+    }
 });
