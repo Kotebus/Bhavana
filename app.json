@@ -7,6 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "bhavana",
     "newArchEnabled": true,
+    "githubUrl": "https://github.com/Kotebus/Bhavana",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.kotebus.bhavana",
