@@ -59,7 +59,7 @@ const TimePicker = ({ time, language, onChange } : ITimePickerProps) => {
                 value={timeVal.h}
                 onChange={(v) => updateTime({...time, h: v})}
                 label={l18n.h}
-                length={6}
+                length={3}
             />
 
             <Text style={separatorStyles}>:</Text>

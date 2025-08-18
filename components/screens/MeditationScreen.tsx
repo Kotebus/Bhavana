@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     image: { width: '60%', height: '35%', top: '20%', position: 'absolute' },
-    timer: { fontSize: 40, fontWeight: 'bold', alignSelf: 'center'},
+    timer: { fontSize: 40, fontWeight: 'bold', alignSelf: 'center',  fontVariant: ['tabular-nums'],},
     goal: { fontSize: FONT_SIZE_HEADER, color: '#666', marginTop: 8, alignSelf: 'center', marginBottom: '-20%' },
     button: { bottom: '15%', position: 'absolute' },
 });
