@@ -16,22 +16,22 @@ const linksData: IUrlText[] = [
         text: 'Telegram: @chittaviveka'
     },
     {
-        deepLink: 'instagram://user?username=chittaviveka',
+        deepLink: 'instagram://user?username=chittaviveka.monastery',
         url: 'https://www.instagram.com/chittaviveka.monastery',
         text: 'Instagram: @chittaviveka'
     },
     {
-        deepLink: 'fb://profile/chittaviveka',
+        deepLink: 'fb://group/681740985957543',
         url: 'https://www.facebook.com/chittaviveka',
         text: 'Facebook: Chittaviveka Monastery'
     },
     {
-        deepLink: 'vnd.youtube://ChittaViveka',
+        deepLink: 'vnd.youtube://www.youtube.com/@ChittaViveka',
         url: 'https://www.youtube.com/@ChittaViveka',
         text: 'Youtube Буддизм Тхеравада'
     },
     {
-        deepLink: 'vk://dhammatheravada',
+        deepLink: 'vk://vk.com/dhammatheravada',
         url: 'https://vk.com/dhammatheravada',
         text: 'VK Dhamma Theravada'
     },
