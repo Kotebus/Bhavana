@@ -27,14 +27,6 @@ const OpenURLButton = ({url, deepLink, children}: IOpenURLButtonProps) => {
         } catch (e) {
             console.error('Error while oped url ' + url, e);
         }
-        // // Checking if the link is supported for links with custom URL scheme.
-        // const supported = await Linking.canOpenURL(url);
-        //
-        // if (supported) {
-        //     // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-        //     // by some browser in the mobile
-        //     await Linking.openURL(url);
-        // }
     }, [deepLink, url]);
 
     return (
