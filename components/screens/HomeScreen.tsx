@@ -77,12 +77,12 @@ export default function HomeScreen({ navigation }: Props) {
                 {t('Recitations')}
             </NavButton>
 
-           <NavButton navigate={() => navigation.navigate('SettingsScreen', languageNavigationParams)}>
-               {t('SettingsScreen')}
-           </NavButton>
-
             <NavButton navigate={() => navigation.navigate('AboutProjectScreen', languageNavigationParams)}>
                 {t('AboutProjectScreen')}
+            </NavButton>
+
+            <NavButton navigate={() => navigation.navigate('SettingsScreen', languageNavigationParams)}>
+                {t('SettingsScreen')}
             </NavButton>
         </ScrollView>
     );
