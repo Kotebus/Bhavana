@@ -1,15 +1,21 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView, Platform} from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useTranslation } from 'react-i18next';
+import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useTranslation} from 'react-i18next';
+import {Picker} from "@react-native-picker/picker";
 
-import { useSettings } from '../contexts/SettingsContext';
+import {useSettings} from '../contexts/SettingsContext';
 import {FONT_SIZE_DEFAULT, globalStyles} from '../styles/global';
-import { RootStackParamList } from '@/components/common/AppNavigator';
+import {RootStackParamList} from '@/components/common/AppNavigator';
 import {SoundToggle} from "@/components/common/SoundToggle";
-import {MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES} from "@/components/screens/MeditationScreen";
 import BackNavHeader from "@/components/common/BackNavHeader";
 import {LanguageToggle} from "@/components/common/LanguageToggle";
+import {
+    MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES,
+    RECITATION_SOURCE_BHANTE_ASANKHATA,
+    RECITATION_SOURCE_BHANTE_GNANASEEHA
+} from "@/components/constatnts";
+import {RecitationsAudioSource} from "@/components/storage/storage";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
 
@@ -28,6 +34,12 @@ export default function SettingsScreen({ navigation }: Props) {
         setSettings({
             ...settings,
             recitationsSoundEnabled: !settings.recitationsSoundEnabled,
+        });
+
+    const ChangeRecitationsSource = (val: RecitationsAudioSource) =>
+        setSettings({
+            ...settings,
+            recitationsAudioSource: val,
         });
 
     return (
@@ -57,6 +69,29 @@ export default function SettingsScreen({ navigation }: Props) {
                     </Text>
                 </View>
                 <SoundToggle toggleSound={toggleRecitations} soundEnabled={settings.recitationsSoundEnabled} />
+            </View>
+
+            <View style={styles.settingRow}>
+                <View style={{ flex: 1 }}>
+                    <Text style={styles.label}>{t('RecitationsReadBy')}</Text>
+                    <Picker
+                        mode='dropdown'
+                        dropdownIconColor={'black'}
+                        selectedValue={settings.recitationsAudioSource}
+                        onValueChange={ChangeRecitationsSource}
+                    >
+                        <Picker.Item
+                            key={RECITATION_SOURCE_BHANTE_GNANASEEHA}
+                            label={t('TeacherName')}
+                            value={RECITATION_SOURCE_BHANTE_GNANASEEHA}
+                        />
+                        <Picker.Item
+                            key={RECITATION_SOURCE_BHANTE_ASANKHATA}
+                            label={t('BhanteAsankhataName')}
+                            value={RECITATION_SOURCE_BHANTE_ASANKHATA}
+                        />
+                    </Picker>
+                </View>
             </View>
         </ScrollView>
     );

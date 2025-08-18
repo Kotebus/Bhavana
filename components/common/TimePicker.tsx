@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet, Platform} from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import {ITime} from "@/components/storage/storage";
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
+import {ITime, Language} from "@/components/storage/storage";
+import {RU_LANGUAGE} from "@/components/constatnts";
 
 
 interface ISinglePickerProps {
@@ -33,13 +34,13 @@ const SinglePicker = ({value, onChange, length, label}: ISinglePickerProps) => {
 
 interface ITimePickerProps {
     time: ITime
-    language: 'ru' | 'en';
+    language: Language;
     onChange: (time: ITime) => void;
 }
 
 const TimePicker = ({ time, language, onChange } : ITimePickerProps) => {
     const [timeVal, setTimeVal] = React.useState(time);
-    const l18n = language === 'ru' ?
+    const l18n = language === RU_LANGUAGE ?
         {h: 'ч', m: 'мин'} :
         {h: 'h', m: 'min'};
 

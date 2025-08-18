@@ -1,8 +1,9 @@
 import React, {createContext, PropsWithChildren, useContext, useEffect, useState} from 'react';
 import {NativeModules, Platform} from 'react-native';
-import { AppSettings, loadSettings, saveSettings } from '../storage/storage';
+import {AppSettings, loadSettings, saveSettings} from '../storage/storage';
 import i18n from '../i18n';
 import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
+import {EN_LANGUAGE, RECITATION_SOURCE_BHANTE_ASANKHATA, RU_LANGUAGE} from "@/components/constatnts";
 
 type ContextType = {
     settings: AppSettings;
@@ -13,11 +14,12 @@ type ContextType = {
 
 const defaultSettings: AppSettings = {
     meditationTime: { h: 0, m: 30 },
-    language: 'ru',
+    language: RU_LANGUAGE,
     soundEnabled: true,
     recitationsSoundEnabled: true,
     fontSize: FONT_SIZE_DEFAULT,
-};
+    recitationsAudioSource: RECITATION_SOURCE_BHANTE_ASANKHATA,
+}
 
 const SettingsContext = createContext<ContextType | undefined>(undefined);
 
@@ -28,7 +30,7 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
             NativeModules.SettingsManager.settings?.AppleLanguages[0] //iOS 13
             : NativeModules.I18nManager.localeIdentifier;
 
-    const systemLang = ['ru_RU', 'ru'].includes(deviceLanguage) ? 'ru' : 'en';
+    const systemLang = ['ru_RU', 'ru'].includes(deviceLanguage) ? RU_LANGUAGE : EN_LANGUAGE;
 
     const [settings, setSettingsState] = useState<AppSettings>({ ...defaultSettings, language: systemLang});
     const [inited, setInited] = useState(false);
@@ -41,7 +43,8 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
             if (saved) {
                 setSettingsState(saved);
                 setInited(true);
-                if (saved.language !== settings.language || saved.language !== 'ru') {
+                //Our default language is ru, so we need to change language anyway if it's not ru
+                if (saved.language !== settings.language || saved.language !== RU_LANGUAGE) {
                     await i18n.changeLanguage(saved.language);
                 }
             } else {
@@ -68,7 +71,7 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
     const toggleLanguage = () =>
         setSettings({
             ...settings,
-            language: settings.language === 'ru' ? 'en' : 'ru',
+            language: settings.language === RU_LANGUAGE ? EN_LANGUAGE : RU_LANGUAGE,
         });
 
     return (

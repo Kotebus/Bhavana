@@ -13,6 +13,7 @@ import TextSizeControl from "@/components/common/TextSizeControl";
 import {globalStyles} from "@/components/styles/global";
 import {SERMONS_MATERIALS_LIST} from "@/components/screens/materials/SermonsRoutingList";
 import {useTranslation} from "react-i18next";
+import {RU_LANGUAGE} from "@/components/constatnts";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MaterialScreen'>;
 
@@ -66,7 +67,7 @@ export default function MaterialScreen({route, navigation}: Props) {
     useEffect(() => {
         const loadMarkdown = async () => {
             try {
-                const langRequireIndex = language === 'ru' ? 0 : 1;
+                const langRequireIndex = language === RU_LANGUAGE ? 0 : 1;
                 const asset = materialsListMap[materialKey][langRequireIndex];
                 const text = await loadMarkdownAsset(asset);
                 setContent(text);

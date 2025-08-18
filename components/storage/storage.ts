@@ -1,11 +1,19 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+    EN_LANGUAGE,
+    RECITATION_SOURCE_BHANTE_ASANKHATA,
+    RECITATION_SOURCE_BHANTE_GNANASEEHA,
+    RU_LANGUAGE
+} from "@/components/constatnts";
 
-export type Language = 'ru' | 'en';
+export type Language = typeof RU_LANGUAGE | typeof EN_LANGUAGE;
 
 export interface ITime {
     h: number;
     m: number;
 }
+
+export type RecitationsAudioSource = typeof RECITATION_SOURCE_BHANTE_GNANASEEHA | typeof RECITATION_SOURCE_BHANTE_ASANKHATA;
 
 export type AppSettings = {
     meditationTime: ITime;
@@ -13,9 +21,10 @@ export type AppSettings = {
     soundEnabled: boolean;
     recitationsSoundEnabled: boolean
     fontSize: number;
+    recitationsAudioSource: RecitationsAudioSource;
 };
 
-const SETTINGS_KEY = 'bhavana_app_settings_v2';
+const SETTINGS_KEY = 'bhavana_app_settings_v3';
 
 export async function saveSettings(settings: AppSettings) {
     try {

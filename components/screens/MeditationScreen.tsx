@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {StyleSheet, Text, View} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTranslation} from "react-i18next";
 
 import {useSettings} from "../contexts/SettingsContext";
@@ -10,10 +10,12 @@ import {playSound} from "@/components/services/AudioHelper";
 import {useAudio} from "@/components/contexts/AudioContext";
 import {LotusAnimated} from "@/components/common/LotusAnimated";
 import {NavButton} from "@/components/common/NavButton";
-import {useKeepAwake} from "expo-keep-awake";
-
-const DELAY_BEFORE_START_SESSION_SECONDS = 2;
-export const MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES = 10;
+import {activateKeepAwakeAsync, deactivateKeepAwake} from "expo-keep-awake";
+import {
+    DELAY_BEFORE_START_SESSION_SECONDS,
+    MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES,
+    RECITATION_SOURCE_BHANTE_GNANASEEHA
+} from "@/components/constatnts";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MeditationScreen'>;
 
@@ -29,8 +31,9 @@ const formatTime = (sec: number) => {
 //TODO: add documentation everywhere!
 //TODO: create readme
 export default function MeditationScreen({ route, navigation }: Props) {
-    //Prevent from sleep mode
-    useKeepAwake();
+    //Prevent this screen from sleep mode
+    void activateKeepAwakeAsync();
+
     const { h, m } = route.params;
     const { settings } = useSettings();
     const { t } = useTranslation();
@@ -38,13 +41,18 @@ export default function MeditationScreen({ route, navigation }: Props) {
     //Когда начинается сессия медитации мы проигрываем славословия перед медитацией (recitationsBeforeSession),
     //потом идёт медитация, потом в конце медитации идут завершающие славословия подношения практики (recitationsEndSession).
     //В аудиофайлах славословий уже есть звук гонга.
+    //Есть две озвучки славословий: от бханте Ньянасихи и от бханте Асанкхаты, берём ту версию, что указана в настройках (settings.recitationsAudioSource)
     //Если сессия короче 10 минут, то мы не проигрываем славословия, только гонг из отдельного аудиофайла, т.к. это слишком короткая сессия.
     //Также мы из не проигрываем если пользователь отключил их в настройках (settings.recitationsSoundEnabled).
     //Если пользователь отключил звук в настройках, то никакие звуки не проигрываются.
     // !settings.soundEnabled = no sounds
     // !shouldPlayRecitations = gong -> session time -> gong
     // shouldPlayRecitations = recitationsBeforeSession -> session time -> recitationsEndSession
-    const {playerGong, recitationsBeforeSession, recitationsEndSession, stopAllPlayers} = useAudio();
+    const {playerGong, recitationsByBhatneAsankhata, recitationsByBhatneGnanaseeha, stopAllPlayers} = useAudio();
+
+    const { recitationsBeforeSession, recitationsEndSession} =
+        settings.recitationsAudioSource === RECITATION_SOURCE_BHANTE_GNANASEEHA ?
+            recitationsByBhatneGnanaseeha : recitationsByBhatneAsankhata;
 
     const [elapsed, setElapsed] = useState(0);
 
@@ -54,6 +62,11 @@ export default function MeditationScreen({ route, navigation }: Props) {
         settings.soundEnabled &&
         settings.recitationsSoundEnabled &&
         totalMeditationDurationSeconds > (MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES * 60);
+
+    //We don't need to keep app awake besides meditation screen
+    useEffect(() => {
+        return () => void deactivateKeepAwake();
+    }, []);
 
     //Sounds at the beginning of the session. We need an effect here to be able to stop sounds when user leave the screen.
     useEffect(() => {

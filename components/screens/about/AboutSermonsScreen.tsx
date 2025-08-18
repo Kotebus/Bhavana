@@ -8,6 +8,7 @@ import {SimpleText} from "@/components/screens/about/SimpleText";
 import {CitationText} from "@/components/screens/about/CitationText";
 import {TitleText} from "@/components/screens/about/TitleText";
 import {LinksList} from "@/components/common/LinksList";
+import {RU_LANGUAGE} from "@/components/constatnts";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutSermonsScreen'>;
 
@@ -89,7 +90,7 @@ export const AboutSermonsScreen = ({ route }: Props) => {
                     {t('AboutSermonsScreen')}
                 </TitleText>
             )}
-            <Content isRuLang={language === 'ru'}/>
+            <Content isRuLang={language === RU_LANGUAGE}/>
             <SimpleText>{t('blessings')}</SimpleText>
             <SimpleText isAlignedRight={true}>{t('MyNameIs')}</SimpleText>
             <LinksList data={[{url: 'https://samatha-vipassana.com/books/', text: t('DownloadBook')}]}/>

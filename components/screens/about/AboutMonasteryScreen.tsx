@@ -7,13 +7,14 @@ import {useTranslation} from "react-i18next";
 import {TitleText} from "@/components/screens/about/TitleText";
 import {SimpleText} from "@/components/screens/about/SimpleText";
 import {LinksList} from "@/components/common/LinksList";
+import {RU_LANGUAGE} from "@/components/constatnts";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutMonasteryScreen'>;
 
 export const AboutMonasteryScreen = ({ route }: Props) => {
     const { language } = route.params;
     const {t} = useTranslation();
-    const isRuLang = language === 'ru';
+    const isRuLang = language === RU_LANGUAGE;
 
     return (
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>

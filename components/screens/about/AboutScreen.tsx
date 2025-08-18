@@ -10,6 +10,7 @@ import {ContactInfo} from "@/components/screens/about/ContactInfo";
 import {SimpleText} from "@/components/screens/about/SimpleText";
 import {CitationText} from "@/components/screens/about/CitationText";
 import {TitleText} from "@/components/screens/about/TitleText";
+import {RU_LANGUAGE} from "@/components/constatnts";
 
 type NavigateFuncType = () => Promise<void> | void;
 
@@ -135,7 +136,7 @@ export default function AboutScreen({ route, navigation } : Props) {
                 onRecitationsPress={() => navigateToSermon('AllRecitations')}
                 onPanchaNivaranaPress={() => navigateToSermon('PanchaNivarana')}
                 onVipassanupakkilesaPress={() => navigateToSermon('Vipassanupakkilesa')}
-                isRuLanguage={language === 'ru'}
+                isRuLanguage={language === RU_LANGUAGE}
             />
 
             <ContactInfo/>
