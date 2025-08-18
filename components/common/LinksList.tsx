@@ -4,11 +4,20 @@ import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
 
 interface IOpenURLButtonProps {
     url: string;
+    deepLink?: string;
     children: string;
 }
 
-const OpenURLButton = ({url, children}: IOpenURLButtonProps) => {
+const OpenURLButton = ({url, deepLink, children}: IOpenURLButtonProps) => {
     const handlePress = useCallback(async () => {
+        if (deepLink) {
+            const supportedDeepLink = await Linking.canOpenURL(deepLink);
+            if (supportedDeepLink) {
+                await Linking.openURL(deepLink);
+                return;
+            }
+        }
+
         // Checking if the link is supported for links with custom URL scheme.
         const supported = await Linking.canOpenURL(url);
 
@@ -17,7 +26,7 @@ const OpenURLButton = ({url, children}: IOpenURLButtonProps) => {
             // by some browser in the mobile
             await Linking.openURL(url);
         }
-    }, [url]);
+    }, [deepLink, url]);
 
     return (
         <TouchableOpacity style={styles.linkButton} onPress={handlePress}>
@@ -28,6 +37,7 @@ const OpenURLButton = ({url, children}: IOpenURLButtonProps) => {
 
 export interface IUrlText {
     url: string;
+    deepLink?: string;
     text: string;
 }
 

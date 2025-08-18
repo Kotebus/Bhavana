@@ -3,7 +3,7 @@ import {FONT_SIZE_HEADER} from "@/components/styles/global";
 import {Text, TextStyle} from "react-native";
 
 export interface ITitleTextProps extends PropsWithChildren {
-    textAlign: TextStyle["textAlign"];
+    textAlign?: TextStyle["textAlign"];
 }
 export const TitleText = ({children, textAlign}: ITitleTextProps) =>
     (

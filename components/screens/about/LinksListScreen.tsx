@@ -10,11 +10,31 @@ type Props = NativeStackScreenProps<RootStackParamList, 'LinksListScreen'>;
 
 const linksData: IUrlText[] = [
     {url: 'https://samatha-vipassana.com/', text: 'Chittaviveka monastery: samatha-vipassana.com'},
-    {url: 'https://t.me/chittaviveka', text: 'Telegram: @chittaviveka'},
-    {url: 'https://www.instagram.com/chittaviveka.monastery', text: 'Instagram: @chittaviveka'},
-    {url: 'https://www.facebook.com/chittaviveka', text: 'Facebook: Chittaviveka Monastery'},
-    {url: 'https://www.youtube.com/@ChittaViveka', text: 'Youtube Буддизм Тхеравада'},
-    {url: 'https://vk.com/dhammatheravada', text: 'VK Dhamma Theravada'},
+    {
+        deepLink: 'tg://resolve?domain=chittaviveka',
+        url: 'https://t.me/chittaviveka',
+        text: 'Telegram: @chittaviveka'
+    },
+    {
+        deepLink: 'instagram://user?username=chittaviveka',
+        url: 'https://www.instagram.com/chittaviveka.monastery',
+        text: 'Instagram: @chittaviveka'
+    },
+    {
+        deepLink: 'fb://profile/chittaviveka',
+        url: 'https://www.facebook.com/chittaviveka',
+        text: 'Facebook: Chittaviveka Monastery'
+    },
+    {
+        deepLink: 'vnd.youtube://ChittaViveka',
+        url: 'https://www.youtube.com/@ChittaViveka',
+        text: 'Youtube Буддизм Тхеравада'
+    },
+    {
+        deepLink: 'vk://dhammatheravada',
+        url: 'https://vk.com/dhammatheravada',
+        text: 'VK Dhamma Theravada'
+    },
     {url: 'https://theravada.ru/', text: 'theravada.ru'},
 ];
 
