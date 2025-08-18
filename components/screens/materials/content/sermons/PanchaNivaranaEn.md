@@ -247,7 +247,7 @@ In the same way, as long as these five hindrances are not given up inside themse
 >[Mahāassapurasutta: The Longer Discourse at Assapura (MN 39),](https://suttacentral.net/mn39/en/sujato?lang=en)  
 >[translation by Ven. Bhikkhu Sujato](https://suttacentral.net/mn39/en/sujato?lang=en)
 
-## Reminder on the Five Hindrances by bhikkhu Asankhata Russiave
+## Reminder on the Five Hindrances by bhikkhu Russiave Asankhata
 
 The five hindrances are five mental qualities that weaken the mind. Because of these five hindrances, a practitioner cannot attain deep meditative concentration. These hindrances are:
 

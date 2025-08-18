@@ -3,7 +3,11 @@ import {NativeModules, Platform} from 'react-native';
 import {AppSettings, loadSettings, saveSettings} from '../storage/storage';
 import i18n from '../i18n';
 import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
-import {EN_LANGUAGE, RECITATION_SOURCE_BHANTE_ASANKHATA, RU_LANGUAGE} from "@/components/constatnts";
+import {
+    RU_LANGUAGE,
+    EN_LANGUAGE,
+    RECITATION_SOURCE_BHANTE_GNANASEEHA
+} from "@/components/constatnts";
 
 type ContextType = {
     settings: AppSettings;
@@ -18,7 +22,7 @@ const defaultSettings: AppSettings = {
     soundEnabled: true,
     recitationsSoundEnabled: true,
     fontSize: FONT_SIZE_DEFAULT,
-    recitationsAudioSource: RECITATION_SOURCE_BHANTE_ASANKHATA,
+    recitationsAudioSource: RECITATION_SOURCE_BHANTE_GNANASEEHA,
 }
 
 const SettingsContext = createContext<ContextType | undefined>(undefined);
