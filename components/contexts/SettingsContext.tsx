@@ -1,5 +1,5 @@
 import React, {createContext, PropsWithChildren, useContext, useEffect, useState} from 'react';
-import {NativeModules, Platform} from 'react-native';
+import { getLocales } from 'expo-localization';
 import {AppSettings, loadSettings, saveSettings} from '../storage/storage';
 import i18n from '../i18n';
 import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
@@ -28,13 +28,12 @@ const defaultSettings: AppSettings = {
 const SettingsContext = createContext<ContextType | undefined>(undefined);
 
 export const SettingsProvider= ({ children } : PropsWithChildren) => {
-    const deviceLanguage =
-        Platform.OS === 'ios'
-            ? NativeModules.SettingsManager.settings?.AppleLocale ||
-            NativeModules.SettingsManager.settings?.AppleLanguages[0] //iOS 13
-            : NativeModules.I18nManager.localeIdentifier;
+    const locales = getLocales();
+    const isRuLangDevice = locales
+        .map((locale) => locale.languageCode)
+        .includes('ru');
 
-    const systemLang = ['ru_RU', 'ru'].includes(deviceLanguage) ? RU_LANGUAGE : EN_LANGUAGE;
+    const systemLang = isRuLangDevice ? RU_LANGUAGE : EN_LANGUAGE;
 
     const [settings, setSettingsState] = useState<AppSettings>({ ...defaultSettings, language: systemLang});
     const [inited, setInited] = useState(false);

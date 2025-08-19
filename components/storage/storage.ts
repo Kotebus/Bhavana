@@ -6,6 +6,8 @@ import {
     RU_LANGUAGE
 } from "@/components/constatnts";
 
+const SETTINGS_KEY = 'bhavana_app_settings_v4';
+
 export type Language = typeof RU_LANGUAGE | typeof EN_LANGUAGE;
 
 export interface ITime {
@@ -23,8 +25,6 @@ export type AppSettings = {
     fontSize: number;
     recitationsAudioSource: RecitationsAudioSource;
 };
-
-const SETTINGS_KEY = 'bhavana_app_settings_v3';
 
 export async function saveSettings(settings: AppSettings) {
     try {
