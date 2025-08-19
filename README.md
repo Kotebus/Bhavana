@@ -8,8 +8,10 @@ Theravada tradition, as part of religious practice.
 The Pali word "bhāvanā" means "development of the mind" or "purification of the mind". It is this term that is most
 often translated as "meditation".
 
-All information in this application is based on the Tipitaka (Pali Canon) and the sermons of [Venerable Rakwane Gnanaseeha](https://samatha-vipassana.com/en/teacher/), the abbot of the Chittaviveka Buddhist Forest Monastery (Sri Lanka), and is available on the monastery's (
-official website)[http://samatha-vipassana.com/en], as well as in the book "[Bhāvanā - The Art of the Mind](http://samatha-vipassana.com/en/books)".
+All information in this application is based on the Tipitaka (Pali Canon) and the sermons of [Venerable Rakwane 
+Gnanaseeha](https://samatha-vipassana.com/en/teacher/), the abbot of the Chittaviveka Buddhist Forest Monastery (Sri 
+Lanka), and is available on the monastery's [official website](http://samatha-vipassana.com/en), as well as in the book 
+"[Bhāvanā - The Art of the Mind](http://samatha-vipassana.com/en/books)".
 
 FThe application contains a timer for meditation with the ability to listen to recitations, as well as information for
 studying the Word of Buddha, dedicated to both samatha and vipassana in particular, and the practice of Theravada
