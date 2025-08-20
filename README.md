@@ -62,17 +62,31 @@ Buddhism in general.
 
 # Release new version
 
-Build and submit iOS production
+### Versioning
+First you need to up version in version `app.json` and `package.json`. This version should match the new version in 
+appstoreconnect. 
+
+For example: `"version": "1.2.0"` (`app.json` and `package.json`) and `iOS App Version 1.1.0 - Waiting for review` (in 
+appstoreconnect).
+
+## Scripts
+
+### Build and submit iOS production
 
 ```shell
 eas build --platform ios --profile production
 eas submit --platform ios
 ```
 
-Build Android production
+### Build Android production
 
 ```shell
 eas build -p android --profile production
 ```
 
-Create new release in [Google Play Console](https://play.google.com/console/developers/app/tracks/production)
+Then create new release in [Google Play Console](https://play.google.com/console/developers/app/tracks/production) and
+submit `aab` file there.
+
+## Local build
+
+Same could be [done locally](https://docs.expo.dev/guides/local-app-production/).
