@@ -9,14 +9,7 @@ import {
     RECITATION_SOURCE_BHANTE_GNANASEEHA
 } from "@/components/constatnts";
 
-type ContextType = {
-    settings: AppSettings;
-    setSettings: (s: AppSettings) => void;
-    toggleLanguage: () => void;
-    inited: boolean;
-};
-
-const defaultSettings: AppSettings = {
+const DEFAULT_SETTINGS: AppSettings = {
     meditationTime: { h: 0, m: 30 },
     language: RU_LANGUAGE,
     soundEnabled: true,
@@ -24,6 +17,13 @@ const defaultSettings: AppSettings = {
     fontSize: FONT_SIZE_DEFAULT,
     recitationsAudioSource: RECITATION_SOURCE_BHANTE_GNANASEEHA,
 }
+
+type ContextType = {
+    settings: AppSettings;
+    setSettings: (s: AppSettings) => void;
+    toggleLanguage: () => void;
+    inited: boolean;
+};
 
 const SettingsContext = createContext<ContextType | undefined>(undefined);
 
@@ -35,7 +35,7 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
 
     const systemLang = isRuLangDevice ? RU_LANGUAGE : EN_LANGUAGE;
 
-    const [settings, setSettingsState] = useState<AppSettings>({ ...defaultSettings, language: systemLang});
+    const [settings, setSettingsState] = useState<AppSettings>({ ...DEFAULT_SETTINGS, language: systemLang});
     const [inited, setInited] = useState(false);
 
     useEffect(() => {

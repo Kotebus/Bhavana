@@ -68,8 +68,6 @@ const sectionAboutRu = {
     LinksListScreen: 'Ссылки',
 }
 
-//export type AboutSectionKey = keyof typeof sectionAboutEn;
-
 const resources = {
     en: {
         translation: {

@@ -16,20 +16,11 @@ import {
     MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES,
     RECITATION_SOURCE_BHANTE_GNANASEEHA
 } from "@/components/constatnts";
+import {formatTime} from "@/components/services/TimeHelper";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MeditationScreen'>;
 
-const formatTime = (sec: number) => {
-    const h = Math.floor(sec / 3600);
-    const m = Math.floor((sec % 3600) / 60);
-    const s = sec % 60;
-    return `${h.toString().padStart(2, '0')}:${m
-        .toString()
-        .padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-};
 
-//TODO: add documentation everywhere!
-//TODO: create readme
 export default function MeditationScreen({ route, navigation }: Props) {
     //Prevent this screen from sleep mode
     void activateKeepAwakeAsync();
@@ -38,16 +29,31 @@ export default function MeditationScreen({ route, navigation }: Props) {
     const { settings } = useSettings();
     const { t } = useTranslation();
 
-    //Когда начинается сессия медитации мы проигрываем славословия перед медитацией (recitationsBeforeSession),
-    //потом идёт медитация, потом в конце медитации идут завершающие славословия подношения практики (recitationsEndSession).
-    //В аудиофайлах славословий уже есть звук гонга.
-    //Есть две озвучки славословий: от бханте Ньянасихи и от бханте Асанкхаты, берём ту версию, что указана в настройках (settings.recitationsAudioSource)
-    //Если сессия короче 10 минут, то мы не проигрываем славословия, только гонг из отдельного аудиофайла, т.к. это слишком короткая сессия.
-    //Также мы из не проигрываем если пользователь отключил их в настройках (settings.recitationsSoundEnabled).
-    //Если пользователь отключил звук в настройках, то никакие звуки не проигрываются.
-    // !settings.soundEnabled = no sounds
-    // !shouldPlayRecitations = gong -> session time -> gong
-    // shouldPlayRecitations = recitationsBeforeSession -> session time -> recitationsEndSession
+    /*
+    When a meditation session begins, we play the pre-meditation recitations (recitationsBeforeSession).
+    Then comes the meditation itself.
+    At the end of the meditation, we play the dedication recitations (recitationsEndSession).
+
+    Note: The recitation audio files already include the gong sound.
+
+    There are two available recitation voice-overs: Bhante Gnanaseeha and Bhante Asankhata.
+    The version to use is defined in the settings: settings.recitationsAudioSource
+
+    Special cases
+
+    If the session duration is less than 10 minutes, recitations are skipped. Instead, only the gong from a separate
+    audio file is played (playerGong), since the session is considered too short for recitations.
+
+    If the user has disabled recitations in the settings (settings.recitationsSoundEnabled = false), they are not played.
+    If the user has disabled all sounds (settings.soundEnabled = false), then no sounds at all are played.
+
+    Logic summary
+
+    !settings.soundEnabled → no sounds at all
+    !shouldPlayRecitations → gong → session time → gong
+    shouldPlayRecitations → recitationsBeforeSession → session time → recitationsEndSession
+    */
+
     const {playerGong, recitationsByBhatneAsankhata, recitationsByBhatneGnanaseeha, stopAllPlayers} = useAudio();
 
     const { recitationsBeforeSession, recitationsEndSession} =
@@ -71,17 +77,23 @@ export default function MeditationScreen({ route, navigation }: Props) {
     //Sounds at the beginning of the session. We need an effect here to be able to stop sounds when user leave the screen.
     useEffect(() => {
         if (settings.soundEnabled) {
-            const playSounds = shouldPlayRecitation ?
-                () => playSound(recitationsBeforeSession) :
-                () => playSound(playerGong);
+            const startSound =
+                shouldPlayRecitation ? recitationsBeforeSession : playerGong;
 
-            void playSounds();
+            void playSound(startSound);
         }
 
         return () => stopAllPlayers();
-    }, [totalMeditationDurationSeconds, playerGong, recitationsBeforeSession, settings.soundEnabled, shouldPlayRecitation, stopAllPlayers]);
+    }, [
+        totalMeditationDurationSeconds,
+        playerGong,
+        recitationsBeforeSession,
+        settings.soundEnabled,
+        shouldPlayRecitation,
+        stopAllPlayers
+    ]);
 
-    //Timer and sounds at the end of the session
+    //Timer processing and sounds at the end of the session
     useEffect(() => {
         const endSound = shouldPlayRecitation ?
             recitationsEndSession :
@@ -113,7 +125,13 @@ export default function MeditationScreen({ route, navigation }: Props) {
             stopAllPlayers();
             clearInterval(interval);
         }
-    }, [settings.soundEnabled, recitationsEndSession, playerGong, stopAllPlayers, totalMeditationDurationSeconds, shouldPlayRecitation]);
+    }, [
+        settings.soundEnabled,
+        recitationsEndSession,
+        playerGong, stopAllPlayers,
+        totalMeditationDurationSeconds,
+        shouldPlayRecitation
+    ]);
 
     return (
         <View style={styles.container}>

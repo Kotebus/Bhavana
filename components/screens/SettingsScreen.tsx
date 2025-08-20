@@ -20,6 +20,22 @@ import {TitleText} from "@/components/screens/about/TitleText";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
 
+const Row = ({children}: React.PropsWithChildren) => {
+    return (
+        <View style={styles.settingRow}>
+            {children}
+        </View>
+    );
+}
+
+const Label =  ({children}: React.PropsWithChildren) => {
+    return (
+        <Text style={styles.label}>
+            {children}
+        </Text>
+    );
+}
+
 export default function SettingsScreen({ navigation }: Props) {
     const { settings, setSettings } = useSettings();
     const { t } = useTranslation();
@@ -51,32 +67,29 @@ export default function SettingsScreen({ navigation }: Props) {
 
             <TitleText textAlign={'center'}>{t('SettingsScreen')}</TitleText>
 
-            {/* Язык */}
-            <View style={styles.settingRow}>
-                <Text style={styles.label}>{t('Language')}</Text>
+            <Row>
+                <Label>{t('Language')}</Label>
                 <LanguageToggle/>
-            </View>
+            </Row>
 
-            {/* Звук */}
-            <View style={styles.settingRow}>
-                <Text style={styles.label}>{t('Sound')}</Text>
+            <Row>
+                <Label>{t('Sound')}</Label>
                 <SoundToggle toggleSound={toggleSound} soundEnabled={settings.soundEnabled} />
-            </View>
+            </Row>
 
-            {/* Славословия */}
-            <View style={styles.settingRow}>
+            <Row>
                 <View style={{ flex: 1 }}>
-                    <Text style={styles.label}>{t('Recitations')}</Text>
+                    <Label>{t('Recitations')}</Label>
                     <Text style={styles.hint}>
                         {t('RecitationsHint', { minutes: MIN_SESSION_DURATION_FROM_RECITATIONS_MINUTES })}
                     </Text>
                 </View>
                 <SoundToggle toggleSound={toggleRecitations} soundEnabled={settings.recitationsSoundEnabled} />
-            </View>
+            </Row>
 
-            <View style={styles.settingRow}>
+            <Row>
                 <View style={{ flex: 1 }}>
-                    <Text style={styles.label}>{t('RecitationsReadBy')}</Text>
+                    <Label>{t('RecitationsReadBy')}</Label>
                     <Picker
                         mode='dropdown'
                         dropdownIconColor={'black'}
@@ -95,7 +108,7 @@ export default function SettingsScreen({ navigation }: Props) {
                         />
                     </Picker>
                 </View>
-            </View>
+            </Row>
         </ScrollView>
     );
 }

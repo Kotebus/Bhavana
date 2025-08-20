@@ -33,20 +33,31 @@ const MainContent = ({
                 Это приложение для медитации от монастыря Читтавивека (Шри-Ланка).
             </SimpleText>
             <SimpleText>
-                Цель этого приложения — обеспечить знакомство с медитацией в русле ортодоксального буддизма традиции тхеравада, как часть религиозной практики. Палийское слово «bhāvanā» означает «развитие ума», «очищение ума». Именно оно чаще всего переводится словом «медитация».
+                Цель этого приложения — обеспечить знакомство с медитацией в русле ортодоксального буддизма традиции
+                тхеравада, как часть религиозной практики. Палийское слово «bhāvanā» означает «развитие ума», «очищение
+                ума». Именно оно чаще всего переводится словом «медитация».
             </SimpleText>
             <SimpleText>
-                Вся информация из этого приложения основана на Трипитаке (палийском каноне) и проповедях бханте Ракване Ньянасихи — настоятеля буддийского лесного монастыря Читтавивека (Шри-Ланка), и доступна на <TextWithLink url={'https://samatha-vipassana.com/'}>официальном сайте монастыря</TextWithLink>, а также в книге <TextWithLink url={'https://samatha-vipassana.com/article/bhavana-art-of-the-mind-ru/bhavana-book/'}>«Bhāvanā — искусство ума»</TextWithLink>.
+                Вся информация из этого приложения основана на Трипитаке (палийском каноне) и проповедях бханте Ракване
+                Ньянасихи — настоятеля буддийского лесного монастыря Читтавивека (Шри-Ланка), и доступна на
+                <TextWithLink url={'https://samatha-vipassana.com/'}>официальном сайте монастыря</TextWithLink>, а также
+                в книге <TextWithLink url={'https://samatha-vipassana.com/article/bhavana-art-of-the-mind-ru/bhavana-book/'}>«Bhāvanā — искусство ума»</TextWithLink>.
             </SimpleText>
             <SimpleText>
-                Для практики медитации важно найти себе компетентного учителя, желательно монаха, а также самому тщательно изучать Слово Будды. Важно изучать эти учения, запоминать их, обдумывать и пропускать через своё сердце. Если у вас возникают какие-то вопросы или сомнения — важно обращаться за помощью к учителю, или хотя бы к благим друзьям.
+                Для практики медитации важно найти себе компетентного учителя, желательно монаха, а также самому
+                тщательно изучать Слово Будды. Важно изучать эти учения, запоминать их, обдумывать и пропускать через
+                своё сердце. Если у вас возникают какие-то вопросы или сомнения — важно обращаться за помощью к учителю,
+                или хотя бы к благим друзьям.
             </SimpleText>
             <SimpleText>
-                Обязательно ознакомьтесь с наиболее частыми ошибками в практике медитации в разделе <Text style={textWithLinkStyles.linkButtonText} onPress={onVipassanupakkilesaPress}>«Vipassanupakkilesa: искажения прозрения»</Text>,
-                а также с пятью помехами и методами их преодоления в разделе <Text style={textWithLinkStyles.linkButtonText} onPress={onPanchaNivaranaPress}>«Pañca nīvaraṇāni: пять помех»</Text>.
+                Обязательно ознакомьтесь с наиболее частыми ошибками в практике медитации в разделе
+                <Text style={textWithLinkStyles.linkButtonText} onPress={onVipassanupakkilesaPress}>«Vipassanupakkilesa: искажения прозрения»</Text>,
+                а также с пятью помехами и методами их преодоления в разделе
+                <Text style={textWithLinkStyles.linkButtonText} onPress={onPanchaNivaranaPress}>«Pañca nīvaraṇāni: пять помех»</Text>.
             </SimpleText>
             <SimpleText>
-                Со славословиями звучащими в начале и конце сессии медитации, а также с их переводом, вы можете ознакомиться в секции <Text style={textWithLinkStyles.linkButtonText} onPress={onRecitationsPress}>«Славословия»</Text>.
+                Со славословиями звучащими в начале и конце сессии медитации, а также с их переводом, вы можете
+                ознакомиться в секции <Text style={textWithLinkStyles.linkButtonText} onPress={onRecitationsPress}>«Славословия»</Text>.
             </SimpleText>
             <SimpleText>
                 Дополнительная информация и ссылки на ресурсы монастыря и проч. представлены ниже.
@@ -94,10 +105,12 @@ const MainContent = ({
                 Be sure to familiarize yourself with the most common mistakes in meditation practice in the section <Text
                     style={textWithLinkStyles.linkButtonText}
                     onPress={onVipassanupakkilesaPress}>&#34;Vipassanupakkilesa: distortions of insight,&#34;</Text>
-                as well as the five hindrances and methods to overcome them in the section <Text style={textWithLinkStyles.linkButtonText} onPress={onPanchaNivaranaPress}>&#34;Pañca nīvaraṇāni: five hindrances.&#34;</Text>
+                as well as the five hindrances and methods to overcome them in the section
+                <Text style={textWithLinkStyles.linkButtonText} onPress={onPanchaNivaranaPress}>&#34;Pañca nīvaraṇāni: five hindrances.&#34;</Text>
             </SimpleText>
             <SimpleText>
-                You can find the praises recited at the beginning and end of the meditation session, along with their translations, in the <Text style={textWithLinkStyles.linkButtonText} onPress={onRecitationsPress}>&#34;Recitations&#34;</Text> section.
+                You can find the praises recited at the beginning and end of the meditation session, along with their
+                translations, in the <Text style={textWithLinkStyles.linkButtonText} onPress={onRecitationsPress}>&#34;Recitations&#34;</Text> section.
             </SimpleText>
             <SimpleText>
                 Additional information and links to monastery resources and more are provided below.
@@ -108,8 +121,12 @@ const MainContent = ({
             <CitationText>
                 &#34;The straight way&#34; that path is called, and &#34;fearless&#34; is its destination.
             </CitationText>
-            <TextWithLink isRightAligned={true} url={'https://suttacentral.net/sn1.46/en/bodhi?lang=en'}>Accharāsutta: Nymphs (SN 1.46),</TextWithLink>
-            <TextWithLink isRightAligned={true} url={'https://suttacentral.net/sn1.46/en/bodhi?lang=en'}>translation by Ven. Bhikkhu Bodhi</TextWithLink>
+            <TextWithLink isRightAligned={true} url={'https://suttacentral.net/sn1.46/en/bodhi?lang=en'}>
+                Accharāsutta: Nymphs (SN 1.46),
+            </TextWithLink>
+            <TextWithLink isRightAligned={true} url={'https://suttacentral.net/sn1.46/en/bodhi?lang=en'}>
+                translation by Ven. Bhikkhu Bodhi
+            </TextWithLink>
         </>
     );
 }
