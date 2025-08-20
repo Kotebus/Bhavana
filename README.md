@@ -5,6 +5,9 @@ This is a meditation app from the [Chittaviveka Monastery (Sri Lanka)](http://sa
 The purpose of this application is to provide an introduction to meditation in the context of orthodox Buddhism of the
 Theravada tradition, as part of religious practice.
 
+This app available on [Google Play](https://play.google.com/store/apps/details?id=com.kotebus.bhavana) and 
+[AppStore](https://apps.apple.com/app/bhavana-art-of-the-mind/id6751196206).
+
 The Pali word "bhāvanā" means "development of the mind" or "purification of the mind". It is this term that is most
 often translated as "meditation".
 
