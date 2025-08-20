@@ -198,6 +198,36 @@ All translations are located in: `components/i18n/index.ts`.
 [//]: # ()
 [//]: # (Локализация сделана через `react-i18next`, все переводы находятся в `components/i18n/index.ts`.)
 
+## Screens routing
+
+New screens should be supported in `components/common/AppNavigator.tsx`.
+
+## Adding new material (aka sermon or anything rendered from markdown - .md)
+
+Add it to localisation file (`materialsEn` and `materialsRu` accordingly): `components/i18n/index.ts`
+
+After adding new localisation keys it will be available via `MaterialKey` in routing list, so you should add it there as 
+well: `components/screens/materials/SermonsRoutingList.ts`
+
+Then you should support it in `components/screens/MaterialScreen.tsx`.
+
+Add new material data to `materialsListMap` in `MaterialScreen.tsx`.
+
+The format is following: MaterialKey, require with path to russian md file, require with path to english md file.
+
+Example:
+```typescript
+    'SantaSukha': [require('@/components/screens/materials/content/sermons/SantaSukhaRu.md'), require('@/components/screens/materials/content/sermons/SantaSukhaEn.md')],
+```
+
+If you have images in new materials you should support it in `imgSources` in `MaterialScreen.tsx`.
+
+If it's by Venerable Rakwane Gnanaseeka then add key to `SERMONS_MATERIALS_LIST`, based on that we render his name in
+the beginning of the page.
+
+
+
+
 # Release new version
 
 ### Versioning
