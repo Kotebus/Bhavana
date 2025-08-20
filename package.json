@@ -2,6 +2,9 @@
   "name": "bhavana",
   "main": "expo-router/entry",
   "version": "1.2.0",
+  "author": "Maksim Suleimanov <kotebus666@gmail.com> (http://samatha-vipassana.com/en)",
+  "license": "MIT",
+  "homepage": "https://github.com/Kotebus/Bhavana",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
