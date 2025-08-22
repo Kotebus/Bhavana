@@ -107,46 +107,58 @@ export default function MaterialScreen({route, navigation}: Props) {
                     {t('TeacherName')}
                 </Text>
             }
-            <Markdown
-                style={{
-                    body: {
-                        fontSize: textSize,
-                        textAlign: "justify",
-                        padding: 3,
-                    }
-                }}
-                rules={{
-                    image: (node) => {
-                        const src = node.attributes.src || '';
-                        if (imgSources[src]) {
-                            const imgSrc = imgSources[src];
+                <Markdown
+                    style={{
+                        body: {
+                            fontSize: textSize,
+                            textAlign: "justify",
+                            padding: 3,
+                        }
+                    }}
+                    rules={{
+                        //FIX for MD renderer: without it sometimes the end of a paragraph gets cut off.
+                        text: (node) => (
+                            <Text key={node.key} style={[{fontSize: textSize}]}>
+                                {node.content}
+                            </Text>
+                        ),
+                        textgroup: (node, children, styles) => (
+                            <Text key={node.key} style={[styles.textgroup, {width: '95%'}]}>
+                                {children}
+                            </Text>
+                        ),
+                        //End if FIX
+                        image: (node) => {
+                            const src = node.attributes.src || '';
+                            if (imgSources[src]) {
+                                const imgSrc = imgSources[src];
 
-                            //To render image on full page width and then height calculated base on that
-                            const {width, height} = Image.resolveAssetSource(imgSrc);
+                                //To render image on full page width and then height calculated base on that
+                                const {width, height} = Image.resolveAssetSource(imgSrc);
 
+                                return (
+                                    <Image
+                                        key={src}
+                                        source={imgSrc}
+                                        style={{
+                                            resizeMode: 'contain',
+                                            flex: 1,
+                                            aspectRatio: width / height
+                                        }}
+                                    />
+                                );
+                            }
                             return (
                                 <Image
                                     key={src}
-                                    source={imgSrc}
-                                    style={{
-                                        resizeMode: 'contain',
-                                        flex: 1,
-                                        aspectRatio: width / height
-                                    }}
+                                    source={{uri: src}}
                                 />
                             );
-                        }
-                        return (
-                            <Image
-                                key={src}
-                                source={{uri: src}}
-                            />
-                        );
-                    },
-                }}
-            >
-                {content}
-            </Markdown>
+                        },
+                    }}
+                >
+                    {content}
+                </Markdown>
             <View style={styles.icon}>
                 <FontAwesome6 name="dharmachakra" size={24} color="black"/>
             </View>
