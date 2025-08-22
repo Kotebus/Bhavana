@@ -259,6 +259,11 @@ submit `aab` file there.
 
 Same could be [done locally](https://docs.expo.dev/guides/local-app-production/).
 
+For android don't forget to delete `signingConfig signingConfigs.debug` line from `android/app/build.gradle` in 
+`android/app/build.gradle`: there should be only `signingConfig signingConfigs.release`.
+
+Also for android `versionCode` should be incremented in `android/app/build.gradle`.
+
 # Possible problems
 
 ### Cannot find native module 'ExpoLocalization' occurs on simulator
