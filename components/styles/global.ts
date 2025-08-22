@@ -18,15 +18,14 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.background,
         color: COLORS.text,
-        padding: 16,
+        paddingHorizontal: 16,
         justifyContent: 'center',
-    },
-    commonContainer: {
-        flex: 1,
-        padding: 16,
     },
     scrollContainer: {
         flexGrow: 1,
+        paddingHorizontal: 16,
+    },
+    scrollContainerIos: {
         padding: 16,
     },
     contentContainerStyle: {
@@ -47,7 +46,7 @@ export const globalStyles = StyleSheet.create({
     },
     button: {
         backgroundColor: COLORS.primary,
-        paddingVertical: 15,
+        paddingVertical: 16,
         borderRadius: 8,
         alignSelf: 'center',
         marginTop: 30,

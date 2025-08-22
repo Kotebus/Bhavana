@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ActivityIndicator, ScrollView, StyleSheet, View, Image, Text} from "react-native";
+import {ActivityIndicator, ScrollView, StyleSheet, View, Image, Text, Platform} from "react-native";
 import Markdown from "react-native-markdown-display";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -89,9 +89,13 @@ export default function MaterialScreen({route, navigation}: Props) {
 
     //If it's a sermon of Venerable Rakwane Gnanaseeha we will show his name at the top.
     const isSermon = SERMONS_MATERIALS_LIST.includes(materialKey);
+    const isIos = Platform.OS === 'ios';
+    const containerStyles = [
+        globalStyles.scrollContainer,
+        isIos ? globalStyles.scrollContainerIos : undefined];
 
     return (
-        <ScrollView style={globalStyles.scrollContainer}>
+        <ScrollView style={containerStyles}>
             <BackNavHeader onBack={() => navigation.goBack()}>
                 <TextSizeControl onChange={setTextSize}/>
             </BackNavHeader>

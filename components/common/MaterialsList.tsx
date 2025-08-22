@@ -37,10 +37,10 @@ export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=>
 
 const styles = StyleSheet.create({
     containerIos: {
-        marginTop: 16
+        paddingBottom: 32
     },
     button: {
         width: '90%',
-        paddingHorizontal: 5
+        paddingHorizontal: 5,
     }
 });
