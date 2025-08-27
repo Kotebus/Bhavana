@@ -7,13 +7,16 @@ export interface ITitleTextProps extends PropsWithChildren {
 }
 export const TitleText = ({children, textAlign}: ITitleTextProps) =>
     (
-        <Text style={{
-            paddingTop: 12,
-            fontSize: FONT_SIZE_HEADER,
-            fontWeight: 'bold',
-            marginBottom: 15,
-            textAlign: textAlign ? textAlign : undefined,
-        }}>
+        <Text
+            selectable={true}
+            style={{
+                paddingTop: 12,
+                fontSize: FONT_SIZE_HEADER,
+                fontWeight: 'bold',
+                marginBottom: 15,
+                textAlign: textAlign ? textAlign : undefined,
+            }}
+        >
             {children}
         </Text>
     );

@@ -41,7 +41,7 @@ const linksData: IUrlText[] = [
 export default function LinksListScreen({ navigation }: Props) {
     const isIos = Platform.OS === 'ios';
     return (
-        <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
+        <ScrollView contentContainerStyle={[globalStyles.scrollContainer, {paddingVertical: 40}]}>
             {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
             <LinksList data={linksData}/>
         </ScrollView>

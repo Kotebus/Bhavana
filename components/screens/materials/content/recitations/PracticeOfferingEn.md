@@ -1,5 +1,5 @@
-## Offering of Practice to the Three Jewels (after meditation)
-
+## __Offering of Practice to the Three Jewels (after meditation)__
+&nbsp;
 >*Imāya dhammānudhammapaṭipattiyā **Buddhaṃ pūjemi**.*  
 
 By this practice in accordance with the Dhamma I honor the Buddha.

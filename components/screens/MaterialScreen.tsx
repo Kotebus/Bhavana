@@ -118,13 +118,8 @@ export default function MaterialScreen({route, navigation}: Props) {
                     rules={{
                         //FIX for MD renderer: without it sometimes the end of a paragraph gets cut off.
                         text: (node) => (
-                            <Text key={node.key} style={[{fontSize: textSize}]}>
+                            <Text selectable={true} key={node.key} style={[{fontSize: textSize, flexShrink: 1}]}>
                                 {node.content}
-                            </Text>
-                        ),
-                        textgroup: (node, children, styles) => (
-                            <Text key={node.key} style={[styles.textgroup, {width: '95%'}]}>
-                                {children}
                             </Text>
                         ),
                         //End if FIX

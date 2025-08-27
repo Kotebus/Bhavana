@@ -1,16 +1,16 @@
-## Remembrance of the Qualities of the Three Jewels
+## __Remembrance of the Qualities of the Three Jewels__
 
-### __Qualities of the Buddha__
-
+___
+&nbsp;
+### ***Qualities of the Buddha***
+&nbsp;
 > *Itipi so **bhagavā** arahaṃ **sammāsambuddho***
 >
 Truly the **Blessed One**, the Worthy One, **fully awakened**
 
-
 >*Vijjācaraṇasampanno **sugato** lokavidū*
 
 Endowed with knowledge and conduct, **rightly gone**, knower of the worlds
-
 
 >***Anuttaro** purisadammasārathi*
 
@@ -23,9 +23,9 @@ Endowed with knowledge and conduct, **rightly gone**, knower of the worlds
 >***Buddhaṃ** jīvitaṃ yāva-nibbānaṃ **saraṇaṃ gacchāmi**.*
 
 To **the Buddha** I go for **the refuge** for life until full cessation (nibbāna).
-
-### __Qualities of the Dhamma__
-
+&nbsp;
+### ***Qualities of the Dhamma***
+&nbsp;
 > ***Svākkhāto** bhagavatā dhammo*
 
 **Well-expounded** is the Dhamma by the Blessed One
@@ -41,9 +41,9 @@ Directly visible, **whose fruit is not delayed**, inviting one to come and see
 >***Dhammaṃ** jīvitaṃ yāva-nibbānaṃ **saraṇaṃ gacchāmi**.*
 
 To **the Dhamma** I go for **the refuge** for life until full cessation (nibbāna).
-
-### __Qualities of the Saṅgha__
-
+&nbsp;
+### ***Qualities of the Saṅgha***
+&nbsp;
 >***Supaṭipanno** bhagavato sāvakasaṅgho*
 
 **Practiced well** is the Saṅgha of the Blessed One’s disciples

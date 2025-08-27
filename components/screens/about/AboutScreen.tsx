@@ -39,9 +39,9 @@ const MainContent = ({
             </SimpleText>
             <SimpleText>
                 Вся информация из этого приложения основана на Трипитаке (палийском каноне) и проповедях бханте Ракване
-                Ньянасихи — настоятеля буддийского лесного монастыря Читтавивека (Шри-Ланка), и доступна на
+                Ньянасихи — настоятеля буддийского лесного монастыря Читтавивека (Шри-Ланка), и доступна на{' '}
                 <TextWithLink url={'https://samatha-vipassana.com/'}>официальном сайте монастыря</TextWithLink>, а также
-                в книге <TextWithLink url={'https://samatha-vipassana.com/article/bhavana-art-of-the-mind-ru/bhavana-book/'}>«Bhāvanā — искусство ума»</TextWithLink>.
+                в книге{' '}<TextWithLink url={'https://samatha-vipassana.com/article/bhavana-art-of-the-mind-ru/bhavana-book/'}>«Bhāvanā — искусство ума»</TextWithLink>.
             </SimpleText>
             <SimpleText>
                 Для практики медитации важно найти себе компетентного учителя, желательно монаха, а также самому
@@ -50,14 +50,14 @@ const MainContent = ({
                 или хотя бы к благим друзьям.
             </SimpleText>
             <SimpleText>
-                Обязательно ознакомьтесь с наиболее частыми ошибками в практике медитации в разделе
+                Обязательно ознакомьтесь с наиболее частыми ошибками в практике медитации в разделе{' '}
                 <Text style={textWithLinkStyles.linkButtonText} onPress={onVipassanupakkilesaPress}>«Vipassanupakkilesa: искажения прозрения»</Text>,
-                а также с пятью помехами и методами их преодоления в разделе
+                а также с пятью помехами и методами их преодоления в разделе{' '}
                 <Text style={textWithLinkStyles.linkButtonText} onPress={onPanchaNivaranaPress}>«Pañca nīvaraṇāni: пять помех»</Text>.
             </SimpleText>
             <SimpleText>
                 Со славословиями звучащими в начале и конце сессии медитации, а также с их переводом, вы можете
-                ознакомиться в секции <Text style={textWithLinkStyles.linkButtonText} onPress={onRecitationsPress}>«Славословия»</Text>.
+                ознакомиться в секции{' '}<Text style={textWithLinkStyles.linkButtonText} onPress={onRecitationsPress}>«Славословия»</Text>.
             </SimpleText>
             <SimpleText>
                 Дополнительная информация и ссылки на ресурсы монастыря и проч. представлены ниже.
@@ -90,9 +90,8 @@ const MainContent = ({
             <SimpleText>
                 All information in this application is based on the Tipitaka (Pali Canon) and the sermons of Venerable
                 Rakwane Gnanaseeha, the abbot of the Chittaviveka Buddhist Forest Monastery (Sri Lanka), and is available
-                on the <TextWithLink url={'https://samatha-vipassana.com/en'}>
-                monastery&#39;s official website
-            </TextWithLink>, as well as in the book <TextWithLink
+                on the{' '}<TextWithLink url={'https://samatha-vipassana.com/en'}>
+                monastery&#39;s official website</TextWithLink>, as well as in the book{' '}<TextWithLink
                 url={'https://samatha-vipassana.com/en/article/bhavana-the-art-of-the-mind-en/bhavana-the-art-of-the-mind/'}>&#34;Bhāvanā - The Art of the Mind&#34;</TextWithLink>.
             </SimpleText>
             <SimpleText>
@@ -102,15 +101,15 @@ const MainContent = ({
                 a teacher or at least from good friends.
             </SimpleText>
             <SimpleText>
-                Be sure to familiarize yourself with the most common mistakes in meditation practice in the section <Text
-                    style={textWithLinkStyles.linkButtonText}
+                Be sure to familiarize yourself with the most common mistakes in meditation practice in the section{' '}
+                <Text style={textWithLinkStyles.linkButtonText}
                     onPress={onVipassanupakkilesaPress}>&#34;Vipassanupakkilesa: distortions of insight,&#34;</Text>
-                as well as the five hindrances and methods to overcome them in the section
+                as well as the five hindrances and methods to overcome them in the section{' '}
                 <Text style={textWithLinkStyles.linkButtonText} onPress={onPanchaNivaranaPress}>&#34;Pañca nīvaraṇāni: five hindrances.&#34;</Text>
             </SimpleText>
             <SimpleText>
                 You can find the praises recited at the beginning and end of the meditation session, along with their
-                translations, in the <Text style={textWithLinkStyles.linkButtonText} onPress={onRecitationsPress}>&#34;Recitations&#34;</Text> section.
+                translations, in the{' '}<Text style={textWithLinkStyles.linkButtonText} onPress={onRecitationsPress}>&#34;Recitations&#34;</Text> section.
             </SimpleText>
             <SimpleText>
                 Additional information and links to monastery resources and more are provided below.

@@ -1,5 +1,5 @@
-## Expression of Veneration for the Relics
-
+## __Expression of Veneration for the Relics__
+&nbsp;
 >*Vandāmi **cetiyaṃ** sabbaṃ sabbaṭṭhānesu patiṭṭhitaṃ*    
 
 I honor all **the shrines** (objects of worship associated with the Buddha) in all the places where they stand,
@@ -7,9 +7,11 @@ I honor all **the shrines** (objects of worship associated with the Buddha) in a
 >*Sārīrikadhātu **mahābodhiṃ** buddharūpaṃ sakalaṃ sadā*   
 
 The bodily relics, **the great Bodhi tree**, and all images of the Buddha, entirely and always
-
-## Paying homage to the Bodhi tree under which Buddha attained enlightenment
-
+&nbsp;
+___
+&nbsp;
+## __Paying homage to the Bodhi tree under which Buddha attained enlightenment__
+&nbsp;
 >*Yassamūle nisinnova – sabbārivijayaṃ akā*  
 
 Under whose root he sat and overcame all foes

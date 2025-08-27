@@ -1,6 +1,6 @@
 import React, {useCallback} from "react";
 import {Linking, TouchableOpacity, StyleSheet, Text, View} from "react-native";
-import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
+import {useSettings} from "@/components/contexts/SettingsContext";
 
 interface IOpenURLButtonProps {
     url: string;
@@ -9,6 +9,8 @@ interface IOpenURLButtonProps {
 }
 
 const OpenURLButton = ({url, deepLink, children}: IOpenURLButtonProps) => {
+    const { settings } = useSettings();
+
     const handlePress = useCallback(async () => {
         if (deepLink) {
             const supportedDeepLink = await Linking.canOpenURL(deepLink);
@@ -31,7 +33,7 @@ const OpenURLButton = ({url, deepLink, children}: IOpenURLButtonProps) => {
 
     return (
         <TouchableOpacity style={styles.linkButton} onPress={handlePress}>
-            <Text style={styles.linkButtonText}>{children}</Text>
+            <Text style={{color: '#007AFF', fontSize: settings.fontSize}}>{children}</Text>
         </TouchableOpacity>
     );
 };
@@ -58,9 +60,5 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
-    },
-    linkButtonText: {
-        fontSize: FONT_SIZE_DEFAULT,
-        color: '#007AFF',
     },
 });
