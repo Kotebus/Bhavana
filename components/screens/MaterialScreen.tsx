@@ -122,6 +122,11 @@ export default function MaterialScreen({route, navigation}: Props) {
                                 {node.content}
                             </Text>
                         ),
+                        textgroup: (node, children, styles) => (
+                            <Text key={node.key} style={[styles.textgroup, {width: '95%'}]}>
+                                {children}
+                            </Text>
+                        ),
                         //End if FIX
                         image: (node) => {
                             const src = node.attributes.src || '';
