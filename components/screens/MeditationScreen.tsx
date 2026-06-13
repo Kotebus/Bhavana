@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTranslation} from "react-i18next";
+import {useThemePalette} from '@/components/styles/useThemedStyles';
+import {ThemePalette} from '@/components/styles/theme';
 
 import {useSettings} from "../contexts/SettingsContext";
 import {FONT_SIZE_HEADER} from "../styles/global";
@@ -24,6 +26,9 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MeditationScreen'>;
 export default function MeditationScreen({ route, navigation }: Props) {
     //Prevent this screen from sleep mode
     void activateKeepAwakeAsync();
+
+    const palette = useThemePalette();
+    const styles = React.useMemo(() => makeStyles(palette), [palette]);
 
     const { h, m } = route.params;
     const { settings } = useSettings();
@@ -148,14 +153,14 @@ export default function MeditationScreen({ route, navigation }: Props) {
     );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (p: ThemePalette) => StyleSheet.create({
     container: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: '20%', top: '5%' },
     content: {
         alignItems: 'center',
     },
     image: { width: '60%', height: '35%', top: '20%', position: 'absolute' },
-    timer: { fontSize: 40, fontWeight: 'bold', alignSelf: 'center',  fontVariant: ['tabular-nums'],},
-    goal: { fontSize: FONT_SIZE_HEADER, color: '#666', marginTop: 8, alignSelf: 'center', marginBottom: '-20%' },
+    timer: { fontSize: 40, fontWeight: 'bold', alignSelf: 'center',  fontVariant: ['tabular-nums'], color: p.text},
+    goal: { fontSize: FONT_SIZE_HEADER, color: p.subtleText, marginTop: 8, alignSelf: 'center', marginBottom: '-20%' },
     button: { bottom: '15%', position: 'absolute' },
 });
 

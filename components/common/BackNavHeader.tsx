@@ -1,12 +1,14 @@
 import React, {PropsWithChildren} from 'react';
 import {View, TouchableOpacity, StyleSheet, Platform} from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
+import {useThemePalette} from '@/components/styles/useThemedStyles';
 
 interface ISizeAndBackNavHeader extends PropsWithChildren{
     onBack: () => void;
 }
 
 export default function BackNavHeader({onBack, children}: ISizeAndBackNavHeader) {
+    const palette = useThemePalette();
     const isIos = Platform.OS === 'ios';
     const containerStyles = [
         styles.container,
@@ -15,7 +17,7 @@ export default function BackNavHeader({onBack, children}: ISizeAndBackNavHeader)
     return (
         <View style={containerStyles}>
             <TouchableOpacity style={styles.backButton} onPress={onBack}>
-                <Ionicons name="arrow-back-outline" size={24} color="black" />
+                <Ionicons name="arrow-back-outline" size={24} color={palette.icon} />
             </TouchableOpacity>
             {children}
         </View>

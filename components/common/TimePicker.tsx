@@ -3,6 +3,8 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {ITime, Language} from "@/components/storage/storage";
 import {RU_LANGUAGE} from "@/components/constatnts";
+import {useThemePalette} from '@/components/styles/useThemedStyles';
+import {ThemePalette} from '@/components/styles/theme';
 
 
 interface ISinglePickerProps {
@@ -13,13 +15,15 @@ interface ISinglePickerProps {
 }
 
 const SinglePicker = ({value, onChange, length, label}: ISinglePickerProps) => {
+    const palette = useThemePalette();
+    const styles = React.useMemo(() => makeStyles(palette), [palette]);
     const isAndroid = Platform.OS === 'android';
     const pickerStyles =[styles.pickerCommon, isAndroid ? styles.pickerAndroid : undefined];
 
     return (
                 <Picker
                     mode='dropdown'
-                    dropdownIconColor={isAndroid ? 'white' : 'black'}
+                    dropdownIconColor={isAndroid ? palette.icon : palette.icon}
                     style={pickerStyles}
                     selectedValue={value}
                     onValueChange={onChange}
@@ -39,6 +43,8 @@ interface ITimePickerProps {
 }
 
 const TimePicker = ({ time, language, onChange } : ITimePickerProps) => {
+    const palette = useThemePalette();
+    const styles = React.useMemo(() => makeStyles(palette), [palette]);
     const [timeVal, setTimeVal] = React.useState(time);
     const l18n = language === RU_LANGUAGE ?
         {h: 'ч', m: 'мин'} :
@@ -74,7 +80,7 @@ const TimePicker = ({ time, language, onChange } : ITimePickerProps) => {
     );
 };
 
-const styles = StyleSheet.create({
+const makeStyles = (p: ThemePalette) => StyleSheet.create({
     containerCommon: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -86,16 +92,16 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 2,
         borderRadius: 8,
-        backgroundColor: 'black',
-        color: 'white',
+        backgroundColor: p.surface,
+        color: p.text,
     },
 
     pickerCommon: {
         flex: 1,
     },
     pickerAndroid: {
-        backgroundColor: 'black',
-        color:'white',
+        backgroundColor: p.surface,
+        color: p.text,
     },
 
     sepCommon: {
@@ -106,11 +112,11 @@ const styles = StyleSheet.create({
     },
     sepAndroid: {
         marginHorizontal: 8,
-        color: 'white',
+        color: p.text,
     },
 
     item: {
-        backgroundColor: 'lightgray'
+        backgroundColor: p.controlBg,
     },
 });
 
