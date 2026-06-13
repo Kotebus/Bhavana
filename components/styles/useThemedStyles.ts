@@ -1,13 +1,11 @@
 import React from 'react';
 import {useSettings} from '@/components/contexts/SettingsContext';
-import {palettes, Theme, ThemePalette} from './theme';
+import {palettes, ThemePalette} from './theme';
 import {createGlobalStyles} from './global';
 
-const resolveTheme = (t: Theme | undefined): Theme => t ?? 'light';
-
 export const useThemePalette = (): ThemePalette => {
-    const {settings} = useSettings();
-    return palettes[resolveTheme(settings.theme)];
+    const {theme} = useSettings();
+    return palettes[theme];
 };
 
 export const useGlobalStyles = () => {
