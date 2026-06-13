@@ -2,8 +2,8 @@ import React from "react";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/common/AppNavigator";
 import {Platform, ScrollView, StyleSheet, Image} from "react-native";
-import {globalStyles} from "@/components/styles/global";
 import {useTranslation} from "react-i18next";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import {TitleText} from "@/components/screens/about/TitleText";
 import {SimpleText} from "@/components/screens/about/SimpleText";
 import {LinksList} from "@/components/common/LinksList";
@@ -14,6 +14,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'AboutMonasteryScreen'>;
 export const AboutMonasteryScreen = ({ route }: Props) => {
     const { language } = route.params;
     const {t} = useTranslation();
+    const globalStyles = useGlobalStyles();
     const isRuLang = language === RU_LANGUAGE;
 
     return (

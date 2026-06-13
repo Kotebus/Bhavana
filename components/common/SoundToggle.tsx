@@ -1,6 +1,6 @@
 import React from "react";
 import {Ionicons} from "@expo/vector-icons";
-import {globalStyles} from "@/components/styles/global";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import {TouchableOpacity} from "react-native";
 import {StyleProp} from "react-native/Libraries/StyleSheet/StyleSheet";
 import {ViewStyle} from "react-native/Libraries/StyleSheet/StyleSheetTypes";
@@ -12,6 +12,7 @@ export interface ISoundToggleProps {
 }
 
 export const SoundToggle = ({soundEnabled, toggleSound, style}: ISoundToggleProps) => {
+    const globalStyles = useGlobalStyles();
     return (
         <TouchableOpacity onPress={toggleSound} style={style}>
             <Ionicons

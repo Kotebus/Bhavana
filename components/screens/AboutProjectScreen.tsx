@@ -4,13 +4,14 @@ import {RootStackParamList} from "@/components/common/AppNavigator";
 import {useTranslation} from "react-i18next";
 import {NavButton} from "@/components/common/NavButton";
 import {Platform, ScrollView} from "react-native";
-import {globalStyles} from "@/components/styles/global";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutProjectScreen'>;
 
 export default function AboutProjectScreen({ route, navigation } : Props) {
     const {language} = route.params;
     const {t} = useTranslation();
+    const globalStyles = useGlobalStyles();
     const isIos = Platform.OS === 'ios';
 
     const languageNavigationParams = {language: language};

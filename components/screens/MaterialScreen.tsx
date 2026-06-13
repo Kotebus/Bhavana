@@ -10,10 +10,10 @@ import {RootStackParamList} from "@/components/common/AppNavigator";
 import {loadMarkdownAsset} from "@/components/services/MarkdownLoader";
 import BackNavHeader from "@/components/common/BackNavHeader";
 import TextSizeControl from "@/components/common/TextSizeControl";
-import {globalStyles} from "@/components/styles/global";
 import {SERMONS_MATERIALS_LIST} from "@/components/screens/materials/SermonsRoutingList";
 import {useTranslation} from "react-i18next";
 import {RU_LANGUAGE} from "@/components/constatnts";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MaterialScreen'>;
 
@@ -60,6 +60,7 @@ const imgSources: Record<string, any> = {
 export default function MaterialScreen({route, navigation}: Props) {
     const {materialKey, language} = route.params;
     const {t} = useTranslation();
+    const globalStyles = useGlobalStyles();
     const [content, setContent] = useState<string | null>(null);
     const {settings} = useSettings();
     const [textSize, setTextSize] = useState(settings.fontSize);

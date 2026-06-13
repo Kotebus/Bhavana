@@ -3,8 +3,8 @@ import {Text, ScrollView, Platform} from 'react-native';
 import {useTranslation} from "react-i18next";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/common/AppNavigator";
-import {globalStyles} from "@/components/styles/global";
 import {MaterialKey} from "@/components/i18n";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import {TextWithLink, textWithLinkStyles} from "@/components/common/TextWithLink";
 import {ContactInfo} from "@/components/screens/about/ContactInfo";
 import {SimpleText} from "@/components/screens/about/SimpleText";
@@ -136,6 +136,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'AboutScreen'>;
 export default function AboutScreen({ route, navigation } : Props) {
     const {language} = route.params;
     const {t} = useTranslation();
+    const globalStyles = useGlobalStyles();
 
     const navigateToSermon = (materialKey: MaterialKey) =>
         navigation.navigate('MaterialScreen', {materialKey, language});

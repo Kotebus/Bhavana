@@ -6,7 +6,7 @@ import {IMaterial} from "@/components/screens/materials/SermonsRoutingList";
 import BackNavHeader from "@/components/common/BackNavHeader";
 import {NavButton} from "@/components/common/NavButton";
 import {MaterialKey} from "@/components/i18n";
-import {globalStyles} from "@/components/styles/global";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 
 export interface IMaterialsListProps {
     contentList: IMaterial[];
@@ -16,6 +16,7 @@ export interface IMaterialsListProps {
 export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=> {
     const navigation = useNavigation();
     const {t} = useTranslation();
+    const globalStyles = useGlobalStyles();
 
     const isIos = Platform.OS === 'ios';
     const containerStyles = [globalStyles.container, isIos ? styles.containerIos : undefined];
