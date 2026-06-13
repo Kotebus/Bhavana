@@ -41,7 +41,8 @@
       ],
       "expo-localization",
       "expo-font",
-      "expo-asset"
+      "expo-asset",
+      "expo-audio"
     ],
     "experiments": {
       "typedRoutes": true
