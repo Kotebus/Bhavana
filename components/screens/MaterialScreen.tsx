@@ -117,9 +117,10 @@ export default function MaterialScreen({route, navigation}: Props) {
                             heading: palette.markdownHeading,
                             border: palette.border,
                             surface: palette.surface,
+                            surfaceLight: palette.surface,
                             code: palette.controlText,
                             codeBackground: palette.controlBg,
-                            blockquote: palette.markdownText,
+                            blockquote: palette.border,
                         },
                         fontSizes: {m: textSize},
                     }}
