@@ -1,6 +1,6 @@
 import React from "react";
 import Ionicons from "@react-native-vector-icons/ionicons";
-import {useSettings} from "@/components/contexts/SettingsContext";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import {TouchableOpacity} from "react-native";
 import {StyleProp} from "react-native/Libraries/StyleSheet/StyleSheet";
 import {ViewStyle} from "react-native/Libraries/StyleSheet/StyleSheetTypes";
@@ -12,13 +12,13 @@ export interface ISoundToggleProps {
 }
 
 export const SoundToggle = ({soundEnabled, toggleSound, style}: ISoundToggleProps) => {
-    const {theme} = useSettings();
+    const globalStyles = useGlobalStyles();
     return (
         <TouchableOpacity onPress={toggleSound} style={style}>
             <Ionicons
                 name={soundEnabled ? 'volume-high' : 'volume-mute'}
                 size={28}
-                color={theme === 'dark' ? 'white' : 'black'}
+                color={globalStyles.iconButton.color}
             />
         </TouchableOpacity>
     );

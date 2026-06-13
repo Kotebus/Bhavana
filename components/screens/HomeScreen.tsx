@@ -40,7 +40,7 @@ export default function HomeScreen({ navigation }: Props) {
                     <Ionicons
                         name={settings.soundEnabled ? 'volume-high' : 'volume-mute'}
                         size={28}
-                        color={settings.theme === 'dark' ? 'white' : 'black'}
+                        color={globalStyles.iconButton.color}
                     />
                 </TouchableOpacity>
 
