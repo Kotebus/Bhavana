@@ -13,7 +13,7 @@ import TextSizeControl from "@/components/common/TextSizeControl";
 import {SERMONS_MATERIALS_LIST} from "@/components/screens/materials/SermonsRoutingList";
 import {useTranslation} from "react-i18next";
 import {RU_LANGUAGE} from "@/components/constatnts";
-import {useGlobalStyles} from "@/components/styles/useThemedStyles";
+import {useGlobalStyles, useThemePalette} from "@/components/styles/useThemedStyles";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MaterialScreen'>;
 
@@ -61,6 +61,7 @@ export default function MaterialScreen({route, navigation}: Props) {
     const {materialKey, language} = route.params;
     const {t} = useTranslation();
     const globalStyles = useGlobalStyles();
+    const palette = useThemePalette();
     const [content, setContent] = useState<string | null>(null);
     const {settings} = useSettings();
     const [textSize, setTextSize] = useState(settings.fontSize);
@@ -103,7 +104,8 @@ export default function MaterialScreen({route, navigation}: Props) {
             {isSermon &&
                 <Text style={{
                     alignSelf: 'flex-end',
-                    fontSize: textSize
+                    fontSize: textSize,
+                    color: palette.text,
                 }}>
                     {t('TeacherName')}
                 </Text>
@@ -114,12 +116,36 @@ export default function MaterialScreen({route, navigation}: Props) {
                             fontSize: textSize,
                             textAlign: "justify",
                             padding: 3,
-                        }
+                            color: palette.markdownText,
+                        },
+                        heading1: {color: palette.markdownHeading},
+                        heading2: {color: palette.markdownHeading},
+                        heading3: {color: palette.markdownHeading},
+                        heading4: {color: palette.markdownHeading},
+                        heading5: {color: palette.markdownHeading},
+                        heading6: {color: palette.markdownHeading},
+                        hr: {backgroundColor: palette.border},
+                        blockquote: {
+                            backgroundColor: palette.surface,
+                            borderLeftColor: palette.border,
+                        },
+                        code_inline: {
+                            backgroundColor: palette.controlBg,
+                            color: palette.controlText,
+                        },
+                        code_block: {
+                            backgroundColor: palette.controlBg,
+                            color: palette.controlText,
+                        },
+                        fence: {
+                            backgroundColor: palette.controlBg,
+                            color: palette.controlText,
+                        },
                     }}
                     rules={{
                         //FIX for MD renderer: without it sometimes the end of a paragraph gets cut off.
                         text: (node) => (
-                            <Text selectable={true} key={node.key} style={[{fontSize: textSize, flexShrink: 1}]}>
+                            <Text selectable={true} key={node.key} style={[{fontSize: textSize, flexShrink: 1, color: palette.markdownText}]}>
                                 {node.content}
                             </Text>
                         ),
@@ -161,7 +187,7 @@ export default function MaterialScreen({route, navigation}: Props) {
                     {content}
                 </Markdown>
             <View style={styles.icon}>
-                <FontAwesome6 name="dharmachakra" size={24} color="black"/>
+                <FontAwesome6 name="dharmachakra" size={24} color={palette.icon}/>
             </View>
         </ScrollView>
     );

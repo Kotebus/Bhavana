@@ -6,10 +6,10 @@ Update protocol: after finishing each step, tick its checkbox here,
 write the commit hash + ISO date, then commit both code and this file together.
 
 ## Current State
-- **Last completed step**: Step 10 — Sweep: convert screens/components to useGlobalStyles
+- **Last completed step**: Step 11 — MaterialScreen: theme markdown styles + icon
 - **Last commit**: <this commit>
-- **Next step**: Step 11 — MaterialScreen: theme markdown styles + icon
-- **Model policy (user instruction, 2026-06-13)**: Do not use models below Sonnet 4.6. Steps 11–13 will use Sonnet 4.6 or Opus 4.7 (no Haiku).
+- **Next step**: Step 12 — Sweep: replace hardcoded color literals
+- **Model policy (user instruction, 2026-06-13)**: Do not use models below Sonnet 4.6. Steps 11–14 will use Sonnet 4.6 or Opus 4.7 (no Haiku).
 - **Blockers / deviations**:
   - Pre-existing TS errors in `MaterialScreen.tsx` (line 126, `textgroup` on ASTNode[]) and `MarkdownLoader.ts` (missing `expo-asset` types). Not introduced by this work; will be addressed only if blocking later steps.
   - **Step 2 deviation**: hooks `useGlobalStyles` and `useThemePalette` moved out of `global.ts` into a new file `components/styles/useThemedStyles.ts`. Reason: `global.ts` is imported by `SettingsContext.tsx` (for `FONT_SIZE_DEFAULT`), so importing `useSettings` back into `global.ts` would create a circular import (`global` → `SettingsContext` → `storage` → `theme`, and back via `FONT_SIZE_DEFAULT`) — Metro/CommonJS would return undefined for `FONT_SIZE_DEFAULT` at the moment `DEFAULT_SETTINGS` is initialized. Subsequent steps must import hooks from `@/components/styles/useThemedStyles` (not `global`).
@@ -26,9 +26,10 @@ write the commit hash + ISO date, then commit both code and this file together.
 - [x] Step 8  — SettingsScreen: integrate ThemeToggle + theme local styles
 - [x] Step 9  — AppNavigator: themed contentStyle and iOS header
 - [x] Step 10 — Sweep: convert screens/components to useGlobalStyles
-- [ ] Step 11 — MaterialScreen: theme markdown styles + icon
+- [x] Step 11 — MaterialScreen: theme markdown styles + icon
 - [ ] Step 12 — Sweep: replace hardcoded color literals
-- [ ] Step 13 — Manual verification
+- [ ] Step 13 — Code review + fixes (Opus 4.7)
+- [ ] Step 14 — Manual verification
 
 ## Step Log
 <!-- One entry per completed step, newest at the bottom -->
@@ -90,6 +91,11 @@ write the commit hash + ISO date, then commit both code and this file together.
 - Notes: Navigator now reads palette inside the component and sets `contentStyle.backgroundColor`, `headerStyle.backgroundColor`, and `headerTintColor`. This carries dark theming into the iOS native headers used by the About sub-screens.
 
 ### Step 10 — Sweep: convert screens/components to useGlobalStyles
-- Commit: <this commit>
+- Commit: 4779fbb
 - Date: 2026-06-13
 - Notes: General-purpose sub-agent ran the mechanical conversion. Modified 9 files (MaterialScreen, AboutProjectScreen, AboutScreen, AboutMonasteryScreen, AboutTeacherScreen, AboutSermonsScreen, NavButton, SoundToggle, MaterialsList). Skipped 5 files (MeditationScreen, MaterialsListScreen, TitleText, ContactInfo, LanguageToggle) — they don't import `globalStyles`, only `FONT_SIZE_*`. **Policy change**: per user instruction, no models below Sonnet 4.6 from this point forward. The Haiku sub-agent for this step had already completed when the rule was set; subsequent sub-agents use Sonnet 4.6+.
+
+### Step 11 — MaterialScreen: theme markdown styles + icon
+- Commit: <this commit>
+- Date: 2026-06-13
+- Notes: Added `useThemePalette()` to MaterialScreen. Markdown `style` prop now sets `body.color`, `heading1-6.color`, `hr.backgroundColor`, `blockquote.{backgroundColor,borderLeftColor}`, `code_inline`/`code_block`/`fence.{backgroundColor,color}`. The custom `text` rule's inline style now applies `palette.markdownText`. Teacher-name `Text` got `color: palette.text`. `<FontAwesome6 name="dharmachakra" color="black"/>` is now `palette.icon`.
