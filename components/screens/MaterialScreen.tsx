@@ -47,7 +47,7 @@ const materialsListMap: MaterialMap = {
 const imgSources: Record<string, any> = {
     'ayatana_scheme_mind_ru': require('@/components/screens/materials/content/images/ayatana_scheme_mind_ru.png'),
     'ayatana_scheme_mind_en': require('@/components/screens/materials/content/images/ayatana_scheme_mind_en.png'),
-    'ayatana_scheme_ru': require('@/components/screens/materials/content/images/ayatana_scheme_ru.jpg'),
+    'ayatana_scheme_ru': require('@/components/screens/materials/content/images/ayatana_scheme_ru.png'),
     'ayatana_scheme_en': require('@/components/screens/materials/content/images/ayatana_scheme_en.png'),
     'sri_bodhiraja_center': require('@/components/screens/materials/content/images/sri_bodhiraja_center.jpg'),
     'vase_faces': require('@/components/screens/materials/content/images/vase_faces.png'),
