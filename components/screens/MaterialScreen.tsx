@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {ActivityIndicator, ScrollView, StyleSheet, View, Image, Text, Platform} from "react-native";
-import Markdown from "react-native-markdown-display";
+import {Markdown, type ImageRendererProps} from "react-native-nitro-markdown";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 
@@ -111,78 +111,42 @@ export default function MaterialScreen({route, navigation}: Props) {
                 </Text>
             }
                 <Markdown
-                    style={{
-                        body: {
-                            fontSize: textSize,
-                            textAlign: "justify",
-                            padding: 3,
-                            color: palette.markdownText,
+                    theme={{
+                        colors: {
+                            text: palette.markdownText,
+                            heading: palette.markdownHeading,
+                            border: palette.border,
+                            surface: palette.surface,
+                            code: palette.controlText,
+                            codeBackground: palette.controlBg,
+                            blockquote: palette.markdownText,
                         },
-                        heading1: {color: palette.markdownHeading},
-                        heading2: {color: palette.markdownHeading},
-                        heading3: {color: palette.markdownHeading},
-                        heading4: {color: palette.markdownHeading},
-                        heading5: {color: palette.markdownHeading},
-                        heading6: {color: palette.markdownHeading},
-                        hr: {backgroundColor: palette.border},
-                        blockquote: {
-                            backgroundColor: palette.surface,
-                            borderLeftColor: palette.border,
-                        },
-                        code_inline: {
-                            backgroundColor: palette.controlBg,
-                            color: palette.controlText,
-                        },
-                        code_block: {
-                            backgroundColor: palette.controlBg,
-                            color: palette.controlText,
-                        },
-                        fence: {
-                            backgroundColor: palette.controlBg,
-                            color: palette.controlText,
-                        },
+                        fontSizes: {m: textSize},
                     }}
-                    rules={{
-                        //FIX for MD renderer: without it sometimes the end of a paragraph gets cut off.
-                        text: (node) => (
-                            <Text selectable={true} key={node.key} style={[{fontSize: textSize, flexShrink: 1, color: palette.markdownText}]}>
-                                {node.content}
-                            </Text>
-                        ),
-                        textgroup: (node, children, styles) => (
-                            <Text key={node.key} style={[styles.textgroup, {width: '95%'}]}>
-                                {children}
-                            </Text>
-                        ),
-                        //End if FIX
-                        image: (node) => {
-                            const src = node.attributes.src || '';
-                            if (imgSources[src]) {
-                                const imgSrc = imgSources[src];
-
-                                //To render image on full page width and then height calculated base on that
+                    styles={{
+                        paragraph: {padding: 3},
+                        text: {textAlign: 'justify'},
+                    }}
+                    renderers={{
+                        image: ({url}: ImageRendererProps) => {
+                            if (imgSources[url]) {
+                                const imgSrc = imgSources[url];
                                 const {width, height} = Image.resolveAssetSource(imgSrc);
-
                                 return (
                                     <Image
-                                        key={src}
                                         source={imgSrc}
                                         style={{
                                             resizeMode: 'contain',
                                             flex: 1,
-                                            aspectRatio: width / height
+                                            aspectRatio: width / height,
                                         }}
                                     />
                                 );
                             }
-                            return (
-                                <Image
-                                    key={src}
-                                    source={{uri: src}}
-                                />
-                            );
+                            return <Image source={{uri: url}}/>;
                         },
                     }}
+                    options={{gfm: true}}
                 >
                     {content}
                 </Markdown>
