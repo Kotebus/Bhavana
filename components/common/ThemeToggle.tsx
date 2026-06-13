@@ -16,6 +16,7 @@ export const ThemeToggle = ({style, size = 24}: IThemeToggleProps) => {
         <TouchableOpacity
             onPress={toggleTheme}
             style={style}
+            hitSlop={10}
             accessibilityRole="button"
             accessibilityLabel="Toggle theme"
         >
