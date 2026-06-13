@@ -18,6 +18,7 @@ export interface ThemePalette {
     markdownHeading: string;
     pickerSelection: string;
     pickerBorder: string;
+    link: string;
 }
 
 export const lightTheme: ThemePalette = {
@@ -38,6 +39,7 @@ export const lightTheme: ThemePalette = {
     markdownHeading: '#000000',
     pickerSelection: 'lightgrey',
     pickerBorder: '#000000',
+    link: '#2563EB',
 };
 
 export const darkTheme: ThemePalette = {
@@ -61,6 +63,9 @@ export const darkTheme: ThemePalette = {
     markdownHeading: '#FFFFFF',
     pickerSelection: '#333333',
     pickerBorder: '#333333',
+    // Lighter blue than the default #2563EB so it's readable against the
+    // #121212 background without being a tiny dim glyph.
+    link: '#60A5FA',
 };
 
 export const palettes: Record<Theme, ThemePalette> = {

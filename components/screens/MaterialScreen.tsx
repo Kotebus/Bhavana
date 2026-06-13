@@ -121,6 +121,8 @@ export default function MaterialScreen({route, navigation}: Props) {
                             code: palette.controlText,
                             codeBackground: palette.controlBg,
                             blockquote: palette.border,
+                            link: palette.link,
+                            accent: palette.link,
                         },
                         fontSizes: {m: textSize},
                     }}
