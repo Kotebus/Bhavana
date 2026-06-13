@@ -66,7 +66,7 @@ export default function SettingsScreen({ navigation }: Props) {
 
             <Row>
                 <Label>{t('Theme')}</Label>
-                <ThemeToggle/>
+                <ThemeToggle size={28}/>
             </Row>
 
             <Row>
