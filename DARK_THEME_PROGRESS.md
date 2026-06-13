@@ -6,9 +6,9 @@ Update protocol: after finishing each step, tick its checkbox here,
 write the commit hash + ISO date, then commit both code and this file together.
 
 ## Current State
-- **Last completed step**: Step 8 — SettingsScreen: integrate ThemeToggle + theme local styles
+- **Last completed step**: Step 9 — AppNavigator: themed contentStyle and iOS header
 - **Last commit**: <this commit>
-- **Next step**: Step 9 — AppNavigator: themed contentStyle and iOS header
+- **Next step**: Step 10 — Sweep: convert screens/components to useGlobalStyles
 - **Blockers / deviations**:
   - Pre-existing TS errors in `MaterialScreen.tsx` (line 126, `textgroup` on ASTNode[]) and `MarkdownLoader.ts` (missing `expo-asset` types). Not introduced by this work; will be addressed only if blocking later steps.
   - **Step 2 deviation**: hooks `useGlobalStyles` and `useThemePalette` moved out of `global.ts` into a new file `components/styles/useThemedStyles.ts`. Reason: `global.ts` is imported by `SettingsContext.tsx` (for `FONT_SIZE_DEFAULT`), so importing `useSettings` back into `global.ts` would create a circular import (`global` → `SettingsContext` → `storage` → `theme`, and back via `FONT_SIZE_DEFAULT`) — Metro/CommonJS would return undefined for `FONT_SIZE_DEFAULT` at the moment `DEFAULT_SETTINGS` is initialized. Subsequent steps must import hooks from `@/components/styles/useThemedStyles` (not `global`).
@@ -23,7 +23,7 @@ write the commit hash + ISO date, then commit both code and this file together.
 - [x] Step 6  — LotusAnimated: image swap by theme
 - [x] Step 7  — HomeScreen: integrate ThemeToggle
 - [x] Step 8  — SettingsScreen: integrate ThemeToggle + theme local styles
-- [ ] Step 9  — AppNavigator: themed contentStyle and iOS header
+- [x] Step 9  — AppNavigator: themed contentStyle and iOS header
 - [ ] Step 10 — Sweep: convert screens/components to useGlobalStyles
 - [ ] Step 11 — MaterialScreen: theme markdown styles + icon
 - [ ] Step 12 — Sweep: replace hardcoded color literals
@@ -79,6 +79,11 @@ write the commit hash + ISO date, then commit both code and this file together.
 - Notes: Top bar now starts with `ThemeToggle` (size 28), then sound, then language. Switched from static `globalStyles` import to `useGlobalStyles()` hook so the icon button background tracks the theme. Note: the local `styles.title` is unused (the JSX uses `globalStyles.title`); left untouched to keep this step minimal.
 
 ### Step 8 — SettingsScreen: integrate ThemeToggle + theme local styles
-- Commit: <this commit>
+- Commit: 6fe9dc9
 - Date: 2026-06-13
 - Notes: Added Theme row as the first row (above Language). Local `StyleSheet.create` extracted to `makeStyles(palette)` and memoized; `#ccc`/`#777`/`white`/`black`/`lightgrey` replaced with palette values. Picker `dropdownIconColor` and `selectionColor` (Android) now use palette. Row/Label moved inside the component to close over the themed `styles`.
+
+### Step 9 — AppNavigator: themed contentStyle and iOS header
+- Commit: <this commit>
+- Date: 2026-06-13
+- Notes: Navigator now reads palette inside the component and sets `contentStyle.backgroundColor`, `headerStyle.backgroundColor`, and `headerTintColor`. This carries dark theming into the iOS native headers used by the About sub-screens.

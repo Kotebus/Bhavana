@@ -3,6 +3,7 @@ import {Platform} from "react-native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {useTranslation} from "react-i18next";
 
+import {useThemePalette} from "@/components/styles/useThemedStyles";
 import {ITime, Language} from "@/components/storage/storage";
 import MeditationScreen from "@/components/screens/MeditationScreen";
 import AboutScreen from "@/components/screens/about/AboutScreen";
@@ -48,14 +49,19 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const AppNavigator = () => {
     const {t} = useTranslation();
+    const palette = useThemePalette();
     const isIos = Platform.OS === 'ios';
     return (
             <Stack.Navigator
                 screenOptions={{
                     headerTitleAlign: 'center',
                     contentStyle: {
-                        backgroundColor: 'white',
+                        backgroundColor: palette.navContentBg,
                     },
+                    headerStyle: {
+                        backgroundColor: palette.navContentBg,
+                    },
+                    headerTintColor: palette.headerTint,
                 }}>
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false, title: ''}}/>
                 <Stack.Screen name="MeditationScreen" component={MeditationScreen} options={{headerShown: false}}/>
