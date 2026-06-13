@@ -5,9 +5,12 @@ import {useTranslation} from 'react-i18next';
 import {Picker} from "@react-native-picker/picker";
 
 import {useSettings} from '../contexts/SettingsContext';
-import {FONT_SIZE_DEFAULT, globalStyles} from '../styles/global';
+import {FONT_SIZE_DEFAULT} from '../styles/global';
+import {useGlobalStyles, useThemePalette} from '../styles/useThemedStyles';
+import {ThemePalette} from '../styles/theme';
 import {RootStackParamList} from '@/components/common/AppNavigator';
 import {SoundToggle} from "@/components/common/SoundToggle";
+import {ThemeToggle} from "@/components/common/ThemeToggle";
 import BackNavHeader from "@/components/common/BackNavHeader";
 import {LanguageToggle} from "@/components/common/LanguageToggle";
 import {
@@ -20,26 +23,22 @@ import {TitleText} from "@/components/screens/about/TitleText";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
 
-const Row = ({children}: React.PropsWithChildren) => {
-    return (
-        <View style={styles.settingRow}>
-            {children}
-        </View>
-    );
-}
-
-const Label =  ({children}: React.PropsWithChildren) => {
-    return (
-        <Text style={styles.label}>
-            {children}
-        </Text>
-    );
-}
-
 export default function SettingsScreen({ navigation }: Props) {
     const { settings, setSettings } = useSettings();
     const { t } = useTranslation();
+    const globalStyles = useGlobalStyles();
+    const palette = useThemePalette();
+    const styles = React.useMemo(() => makeStyles(palette), [palette]);
     const isIos = Platform.OS === 'ios';
+    const isAndroid = Platform.OS === 'android';
+
+    const Row = ({children}: React.PropsWithChildren) => (
+        <View style={styles.settingRow}>{children}</View>
+    );
+
+    const Label = ({children}: React.PropsWithChildren) => (
+        <Text style={styles.label}>{children}</Text>
+    );
 
     const toggleSound = () =>
         setSettings({
@@ -59,13 +58,16 @@ export default function SettingsScreen({ navigation }: Props) {
             recitationsAudioSource: val,
         });
 
-    const isAndroid = Platform.OS === 'android';
-
     return (
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
             {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
 
             <TitleText textAlign={'center'}>{t('SettingsScreen')}</TitleText>
+
+            <Row>
+                <Label>{t('Theme')}</Label>
+                <ThemeToggle/>
+            </Row>
 
             <Row>
                 <Label>{t('Language')}</Label>
@@ -92,11 +94,11 @@ export default function SettingsScreen({ navigation }: Props) {
                     <Label>{t('RecitationsReadBy')}</Label>
                     <Picker
                         mode='dropdown'
-                        dropdownIconColor={'black'}
+                        dropdownIconColor={palette.icon}
                         selectedValue={settings.recitationsAudioSource}
                         onValueChange={ChangeRecitationsSource}
                         style={isAndroid ? styles.pickerAndroid : undefined}
-                        selectionColor={isAndroid ? 'lightgrey' : undefined}
+                        selectionColor={isAndroid ? palette.pickerSelection : undefined}
                     >
                         <Picker.Item
                             label={t('TeacherName')}
@@ -113,26 +115,27 @@ export default function SettingsScreen({ navigation }: Props) {
     );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (p: ThemePalette) => StyleSheet.create({
     settingRow: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingVertical: 12,
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: '#ccc',
+        borderBottomColor: p.border,
     },
     label: {
         fontSize: FONT_SIZE_DEFAULT,
         fontWeight: '500',
+        color: p.text,
     },
     hint: {
         fontSize: FONT_SIZE_DEFAULT,
-        color: '#777',
+        color: p.subtleText,
         marginTop: 2,
     },
     pickerAndroid: {
-        backgroundColor: 'white',
-        color: 'black',
+        backgroundColor: p.surface,
+        color: p.text,
     }
 });
