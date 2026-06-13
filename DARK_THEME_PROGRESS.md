@@ -6,9 +6,9 @@ Update protocol: after finishing each step, tick its checkbox here,
 write the commit hash + ISO date, then commit both code and this file together.
 
 ## Current State
-- **Last completed step**: Step 6 — LotusAnimated: image swap by theme
+- **Last completed step**: Step 7 — HomeScreen: integrate ThemeToggle
 - **Last commit**: <this commit>
-- **Next step**: Step 7 — HomeScreen: integrate ThemeToggle
+- **Next step**: Step 8 — SettingsScreen: integrate ThemeToggle + theme local styles
 - **Blockers / deviations**:
   - Pre-existing TS errors in `MaterialScreen.tsx` (line 126, `textgroup` on ASTNode[]) and `MarkdownLoader.ts` (missing `expo-asset` types). Not introduced by this work; will be addressed only if blocking later steps.
   - **Step 2 deviation**: hooks `useGlobalStyles` and `useThemePalette` moved out of `global.ts` into a new file `components/styles/useThemedStyles.ts`. Reason: `global.ts` is imported by `SettingsContext.tsx` (for `FONT_SIZE_DEFAULT`), so importing `useSettings` back into `global.ts` would create a circular import (`global` → `SettingsContext` → `storage` → `theme`, and back via `FONT_SIZE_DEFAULT`) — Metro/CommonJS would return undefined for `FONT_SIZE_DEFAULT` at the moment `DEFAULT_SETTINGS` is initialized. Subsequent steps must import hooks from `@/components/styles/useThemedStyles` (not `global`).
@@ -21,7 +21,7 @@ write the commit hash + ISO date, then commit both code and this file together.
 - [x] Step 4  — ThemeToggle component
 - [x] Step 5  — i18n key for "Theme"
 - [x] Step 6  — LotusAnimated: image swap by theme
-- [ ] Step 7  — HomeScreen: integrate ThemeToggle
+- [x] Step 7  — HomeScreen: integrate ThemeToggle
 - [ ] Step 8  — SettingsScreen: integrate ThemeToggle + theme local styles
 - [ ] Step 9  — AppNavigator: themed contentStyle and iOS header
 - [ ] Step 10 — Sweep: convert screens/components to useGlobalStyles
@@ -69,6 +69,11 @@ write the commit hash + ISO date, then commit both code and this file together.
 - Notes: Added `Theme` label key to both EN ('Theme') and RU ('Тема') translations. Placed next to `Sound`/`Language` keys for consistency.
 
 ### Step 6 — LotusAnimated: image swap by theme
-- Commit: <this commit>
+- Commit: 27f42a5
 - Date: 2026-06-13
 - Notes: Both lotus assets `require()`'d at module top — Metro bundles both, only the active one decodes. `assets/images/lotus_dark.png` added to the tree in this commit. TS info-level diagnostic suggesting `require → import` ignored: it's the standard RN pattern for static assets.
+
+### Step 7 — HomeScreen: integrate ThemeToggle
+- Commit: <this commit>
+- Date: 2026-06-13
+- Notes: Top bar now starts with `ThemeToggle` (size 28), then sound, then language. Switched from static `globalStyles` import to `useGlobalStyles()` hook so the icon button background tracks the theme. Note: the local `styles.title` is unused (the JSX uses `globalStyles.title`); left untouched to keep this step minimal.

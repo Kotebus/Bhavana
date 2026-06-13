@@ -4,13 +4,15 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 
-import {FONT_SIZE_HEADER, globalStyles} from "../styles/global";
+import {FONT_SIZE_HEADER} from "../styles/global";
+import {useGlobalStyles} from "../styles/useThemedStyles";
 import {RootStackParamList} from "@/components/common/AppNavigator";
 import TimePicker from "@/components/common/TimePicker";
 import {ITime} from "@/components/storage/storage";
 import {useSettings} from "@/components/contexts/SettingsContext";
 import {LanguageToggle} from "@/components/common/LanguageToggle";
 import {NavButton} from "@/components/common/NavButton";
+import {ThemeToggle} from "@/components/common/ThemeToggle";
 import {recitationsRoutingList, sermonsRoutingList} from "@/components/screens/materials/SermonsRoutingList";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
@@ -18,6 +20,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
 export default function HomeScreen({ navigation }: Props) {
     const {settings, setSettings, inited} = useSettings();
     const {t} = useTranslation();
+    const globalStyles = useGlobalStyles();
 
     const updateTime = (newTime: ITime) =>
         setSettings({...settings, meditationTime: newTime});
@@ -31,6 +34,8 @@ export default function HomeScreen({ navigation }: Props) {
         <ScrollView contentContainerStyle={globalStyles.contentContainerStyle}>
             {/* Верхняя панель с иконками */}
             <View style={styles.topBar}>
+                <ThemeToggle style={globalStyles.iconButton} size={28}/>
+
                 <TouchableOpacity onPress={toggleSound} style={globalStyles.iconButton}>
                     <Ionicons
                         name={settings.soundEnabled ? 'volume-high' : 'volume-mute'}
