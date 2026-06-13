@@ -14,7 +14,7 @@ export interface ISoundToggleProps {
 export const SoundToggle = ({soundEnabled, toggleSound, style}: ISoundToggleProps) => {
     const globalStyles = useGlobalStyles();
     return (
-        <TouchableOpacity onPress={toggleSound} style={style}>
+        <TouchableOpacity onPress={toggleSound} style={style} hitSlop={10}>
             <Ionicons
                 name={soundEnabled ? 'volume-high' : 'volume-mute'}
                 size={28}

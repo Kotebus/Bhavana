@@ -12,7 +12,7 @@ export const LanguageToggle = ({style} : { style?: StyleProp<ViewStyle>;}) => {
     const palette = useThemePalette();
 
     return (
-        <TouchableOpacity onPress={toggleLanguage} style={style}>
+        <TouchableOpacity onPress={toggleLanguage} style={style} hitSlop={10}>
             <Text style={{fontSize: FONT_SIZE_HEADER, color: palette.text}}>
                 {settings.language === RU_LANGUAGE ? '🇷🇺' : '🇺🇸'}
             </Text>
