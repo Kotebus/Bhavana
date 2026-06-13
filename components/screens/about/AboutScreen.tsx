@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 import {router} from "expo-router";
 import {MaterialKey} from "@/components/i18n";
 import {useGlobalStyles} from "@/components/styles/useThemedStyles";
-import {TextWithLink, textWithLinkStyles} from "@/components/common/TextWithLink";
+import {TextWithLink, useLinkTextStyles} from "@/components/common/TextWithLink";
 import {ContactInfo} from "@/components/screens/about/ContactInfo";
 import {SimpleText} from "@/components/screens/about/SimpleText";
 import {CitationText} from "@/components/screens/about/CitationText";
@@ -27,6 +27,7 @@ const MainContent = ({
                           onRecitationsPress,
                          isRuLanguage,
                       }: IContentProps)=> {
+    const textWithLinkStyles = useLinkTextStyles();
     if (isRuLanguage) return (
         <>
             <SimpleText>
