@@ -6,14 +6,14 @@ Update protocol: after finishing each step, tick its checkbox here,
 write the commit hash + ISO date, then commit both code and this file together.
 
 ## Current State
-- **Last completed step**: Step 0 — Create progress file
+- **Last completed step**: Step 1 — Theme module + AppSettings field
 - **Last commit**: <this commit>
-- **Next step**: Step 1 — Theme module + AppSettings field
-- **Blockers / deviations**: none
+- **Next step**: Step 2 — Refactor global styles to factory + hooks
+- **Blockers / deviations**: Pre-existing TS errors in `MaterialScreen.tsx` (line 126, `textgroup` on ASTNode[]) and `MarkdownLoader.ts` (missing `expo-asset` types). Not introduced by this work; will be addressed only if blocking later steps.
 
 ## Step Checklist
 - [x] Step 0  — Create progress file (this file)
-- [ ] Step 1  — Theme module + AppSettings field
+- [x] Step 1  — Theme module + AppSettings field
 - [ ] Step 2  — Refactor global styles to factory + hooks
 - [ ] Step 3  — SettingsContext: system detection, migration, toggleTheme
 - [ ] Step 4  — ThemeToggle component
@@ -37,6 +37,11 @@ write the commit hash + ISO date, then commit both code and this file together.
 -->
 
 ### Step 0 — Create progress file
-- Commit: <this commit>
+- Commit: 62e18bf
 - Date: 2026-06-13
 - Notes: Initial scaffold of the progress tracker. Plan file lives at `~/.claude/plans/task-task-description-shimmying-naur.md`.
+
+### Step 1 — Theme module + AppSettings field
+- Commit: <this commit>
+- Date: 2026-06-13
+- Notes: Created `components/styles/theme.ts` with `Theme` type, `ThemePalette` interface, `lightTheme`, `darkTheme`, and `palettes` map. Added optional `theme?: Theme` to `AppSettings` in `components/storage/storage.ts`. `tsc --noEmit` shows only pre-existing errors unrelated to this work.
