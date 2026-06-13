@@ -1,23 +1,19 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator} from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
+import {router} from 'expo-router';
 import Ionicons from '@react-native-vector-icons/ionicons';
 
 import {FONT_SIZE_HEADER} from "../styles/global";
 import {useGlobalStyles} from "../styles/useThemedStyles";
-import {RootStackParamList} from "@/components/common/AppNavigator";
 import TimePicker from "@/components/common/TimePicker";
 import {ITime} from "@/components/storage/storage";
 import {useSettings} from "@/components/contexts/SettingsContext";
 import {LanguageToggle} from "@/components/common/LanguageToggle";
 import {NavButton} from "@/components/common/NavButton";
 import {ThemeToggle} from "@/components/common/ThemeToggle";
-import {recitationsRoutingList, sermonsRoutingList} from "@/components/screens/materials/SermonsRoutingList";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
-
-export default function HomeScreen({ navigation }: Props) {
+export default function HomeScreen() {
     const {settings, setSettings, inited} = useSettings();
     const {t} = useTranslation();
     const globalStyles = useGlobalStyles();
@@ -27,8 +23,6 @@ export default function HomeScreen({ navigation }: Props) {
 
     const toggleSound = () =>
         setSettings({...settings, soundEnabled: !settings.soundEnabled});
-
-    const languageNavigationParams = {language: settings.language};
 
     return (
         <ScrollView contentContainerStyle={globalStyles.contentContainerStyle}>
@@ -62,31 +56,23 @@ export default function HomeScreen({ navigation }: Props) {
             }
 
             {/* Кнопка старт */}
-            <NavButton navigate={() => navigation.navigate('MeditationScreen', settings.meditationTime)}>
+            <NavButton navigate={() => router.push({pathname: '/meditation', params: {h: settings.meditationTime.h, m: settings.meditationTime.m}})}>
                 {t('start')}
             </NavButton>
 
-            <NavButton navigate={() => navigation.navigate('MaterialsListScreen', {
-                materialsList: sermonsRoutingList,
-                ...languageNavigationParams
-            })}>
+            <NavButton navigate={() => router.push({pathname: '/materials', params: {type: 'sermons'}})}>
                 {t('StudyScreen')}
             </NavButton>
 
-            <NavButton navigate={
-                () => navigation.navigate('MaterialsListScreen', {
-                    materialsList: recitationsRoutingList,
-                    ...languageNavigationParams
-                })
-            }>
+            <NavButton navigate={() => router.push({pathname: '/materials', params: {type: 'recitations'}})}>
                 {t('Recitations')}
             </NavButton>
 
-            <NavButton navigate={() => navigation.navigate('AboutProjectScreen', languageNavigationParams)}>
+            <NavButton navigate={() => router.push('/about-project')}>
                 {t('AboutProjectScreen')}
             </NavButton>
 
-            <NavButton navigate={() => navigation.navigate('SettingsScreen', languageNavigationParams)}>
+            <NavButton navigate={() => router.push('/settings')}>
                 {t('SettingsScreen')}
             </NavButton>
         </ScrollView>

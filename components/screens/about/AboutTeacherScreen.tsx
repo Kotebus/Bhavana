@@ -1,17 +1,15 @@
 import React from "react";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "@/components/common/AppNavigator";
 import {Image, Platform, ScrollView, StyleSheet} from "react-native";
 import {useTranslation} from "react-i18next";
 import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import {TitleText} from "@/components/screens/about/TitleText";
 import {SimpleText} from "@/components/screens/about/SimpleText";
 import {RU_LANGUAGE} from "@/components/constatnts";
+import {useSettings} from "@/components/contexts/SettingsContext";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'AboutTeacherScreen'>;
-
-export const AboutTeacherScreen = ({ route }: Props) => {
-    const { language } = route.params;
+const AboutTeacherScreen = () => {
+    const {settings} = useSettings();
+    const language = settings.language;
     const {t} = useTranslation();
     const globalStyles = useGlobalStyles();
 
@@ -71,3 +69,5 @@ const styles = StyleSheet.create({
         width: '100%',
     },
 });
+
+export default AboutTeacherScreen;

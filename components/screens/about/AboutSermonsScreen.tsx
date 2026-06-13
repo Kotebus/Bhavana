@@ -1,6 +1,4 @@
 import React from "react";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "@/components/common/AppNavigator";
 import {Platform, ScrollView} from "react-native";
 import {useTranslation} from "react-i18next";
 import {useGlobalStyles} from "@/components/styles/useThemedStyles";
@@ -9,8 +7,7 @@ import {CitationText} from "@/components/screens/about/CitationText";
 import {TitleText} from "@/components/screens/about/TitleText";
 import {LinksList} from "@/components/common/LinksList";
 import {RU_LANGUAGE} from "@/components/constatnts";
-
-type Props = NativeStackScreenProps<RootStackParamList, 'AboutSermonsScreen'>;
+import {useSettings} from "@/components/contexts/SettingsContext";
 
 const contentListRu = [
     'Информация в этом приложении это записи публичных лекций и личных бесед с бханте́ Раква́не Ньянаси́хой. В течение 7 лет практически всякий раз, общаясь с бханте́ на тему Дхаммы, я с его разрешения включал диктофон. У нас была договорённость, что я не буду распространять эти аудиозаписи, так как это требует некой выверки информации, учёта контекста подготовки публики и ещё многих факторов. Устная речь всегда требует адаптации для её перевода в письменную форму. Я записал эти проповеди и с помощью бханте и благих друзей мы собрали их в книгу «Bhāvanā — искусство ума». Теперь они доступны ещё и в этом приложении.',
@@ -78,8 +75,9 @@ const Content = ({isRuLang}: {isRuLang: boolean}) => {
     );
 }
 
-export const AboutSermonsScreen = ({ route }: Props) => {
-    const {language} = route.params;
+const AboutSermonsScreen = () => {
+    const {settings} = useSettings();
+    const language = settings.language;
     const {t} = useTranslation();
     const globalStyles = useGlobalStyles();
 
@@ -98,3 +96,5 @@ export const AboutSermonsScreen = ({ route }: Props) => {
         </ScrollView>
     );
 }
+
+export default AboutSermonsScreen;

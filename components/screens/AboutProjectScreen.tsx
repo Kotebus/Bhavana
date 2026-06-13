@@ -1,33 +1,24 @@
 import React from "react";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "@/components/common/AppNavigator";
 import {useTranslation} from "react-i18next";
+import {router} from "expo-router";
 import {NavButton} from "@/components/common/NavButton";
 import {Platform, ScrollView} from "react-native";
 import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'AboutProjectScreen'>;
-
-export default function AboutProjectScreen({ route, navigation } : Props) {
-    const {language} = route.params;
+export default function AboutProjectScreen() {
     const {t} = useTranslation();
     const globalStyles = useGlobalStyles();
     const isIos = Platform.OS === 'ios';
 
-    const languageNavigationParams = {language: language};
     return (
         <ScrollView contentContainerStyle={globalStyles.contentContainerStyle}>
-            <NavButton
-                navigate={() => navigation.navigate('AboutScreen', languageNavigationParams)}>{t('AboutScreen')}</NavButton>
-            <NavButton
-                navigate={() => navigation.navigate('AboutTeacherScreen', languageNavigationParams)}>{t('AboutTeacherScreen')}</NavButton>
-            <NavButton
-                navigate={() => navigation.navigate('AboutSermonsScreen', languageNavigationParams)}>{t('AboutSermonsScreen')}</NavButton>
-            <NavButton
-                navigate={() => navigation.navigate('AboutMonasteryScreen', languageNavigationParams)}>{t('AboutMonasteryScreen')}</NavButton>
-            <NavButton navigate={() => navigation.navigate('LinksListScreen')}>{t('LinksListScreen')}</NavButton>
+            <NavButton navigate={() => router.push('/about')}>{t('AboutScreen')}</NavButton>
+            <NavButton navigate={() => router.push('/about/teacher')}>{t('AboutTeacherScreen')}</NavButton>
+            <NavButton navigate={() => router.push('/about/sermons')}>{t('AboutSermonsScreen')}</NavButton>
+            <NavButton navigate={() => router.push('/about/monastery')}>{t('AboutMonasteryScreen')}</NavButton>
+            <NavButton navigate={() => router.push('/about/links')}>{t('LinksListScreen')}</NavButton>
 
-            {isIos && (<NavButton navigate={() => navigation.goBack()}>{t('Back')}</NavButton>)}
+            {isIos && (<NavButton navigate={() => router.back()}>{t('Back')}</NavButton>)}
         </ScrollView>
     );
 }

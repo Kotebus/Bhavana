@@ -1,14 +1,13 @@
 import React from 'react';
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {router, useLocalSearchParams} from 'expo-router';
 import {MaterialKey} from "../i18n";
-import {RootStackParamList} from "@/components/common/AppNavigator";
 import {MaterialsList} from "@/components/common/MaterialsList";
+import {recitationsRoutingList, sermonsRoutingList} from "@/components/screens/materials/SermonsRoutingList";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'MaterialsListScreen'>;
-
-export default function MaterialsListScreen({ route, navigation } : Props) {
-    const {language, materialsList} = route.params;
-    const navigate = (materialKey: MaterialKey) => navigation.navigate('MaterialScreen', {materialKey, language});
+export default function MaterialsListScreen() {
+    const {type} = useLocalSearchParams<{type?: 'sermons' | 'recitations'}>();
+    const materialsList = type === 'recitations' ? recitationsRoutingList : sermonsRoutingList;
+    const navigate = (materialKey: MaterialKey) => router.push(`/material/${materialKey}`);
 
     return (
         <MaterialsList

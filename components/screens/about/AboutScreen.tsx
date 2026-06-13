@@ -1,8 +1,7 @@
 import React from 'react';
 import {Text, ScrollView, Platform} from 'react-native';
 import {useTranslation} from "react-i18next";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "@/components/common/AppNavigator";
+import {router} from "expo-router";
 import {MaterialKey} from "@/components/i18n";
 import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import {TextWithLink, textWithLinkStyles} from "@/components/common/TextWithLink";
@@ -11,6 +10,7 @@ import {SimpleText} from "@/components/screens/about/SimpleText";
 import {CitationText} from "@/components/screens/about/CitationText";
 import {TitleText} from "@/components/screens/about/TitleText";
 import {RU_LANGUAGE} from "@/components/constatnts";
+import {useSettings} from "@/components/contexts/SettingsContext";
 
 type NavigateFuncType = () => Promise<void> | void;
 
@@ -131,15 +131,14 @@ const MainContent = ({
 }
 
 
-type Props = NativeStackScreenProps<RootStackParamList, 'AboutScreen'>;
-
-export default function AboutScreen({ route, navigation } : Props) {
-    const {language} = route.params;
+export default function AboutScreen() {
+    const {settings} = useSettings();
+    const language = settings.language;
     const {t} = useTranslation();
     const globalStyles = useGlobalStyles();
 
     const navigateToSermon = (materialKey: MaterialKey) =>
-        navigation.navigate('MaterialScreen', {materialKey, language});
+        router.push(`/material/${materialKey}`);
 
     return (
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>

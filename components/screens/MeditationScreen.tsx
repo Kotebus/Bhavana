@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTranslation} from "react-i18next";
+import {router, useLocalSearchParams} from 'expo-router';
 import {useThemePalette} from '@/components/styles/useThemedStyles';
 import {ThemePalette} from '@/components/styles/theme';
 
 import {useSettings} from "../contexts/SettingsContext";
 import {FONT_SIZE_HEADER} from "../styles/global";
-import {RootStackParamList} from "@/components/common/AppNavigator";
 import {playSound} from "@/components/services/AudioHelper";
 import {useAudio} from "@/components/contexts/AudioContext";
 import {LotusAnimated} from "@/components/common/LotusAnimated";
@@ -20,17 +19,16 @@ import {
 } from "@/components/constatnts";
 import {formatTime} from "@/components/services/TimeHelper";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'MeditationScreen'>;
-
-
-export default function MeditationScreen({ route, navigation }: Props) {
+export default function MeditationScreen() {
     //Prevent this screen from sleep mode
     void activateKeepAwakeAsync();
 
     const palette = useThemePalette();
     const styles = React.useMemo(() => makeStyles(palette), [palette]);
 
-    const { h, m } = route.params;
+    const params = useLocalSearchParams<{h?: string; m?: string}>();
+    const h = Number(params.h ?? 0);
+    const m = Number(params.m ?? 0);
     const { settings } = useSettings();
     const { t } = useTranslation();
 
@@ -146,7 +144,7 @@ export default function MeditationScreen({ route, navigation }: Props) {
             />
             <Text style={styles.timer}>{formatTime(elapsed)}</Text>
             <Text style={styles.goal}>{formatTime(totalMeditationDurationSeconds)}</Text>
-            <NavButton navigate={() => navigation.goBack()} additionalButtonStyle={styles.button}>
+            <NavButton navigate={() => router.back()} additionalButtonStyle={styles.button}>
                 {t('endSession')}
             </NavButton>
         </View>

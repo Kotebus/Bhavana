@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, FlatList, StyleSheet, Platform} from 'react-native';
-import {useNavigation} from "expo-router";
+import {router} from "expo-router";
 import {useTranslation} from "react-i18next";
 import {IMaterial} from "@/components/screens/materials/SermonsRoutingList";
 import BackNavHeader from "@/components/common/BackNavHeader";
@@ -14,7 +14,6 @@ export interface IMaterialsListProps {
 }
 
 export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=> {
-    const navigation = useNavigation();
     const {t} = useTranslation();
     const globalStyles = useGlobalStyles();
 
@@ -22,7 +21,7 @@ export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=>
     const containerStyles = [globalStyles.container, isIos ? styles.containerIos : undefined];
     return (
         <View style={containerStyles}>
-            {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
+            {isIos && <BackNavHeader onBack={() => router.back()}/>}
             <FlatList
                 data={contentList}
                 keyExtractor={item => item.id.toString()}

@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {ActivityIndicator, ScrollView, StyleSheet, View, Image, Text, Platform} from "react-native";
 import {Markdown, type ImageRendererProps} from "react-native-nitro-markdown";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {router, useLocalSearchParams} from 'expo-router';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 
 import {MaterialKey} from "../i18n";
 import {useSettings} from "../contexts/SettingsContext";
-import {RootStackParamList} from "@/components/common/AppNavigator";
 import {loadMarkdownAsset} from "@/components/services/MarkdownLoader";
 import BackNavHeader from "@/components/common/BackNavHeader";
 import TextSizeControl from "@/components/common/TextSizeControl";
@@ -14,8 +13,6 @@ import {SERMONS_MATERIALS_LIST} from "@/components/screens/materials/SermonsRout
 import {useTranslation} from "react-i18next";
 import {RU_LANGUAGE} from "@/components/constatnts";
 import {useGlobalStyles, useThemePalette} from "@/components/styles/useThemedStyles";
-
-type Props = NativeStackScreenProps<RootStackParamList, 'MaterialScreen'>;
 
 type MaterialEntry = readonly [any, any];
 type MaterialMap = {
@@ -57,13 +54,15 @@ const imgSources: Record<string, any> = {
     'Tapchan_the_cat_my_friend': require('@/components/screens/materials/content/images/Tapchan_the_cat_best_friend.png'),
 };
 
-export default function MaterialScreen({route, navigation}: Props) {
-    const {materialKey, language} = route.params;
+export default function MaterialScreen() {
+    const {key} = useLocalSearchParams<{key: MaterialKey}>();
+    const materialKey = key as MaterialKey;
     const {t} = useTranslation();
     const globalStyles = useGlobalStyles();
     const palette = useThemePalette();
     const [content, setContent] = useState<string | null>(null);
     const {settings} = useSettings();
+    const language = settings.language;
     const [textSize, setTextSize] = useState(settings.fontSize);
 
     useEffect(() => {
@@ -98,7 +97,7 @@ export default function MaterialScreen({route, navigation}: Props) {
 
     return (
         <ScrollView style={containerStyles}>
-            <BackNavHeader onBack={() => navigation.goBack()}>
+            <BackNavHeader onBack={() => router.back()}>
                 <TextSizeControl onChange={setTextSize}/>
             </BackNavHeader>
             {isSermon &&

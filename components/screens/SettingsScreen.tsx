@@ -1,14 +1,13 @@
 import React from 'react';
 import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTranslation} from 'react-i18next';
+import {router} from 'expo-router';
 import {Picker} from "@react-native-picker/picker";
 
 import {useSettings} from '../contexts/SettingsContext';
 import {FONT_SIZE_DEFAULT} from '../styles/global';
 import {useGlobalStyles, useThemePalette} from '../styles/useThemedStyles';
 import {ThemePalette} from '../styles/theme';
-import {RootStackParamList} from '@/components/common/AppNavigator';
 import {SoundToggle} from "@/components/common/SoundToggle";
 import {ThemeToggle} from "@/components/common/ThemeToggle";
 import BackNavHeader from "@/components/common/BackNavHeader";
@@ -21,9 +20,7 @@ import {
 import {RecitationsAudioSource} from "@/components/storage/storage";
 import {TitleText} from "@/components/screens/about/TitleText";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'SettingsScreen'>;
-
-export default function SettingsScreen({ navigation }: Props) {
+export default function SettingsScreen() {
     const { settings, setSettings } = useSettings();
     const { t } = useTranslation();
     const globalStyles = useGlobalStyles();
@@ -60,7 +57,7 @@ export default function SettingsScreen({ navigation }: Props) {
 
     return (
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
-            {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
+            {isIos && <BackNavHeader onBack={() => router.back()}/>}
 
             <TitleText textAlign={'center'}>{t('SettingsScreen')}</TitleText>
 
