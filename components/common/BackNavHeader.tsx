@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from 'react';
 import {View, TouchableOpacity, StyleSheet, Platform} from 'react-native';
-import Ionicons from "@expo/vector-icons/Ionicons";
+import Ionicons from "@react-native-vector-icons/ionicons";
 import {useThemePalette} from '@/components/styles/useThemedStyles';
 
 interface ISizeAndBackNavHeader extends PropsWithChildren{

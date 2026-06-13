@@ -15,7 +15,6 @@
     "build-android-release": "cd android && ./gradlew app:bundleRelease"
   },
   "dependencies": {
-    "@expo/vector-icons": "^14.1.0",
     "@react-native-async-storage/async-storage": "2.1.2",
     "@react-native-picker/picker": "^2.11.1",
     "@react-native-vector-icons/fontawesome6": "^13.1.2",

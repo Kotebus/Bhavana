@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleProp, TouchableOpacity, ViewStyle} from 'react-native';
-import Octicons from '@expo/vector-icons/Octicons';
+import Octicons from '@react-native-vector-icons/octicons';
 import {useSettings} from '@/components/contexts/SettingsContext';
 
 interface IThemeToggleProps {

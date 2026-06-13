@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {ActivityIndicator, ScrollView, StyleSheet, View, Image, Text, Platform} from "react-native";
 import Markdown from "react-native-markdown-display";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 
 import {MaterialKey} from "../i18n";
 import {useSettings} from "../contexts/SettingsContext";
@@ -187,7 +187,7 @@ export default function MaterialScreen({route, navigation}: Props) {
                     {content}
                 </Markdown>
             <View style={styles.icon}>
-                <FontAwesome6 name="dharmachakra" size={24} color={palette.icon}/>
+                <FontAwesome6 name="dharmachakra" iconStyle="solid" size={24} color={palette.icon}/>
             </View>
         </ScrollView>
     );
