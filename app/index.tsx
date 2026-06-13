@@ -1,5 +1,10 @@
+import {NavigationContainer} from "@react-navigation/native";
 import {AppNavigator} from "@/components/common/AppNavigator";
 
 export default function Index() {
-    return <AppNavigator/>;
+    return (
+        <NavigationContainer>
+            <AppNavigator/>
+        </NavigationContainer>
+    );
 }
