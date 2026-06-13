@@ -46,8 +46,11 @@ export const darkTheme: ThemePalette = {
     subtleText: '#A0A0A0',
     border: '#333333',
     icon: '#FFFFFF',
-    buttonBg: '#FFFFFF',
-    buttonText: '#000000',
+    // Softer than pure white-on-dark, which felt aggressive. The button
+    // sits one tonal step above the background/surface so it still reads
+    // as a tappable surface without overpowering the screen.
+    buttonBg: '#2A2A2A',
+    buttonText: '#EDEDED',
     controlBg: '#2A2A2A',
     controlText: '#EDEDED',
     navContentBg: '#121212',
