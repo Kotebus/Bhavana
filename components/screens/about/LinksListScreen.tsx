@@ -1,6 +1,6 @@
 import React from "react";
 import {ScrollView, Platform} from "react-native";
-import {globalStyles} from "@/components/styles/global";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/components/common/AppNavigator";
 import BackNavHeader from "@/components/common/BackNavHeader";
@@ -40,6 +40,7 @@ const linksData: IUrlText[] = [
 
 export default function LinksListScreen({ navigation }: Props) {
     const isIos = Platform.OS === 'ios';
+    const globalStyles = useGlobalStyles();
     return (
         <ScrollView contentContainerStyle={[globalStyles.scrollContainer, {paddingVertical: 40}]}>
             {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}

@@ -6,9 +6,9 @@ Update protocol: after finishing each step, tick its checkbox here,
 write the commit hash + ISO date, then commit both code and this file together.
 
 ## Current State
-- **Last completed step**: Step 12 — Sweep: replace hardcoded color literals
+- **Last completed step**: Step 13 — Code review + fixes (Opus 4.7)
 - **Last commit**: <this commit>
-- **Next step**: Step 13 — Code review + fixes (Opus 4.7)
+- **Next step**: Step 14 — Manual verification
 - **Model policy (user instruction, 2026-06-13)**: Do not use models below Sonnet 4.6. Steps 11–14 use Sonnet 4.6 or Opus 4.7 (no Haiku).
 - **Blockers / deviations**:
   - Pre-existing TS errors in `MaterialScreen.tsx` (line 126, `textgroup` on ASTNode[]) and `MarkdownLoader.ts` (missing `expo-asset` types). Not introduced by this work; will be addressed only if blocking later steps.
@@ -28,7 +28,7 @@ write the commit hash + ISO date, then commit both code and this file together.
 - [x] Step 10 — Sweep: convert screens/components to useGlobalStyles
 - [x] Step 11 — MaterialScreen: theme markdown styles + icon
 - [x] Step 12 — Sweep: replace hardcoded color literals
-- [ ] Step 13 — Code review + fixes (Opus 4.7)
+- [x] Step 13 — Code review + fixes (Opus 4.7)
 - [ ] Step 14 — Manual verification
 
 ## Step Log
@@ -101,6 +101,11 @@ write the commit hash + ISO date, then commit both code and this file together.
 - Notes: Added `useThemePalette()` to MaterialScreen. Markdown `style` prop now sets `body.color`, `heading1-6.color`, `hr.backgroundColor`, `blockquote.{backgroundColor,borderLeftColor}`, `code_inline`/`code_block`/`fence.{backgroundColor,color}`. The custom `text` rule's inline style now applies `palette.markdownText`. Teacher-name `Text` got `color: palette.text`. `<FontAwesome6 name="dharmachakra" color="black"/>` is now `palette.icon`.
 
 ### Step 12 — Sweep: replace hardcoded color literals
-- Commit: <this commit>
+- Commit: 759705e
 - Date: 2026-06-13
 - Notes: Sonnet sub-agent processed 4 files (BackNavHeader, TimePicker, TextSizeControl, MeditationScreen). Local `StyleSheet.create` blocks in TimePicker / TextSizeControl / MeditationScreen converted to `makeStyles(palette)` + `useMemo`. About sub-screens had no literals (they use globalStyles only). **Follow-up applied inline**: MeditationScreen's `timer` Text had no explicit color (default platform black) — added `color: p.text` so it stays legible in dark mode. The sub-agent missed it because there was no literal to replace.
+
+### Step 13 — Code review + fixes (Opus 4.7)
+- Commit: <this commit>
+- Date: 2026-06-13
+- Notes: Opus sub-agent ran the second-opinion review across the full 13-commit diff. Found and fixed: `LinksList.tsx` (#ccc border), `ContactInfo.tsx` (#ccc border, #888 separator, label had no text color), `LinksListScreen.tsx` (still importing legacy static `globalStyles`), and four `<Text>` elements without explicit color (`LanguageToggle`, `TitleText`, `SimpleText`, `CitationText`). Also tightened `ThemeToggle` to read icon color from `palette.icon` instead of the hardcoded `"black"`/`"white"` (functionally equivalent with current palette values but cleaner). Verified §4 (migration), §5 (optional field), §6 (Octicons), §7 (lotus assets), §8 (navigator), §9 (markdown styles), §10 (Settings row + memo), §11 (every `makeStyles` wrapped in `useMemo`), §12 (no missing deps), §13 (i18n keys). TS still shows only the two pre-existing errors.

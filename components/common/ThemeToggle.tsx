@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleProp, TouchableOpacity, ViewStyle} from 'react-native';
 import Octicons from '@expo/vector-icons/Octicons';
 import {useSettings} from '@/components/contexts/SettingsContext';
+import {useThemePalette} from '@/components/styles/useThemedStyles';
 
 interface IThemeToggleProps {
     style?: StyleProp<ViewStyle>;
@@ -13,6 +14,7 @@ interface IThemeToggleProps {
 // Using Octicons for both keeps the visual family consistent.
 export const ThemeToggle = ({style, size = 24}: IThemeToggleProps) => {
     const {theme, toggleTheme} = useSettings();
+    const palette = useThemePalette();
     return (
         <TouchableOpacity
             onPress={toggleTheme}
@@ -21,8 +23,8 @@ export const ThemeToggle = ({style, size = 24}: IThemeToggleProps) => {
             accessibilityLabel="Toggle theme"
         >
             {theme === 'light'
-                ? <Octicons name="sun" size={size} color="black"/>
-                : <Octicons name="moon" size={size} color="white"/>}
+                ? <Octicons name="sun" size={size} color={palette.icon}/>
+                : <Octicons name="moon" size={size} color={palette.icon}/>}
         </TouchableOpacity>
     );
 };
