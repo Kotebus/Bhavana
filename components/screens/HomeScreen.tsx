@@ -34,7 +34,7 @@ export default function HomeScreen({ navigation }: Props) {
         <ScrollView contentContainerStyle={globalStyles.contentContainerStyle}>
             {/* Верхняя панель с иконками */}
             <View style={styles.topBar}>
-                <ThemeToggle style={globalStyles.iconButton} size={28}/>
+                <ThemeToggle style={globalStyles.iconButton} size={24}/>
 
                 <TouchableOpacity onPress={toggleSound} style={globalStyles.iconButton}>
                     <Ionicons
