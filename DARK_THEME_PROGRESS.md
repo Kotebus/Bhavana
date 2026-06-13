@@ -6,9 +6,9 @@ Update protocol: after finishing each step, tick its checkbox here,
 write the commit hash + ISO date, then commit both code and this file together.
 
 ## Current State
-- **Last completed step**: Step 4 — ThemeToggle component
+- **Last completed step**: Step 5 — i18n key for "Theme"
 - **Last commit**: <this commit>
-- **Next step**: Step 5 — i18n key for "Theme"
+- **Next step**: Step 6 — LotusAnimated: image swap by theme
 - **Blockers / deviations**:
   - Pre-existing TS errors in `MaterialScreen.tsx` (line 126, `textgroup` on ASTNode[]) and `MarkdownLoader.ts` (missing `expo-asset` types). Not introduced by this work; will be addressed only if blocking later steps.
   - **Step 2 deviation**: hooks `useGlobalStyles` and `useThemePalette` moved out of `global.ts` into a new file `components/styles/useThemedStyles.ts`. Reason: `global.ts` is imported by `SettingsContext.tsx` (for `FONT_SIZE_DEFAULT`), so importing `useSettings` back into `global.ts` would create a circular import (`global` → `SettingsContext` → `storage` → `theme`, and back via `FONT_SIZE_DEFAULT`) — Metro/CommonJS would return undefined for `FONT_SIZE_DEFAULT` at the moment `DEFAULT_SETTINGS` is initialized. Subsequent steps must import hooks from `@/components/styles/useThemedStyles` (not `global`).
@@ -19,7 +19,7 @@ write the commit hash + ISO date, then commit both code and this file together.
 - [x] Step 2  — Refactor global styles to factory + hooks
 - [x] Step 3  — SettingsContext: system detection, migration, toggleTheme
 - [x] Step 4  — ThemeToggle component
-- [ ] Step 5  — i18n key for "Theme"
+- [x] Step 5  — i18n key for "Theme"
 - [ ] Step 6  — LotusAnimated: image swap by theme
 - [ ] Step 7  — HomeScreen: integrate ThemeToggle
 - [ ] Step 8  — SettingsScreen: integrate ThemeToggle + theme local styles
@@ -59,6 +59,11 @@ write the commit hash + ISO date, then commit both code and this file together.
 - Notes: Provider now reads `Appearance.getColorScheme()` once at startup, exposes `theme` and `toggleTheme` on the context, and migrates previously-persisted settings without a `theme` field by stamping the current system value. Also simplified `useThemedStyles` to read `theme` directly from the context (no fallback needed).
 
 ### Step 4 — ThemeToggle component
-- Commit: <this commit>
+- Commit: 24f392c
 - Date: 2026-06-13
 - Notes: **Deviation from spec**: the task example used `AntDesign name="sun"`, but @expo/vector-icons@14.1.0 does not include `sun` in the AntDesign glyph set (verified against `AntDesign.json`). Used `Octicons name="sun"` instead — same family as the dark-theme `Octicons name="moon"`, keeps the icon style consistent. Easy one-line change if a different family is preferred.
+
+### Step 5 — i18n key for "Theme"
+- Commit: <this commit>
+- Date: 2026-06-13
+- Notes: Added `Theme` label key to both EN ('Theme') and RU ('Тема') translations. Placed next to `Sound`/`Language` keys for consistency.
