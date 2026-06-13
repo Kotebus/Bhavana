@@ -2,19 +2,17 @@ import React from 'react';
 import {StyleProp, TouchableOpacity, ViewStyle} from 'react-native';
 import Octicons from '@expo/vector-icons/Octicons';
 import {useSettings} from '@/components/contexts/SettingsContext';
-import {useThemePalette} from '@/components/styles/useThemedStyles';
 
 interface IThemeToggleProps {
     style?: StyleProp<ViewStyle>;
     size?: number;
 }
 
-// The original spec asked for AntDesign "sun" + Octicons "moon",
-// but @expo/vector-icons@14.1.0 has no "sun" glyph in AntDesign.
-// Using Octicons for both keeps the visual family consistent.
+// Icon colors are inverted relative to the theme background so they stay
+// visible: black sun on the light background, white moon on the dark one.
+// Hardcoded literals match the original spec exactly.
 export const ThemeToggle = ({style, size = 24}: IThemeToggleProps) => {
     const {theme, toggleTheme} = useSettings();
-    const palette = useThemePalette();
     return (
         <TouchableOpacity
             onPress={toggleTheme}
@@ -23,8 +21,8 @@ export const ThemeToggle = ({style, size = 24}: IThemeToggleProps) => {
             accessibilityLabel="Toggle theme"
         >
             {theme === 'light'
-                ? <Octicons name="sun" size={size} color={palette.icon}/>
-                : <Octicons name="moon" size={size} color={palette.icon}/>}
+                ? <Octicons name="sun" size={size} color="black"/>
+                : <Octicons name="moon" size={size} color="white"/>}
         </TouchableOpacity>
     );
 };
