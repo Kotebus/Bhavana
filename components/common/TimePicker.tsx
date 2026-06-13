@@ -91,7 +91,7 @@ const makeStyles = (p: ThemePalette) => StyleSheet.create({
     containerAndroid: {
         borderStyle: 'solid',
         borderWidth: 2,
-        borderColor: p.border,
+        borderColor: p.pickerBorder,
         borderRadius: 8,
         backgroundColor: p.surface,
         color: p.text,

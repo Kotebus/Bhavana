@@ -17,6 +17,7 @@ export interface ThemePalette {
     markdownText: string;
     markdownHeading: string;
     pickerSelection: string;
+    pickerBorder: string;
 }
 
 export const lightTheme: ThemePalette = {
@@ -36,6 +37,7 @@ export const lightTheme: ThemePalette = {
     markdownText: '#000000',
     markdownHeading: '#000000',
     pickerSelection: 'lightgrey',
+    pickerBorder: '#000000',
 };
 
 export const darkTheme: ThemePalette = {
@@ -58,6 +60,7 @@ export const darkTheme: ThemePalette = {
     markdownText: '#EDEDED',
     markdownHeading: '#FFFFFF',
     pickerSelection: '#333333',
+    pickerBorder: '#333333',
 };
 
 export const palettes: Record<Theme, ThemePalette> = {
