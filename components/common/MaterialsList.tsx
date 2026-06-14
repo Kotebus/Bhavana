@@ -23,6 +23,7 @@ export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=>
         <View style={containerStyles}>
             {isIos && <BackNavHeader onBack={() => router.back()}/>}
             <FlatList
+                style={isIos ? styles.listIos : undefined}
                 data={contentList}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => (
@@ -38,6 +39,12 @@ export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=>
 const styles = StyleSheet.create({
     containerIos: {
         paddingBottom: 32
+    },
+    // The first NavButton ships with marginTop: 30 from globalStyles.button,
+    // which on iOS leaves an oversized gap under BackNavHeader. Pull the list
+    // up so the first item sits closer to the back arrow.
+    listIos: {
+        marginTop: -20,
     },
     button: {
         width: '90%',
