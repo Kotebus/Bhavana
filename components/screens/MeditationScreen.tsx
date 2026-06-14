@@ -157,7 +157,7 @@ const makeStyles = (p: ThemePalette) => StyleSheet.create({
         alignItems: 'center',
     },
     image: { width: '60%', height: '35%', top: '20%', position: 'absolute' },
-    timer: { fontSize: 40, fontWeight: 'bold', alignSelf: 'center',  fontVariant: ['tabular-nums'], color: p.text},
+    timer: { fontSize: 40, fontWeight: 'bold', alignSelf: 'center',  fontVariant: ['tabular-nums'], color: p.subtleText},
     goal: { fontSize: FONT_SIZE_HEADER, color: p.subtleText, marginTop: 8, alignSelf: 'center', marginBottom: '-20%' },
     button: { bottom: '15%', position: 'absolute' },
 });
