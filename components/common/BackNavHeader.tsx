@@ -1,6 +1,7 @@
 import React, {PropsWithChildren} from 'react';
 import {View, TouchableOpacity, StyleSheet, Platform} from 'react-native';
 import Ionicons from "@react-native-vector-icons/ionicons";
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useThemePalette} from '@/components/styles/useThemedStyles';
 
 interface ISizeAndBackNavHeader extends PropsWithChildren{
@@ -9,10 +10,15 @@ interface ISizeAndBackNavHeader extends PropsWithChildren{
 
 export default function BackNavHeader({onBack, children}: ISizeAndBackNavHeader) {
     const palette = useThemePalette();
+    const insets = useSafeAreaInsets();
     const isIos = Platform.OS === 'ios';
+    // On iOS the screen extends behind the status bar / notch / Dynamic Island,
+    // so push the back-arrow row down by the real safe-area top inset (a
+    // hard-coded 15 dropped the arrow into the unreachable notch area on
+    // modern iPhones).
     const containerStyles = [
         styles.container,
-        isIos ? styles.containerIos : undefined,
+        isIos ? {marginTop: insets.top} : undefined,
     ];
     return (
         <View style={containerStyles}>
@@ -33,9 +39,6 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         position: 'relative',
         marginBottom: 10,
-    },
-    containerIos: {
-        marginTop: 15,
     },
     backButton: {
         position: 'absolute',
