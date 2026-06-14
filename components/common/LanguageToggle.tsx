@@ -1,4 +1,4 @@
-import {FONT_SIZE_HEADER} from "@/components/styles/global";
+import {FONT_SIZE_HEADER, ICON_HIT_SLOP} from "@/components/styles/global";
 import {Text, TouchableOpacity} from "react-native";
 import React from "react";
 import {useSettings} from "@/components/contexts/SettingsContext";
@@ -12,7 +12,7 @@ export const LanguageToggle = ({style} : { style?: StyleProp<ViewStyle>;}) => {
     const palette = useThemePalette();
 
     return (
-        <TouchableOpacity onPress={toggleLanguage} style={style} hitSlop={10}>
+        <TouchableOpacity onPress={toggleLanguage} style={style} hitSlop={ICON_HIT_SLOP}>
             <Text style={{fontSize: FONT_SIZE_HEADER, color: palette.text}}>
                 {settings.language === RU_LANGUAGE ? '🇷🇺' : '🇺🇸'}
             </Text>

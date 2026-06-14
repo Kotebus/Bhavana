@@ -3,6 +3,7 @@ import {StyleProp, TouchableOpacity, ViewStyle} from 'react-native';
 import Octicons from '@react-native-vector-icons/octicons';
 import {useSettings} from '@/components/contexts/SettingsContext';
 import {useThemePalette} from '@/components/styles/useThemedStyles';
+import {ICON_HIT_SLOP} from '@/components/styles/global';
 
 interface IThemeToggleProps {
     style?: StyleProp<ViewStyle>;
@@ -16,7 +17,7 @@ export const ThemeToggle = ({style, size = 24}: IThemeToggleProps) => {
         <TouchableOpacity
             onPress={toggleTheme}
             style={style}
-            hitSlop={10}
+            hitSlop={ICON_HIT_SLOP}
             accessibilityRole="button"
             accessibilityLabel="Toggle theme"
         >

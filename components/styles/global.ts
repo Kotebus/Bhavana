@@ -4,6 +4,11 @@ import {lightTheme, ThemePalette} from './theme';
 export const FONT_SIZE_DEFAULT = 16;
 export const FONT_SIZE_HEADER = 24;
 
+// Touch target padding around icon-only toggles. Brings the effective
+// hit area closer to the 48dp Material / HIG recommendation without
+// changing the layout.
+export const ICON_HIT_SLOP = 10;
+
 export const createGlobalStyles = (p: ThemePalette) =>
     StyleSheet.create({
         container: {
