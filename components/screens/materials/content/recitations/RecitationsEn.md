@@ -1,5 +1,5 @@
 ## __Namasakāras__
-&nbsp;
+
 >*Namo tassa **bhagavato** arahato **sammāsaṃbuddhassa***   
 *Namo tassa **bhagavato** arahato **sammāsaṃbuddhassa***   
 *Namo tassa **bhagavato** arahato **sammāsaṃbuddhassa***
@@ -7,15 +7,15 @@
 Homage to **the Blessed**, Worthy, **Fully Enlightened One**\
 Homage to **the Blessed**, Worthy, **Fully Enlightened One**\
 Homage to **the Blessed**, Worthy, **Fully Enlightened One**
-&nbsp;
+
 ___
-&nbsp;
+
 ## __Remembrance of the Qualities of the Three Jewels__
 
-&nbsp;
+
 ### ***Qualities of the Buddha***
 
-&nbsp;
+
 > *Itipi so **bhagavā** arahaṃ **sammāsambuddho***
 >
 Truly the **Blessed One**, the Worthy One, **fully awakened**
@@ -36,9 +36,9 @@ Endowed with knowledge and conduct, **rightly gone**, knower of the worlds
 >***Buddhaṃ** jīvitaṃ yāva-nibbānaṃ **saraṇaṃ gacchāmi**.*  
 
 To **the Buddha** I go for **the refuge** for life until full cessation (nibbāna).
-&nbsp;
+
 ### ***Qualities of the Dhamma***
-&nbsp;
+
 > ***Svākkhāto** bhagavatā dhammo*  
 
 **Well-expounded** is the Dhamma by the Blessed One
@@ -54,9 +54,9 @@ Directly visible, **whose fruit is not delayed**, inviting one to come and see
 >***Dhammaṃ** jīvitaṃ yāva-nibbānaṃ **saraṇaṃ gacchāmi**.*  
 
 To **the Dhamma** I go for **the refuge** for life until full cessation (nibbāna).
-&nbsp;
+
 ### ***Qualities of the Saṅgha***
-&nbsp;
+
 >***Supaṭipanno** bhagavato sāvakasaṅgho* 
 
 **Practiced well** is the Saṅgha of the Blessed One’s disciples
@@ -92,11 +92,11 @@ The unsurpassed **field of merit** for the world
 >***Saṅghaṃ** jīvitaṃ yāva-nibbānaṃ **saraṇaṃ gacchāmi**.*  
 
 To **the Saṅgha** I go for **the refuge** for life until full cessation (nibbāna).
-&nbsp;
+
 ___
-&nbsp;
+
 ## __Expression of Veneration for the Relics__
-&nbsp;
+
 >*Vandāmi **cetiyaṃ** sabbaṃ sabbaṭṭhānesu patiṭṭhitaṃ*    
 
 I honor all **the shrines** (objects of worship associated with the Buddha) in all the places where they stand,
@@ -104,11 +104,11 @@ I honor all **the shrines** (objects of worship associated with the Buddha) in a
 >*Sārīrikadhātu **mahābodhiṃ** buddharūpaṃ sakalaṃ sadā*   
 
 The bodily relics, **the great Bodhi tree**, and all images of the Buddha, entirely and always
-&nbsp;
+
 ___
-&nbsp;
+
 ## __Paying homage to the Bodhi tree under which Buddha attained enlightenment__
-&nbsp;
+
 >*Yassamūle nisinnova – sabbārivijayaṃ akā*  
 
 Under whose root he sat and overcame all foes
@@ -124,11 +124,11 @@ These great Bodhi trees, honored by the Protector of the World (the Buddha)
 >*Ahampi te namassāmi \- bodhirājā namatthu te*  
 
 I also venerate you; may there be homage to the King of Trees!
-&nbsp;
+
 ___
-&nbsp;
+
 ## __Confession of your Faults before the Three Jewels__
-&nbsp;
+
 >*Kāyena vācā cittena*   
 
 By body, speech, and mind
@@ -176,11 +176,11 @@ Forgive me for this misconduct, O **Saṅgha**
 >*supaṭipanna **anuttara***   
 
 Practiced well, **unsurpassed**.
-&nbsp;
+
 ___
-&nbsp;
+
 ## __Offering of Practice to the Three Jewels (after meditation)__
-&nbsp;
+
 >*Imāya dhammānudhammapaṭipattiyā **Buddhaṃ pūjemi**.*  
 
 By this practice in accordance with the Dhamma I honor the Buddha.
