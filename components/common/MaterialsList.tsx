@@ -23,11 +23,16 @@ export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=>
         <View style={containerStyles}>
             {isIos && <BackNavHeader onBack={() => router.back()}/>}
             <FlatList
-                style={isIos ? styles.listIos : undefined}
                 data={contentList}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({item}) => (
-                    <NavButton navigate={() => navigate(item.materialKey)} additionalButtonStyle={styles.button}>
+                renderItem={({item, index}) => (
+                    <NavButton
+                        navigate={() => navigate(item.materialKey)}
+                        additionalButtonStyle={[
+                            styles.button,
+                            isIos && index === 0 ? styles.firstButtonIos : undefined,
+                        ]}
+                    >
                         {t(item.materialKey)}
                     </NavButton>
                 )}
@@ -40,14 +45,15 @@ const styles = StyleSheet.create({
     containerIos: {
         paddingBottom: 32
     },
-    // The first NavButton ships with marginTop: 30 from globalStyles.button,
-    // which on iOS leaves an oversized gap under BackNavHeader. Pull the list
-    // up so the first item sits closer to the back arrow.
-    listIos: {
-        marginTop: -20,
-    },
     button: {
         width: '90%',
         paddingHorizontal: 5,
-    }
+    },
+    // globalStyles.button ships with marginTop: 30 which leaves an oversized
+    // gap under BackNavHeader for the first material. Tighten only the first
+    // row on iOS — pulling the whole list up with negative margin made list
+    // items render under BackNavHeader during scroll.
+    firstButtonIos: {
+        marginTop: 10,
+    },
 });
