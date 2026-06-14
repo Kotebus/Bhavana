@@ -12,11 +12,11 @@ export default function AboutProjectScreen() {
 
     return (
         <ScrollView contentContainerStyle={globalStyles.contentContainerStyle}>
-            <NavButton navigate={() => router.push('/about')}>{t('AboutScreen')}</NavButton>
-            <NavButton navigate={() => router.push('/about/teacher')}>{t('AboutTeacherScreen')}</NavButton>
-            <NavButton navigate={() => router.push('/about/sermons')}>{t('AboutSermonsScreen')}</NavButton>
-            <NavButton navigate={() => router.push('/about/monastery')}>{t('AboutMonasteryScreen')}</NavButton>
-            <NavButton navigate={() => router.push('/about/links')}>{t('LinksListScreen')}</NavButton>
+            <NavButton navigate={() => router.navigate('/about')}>{t('AboutScreen')}</NavButton>
+            <NavButton navigate={() => router.navigate('/about/teacher')}>{t('AboutTeacherScreen')}</NavButton>
+            <NavButton navigate={() => router.navigate('/about/sermons')}>{t('AboutSermonsScreen')}</NavButton>
+            <NavButton navigate={() => router.navigate('/about/monastery')}>{t('AboutMonasteryScreen')}</NavButton>
+            <NavButton navigate={() => router.navigate('/about/links')}>{t('LinksListScreen')}</NavButton>
 
             {isIos && (<NavButton navigate={() => router.back()}>{t('Back')}</NavButton>)}
         </ScrollView>

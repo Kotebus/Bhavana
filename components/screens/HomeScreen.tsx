@@ -56,23 +56,23 @@ export default function HomeScreen() {
             }
 
             {/* Кнопка старт */}
-            <NavButton navigate={() => router.push({pathname: '/meditation', params: {h: settings.meditationTime.h, m: settings.meditationTime.m}})}>
+            <NavButton navigate={() => router.navigate({pathname: '/meditation', params: {h: settings.meditationTime.h, m: settings.meditationTime.m}})}>
                 {t('start')}
             </NavButton>
 
-            <NavButton navigate={() => router.push({pathname: '/materials', params: {type: 'sermons'}})}>
+            <NavButton navigate={() => router.navigate({pathname: '/materials', params: {type: 'sermons'}})}>
                 {t('StudyScreen')}
             </NavButton>
 
-            <NavButton navigate={() => router.push({pathname: '/materials', params: {type: 'recitations'}})}>
+            <NavButton navigate={() => router.navigate({pathname: '/materials', params: {type: 'recitations'}})}>
                 {t('Recitations')}
             </NavButton>
 
-            <NavButton navigate={() => router.push('/about-project')}>
+            <NavButton navigate={() => router.navigate('/about-project')}>
                 {t('AboutProjectScreen')}
             </NavButton>
 
-            <NavButton navigate={() => router.push('/settings')}>
+            <NavButton navigate={() => router.navigate('/settings')}>
                 {t('SettingsScreen')}
             </NavButton>
         </ScrollView>

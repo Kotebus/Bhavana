@@ -7,7 +7,7 @@ import {recitationsRoutingList, sermonsRoutingList} from "@/components/screens/m
 export default function MaterialsListScreen() {
     const {type} = useLocalSearchParams<{type?: 'sermons' | 'recitations'}>();
     const materialsList = type === 'recitations' ? recitationsRoutingList : sermonsRoutingList;
-    const navigate = (materialKey: MaterialKey) => router.push(`/material/${materialKey}`);
+    const navigate = (materialKey: MaterialKey) => router.navigate(`/material/${materialKey}`);
 
     return (
         <MaterialsList

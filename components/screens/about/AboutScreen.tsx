@@ -139,7 +139,7 @@ export default function AboutScreen() {
     const globalStyles = useGlobalStyles();
 
     const navigateToSermon = (materialKey: MaterialKey) =>
-        router.push(`/material/${materialKey}`);
+        router.navigate(`/material/${materialKey}`);
 
     return (
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>
