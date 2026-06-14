@@ -1,3 +1,4 @@
+import React, {PropsWithChildren} from "react";
 import {SettingsProvider} from "@/components/contexts/SettingsContext";
 import {I18nextProvider, useTranslation} from "react-i18next";
 import i18n from "i18next";
@@ -37,27 +38,34 @@ const RootStack = () => {
     );
 };
 
+// Paints the area behind the system bars (status + nav) with palette.background
+// on Android, so we don't see the default white Activity window peek through.
+// On iOS no wrapper is needed — the parent UIWindow already shows our content.
+const ThemedShell = ({children}: PropsWithChildren) => {
+    const palette = useThemePalette();
+    if (Platform.OS !== 'android') return <>{children}</>;
+    return (
+        <SafeAreaView style={{flex: 1, backgroundColor: palette.background}}>
+            {children}
+        </SafeAreaView>
+    );
+};
+
 const AppContainer = () => {
     return (
         <AudioProvider>
             <SettingsProvider>
                 <I18nextProvider i18n={i18n}>
-                    <StatusBar hidden/>
-                    <RootStack/>
+                    <ThemedShell>
+                        <StatusBar hidden/>
+                        <RootStack/>
+                    </ThemedShell>
                 </I18nextProvider>
             </SettingsProvider>
         </AudioProvider>
     );
-}
+};
 
 export default function RootLayout() {
-    const isIos = Platform.OS === 'ios';
-
-    if (isIos) return (<AppContainer />);
-
-    return (
-        <SafeAreaView style={{flex: 1}}>
-            <AppContainer />
-        </SafeAreaView>
-    );
+    return <AppContainer/>;
 }
