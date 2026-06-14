@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, useRef} from "react";
+import React, {PropsWithChildren, useState} from "react";
 import {Text, TouchableOpacity} from "react-native";
 import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import {StyleProp} from "react-native/Libraries/StyleSheet/StyleSheet";
@@ -9,25 +9,37 @@ interface INavButtonProps extends PropsWithChildren {
     additionalButtonStyle?: StyleProp<ViewStyle>;
 }
 
-// Window in which a second tap is treated as the same intent and ignored.
-// Generous enough to cover the stack push animation (150ms) + a bit of slack.
-const REPEAT_PRESS_GUARD_MS = 500;
+// Module-scoped lock shared across every NavButton instance. Once any one
+// of them fires navigate(), every other press anywhere in the app is
+// ignored until the lock releases. Generous enough to cover the stack
+// push animation (150ms) plus a buffer for the screen to settle.
+const NAV_LOCK_MS = 500;
+let navLocked = false;
 
 export const NavButton = ({children, navigate, additionalButtonStyle}: INavButtonProps) => {
     const globalStyles = useGlobalStyles();
-    const lastPressRef = useRef(0);
+    const [, forceRerender] = useState(0);
 
     const handlePress = () => {
-        const now = Date.now();
-        if (now - lastPressRef.current < REPEAT_PRESS_GUARD_MS) return;
-        lastPressRef.current = now;
-        navigate();
+        if (navLocked) return;
+        navLocked = true;
+        // Visually disable the button while the lock is held.
+        forceRerender(n => n + 1);
+        try {
+            navigate();
+        } finally {
+            setTimeout(() => {
+                navLocked = false;
+                forceRerender(n => n + 1);
+            }, NAV_LOCK_MS);
+        }
     };
 
     return (
         <TouchableOpacity
             style={[globalStyles.button, additionalButtonStyle]}
             onPress={handlePress}
+            disabled={navLocked}
         >
             <Text style={globalStyles.buttonText}>
                 {children}
