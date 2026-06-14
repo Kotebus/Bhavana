@@ -20,7 +20,7 @@ const RootStack = () => {
                 headerStyle: {backgroundColor: palette.navContentBg},
                 headerTintColor: palette.headerTint,
                 animation: 'ios_from_right',
-                animationDuration: 220,
+                animationDuration: 180,
             }}>
             <Stack.Screen name="index" options={{headerShown: false}}/>
             <Stack.Screen name="meditation" options={{headerShown: false}}/>
