@@ -1,10 +1,10 @@
-import React, {PropsWithChildren} from "react";
+import React, {PropsWithChildren, useEffect} from "react";
 import {SettingsProvider} from "@/components/contexts/SettingsContext";
 import {I18nextProvider, useTranslation} from "react-i18next";
 import i18n from "i18next";
 import {AudioProvider} from "@/components/contexts/AudioContext";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {Platform} from "react-native";
+import {AppState, Platform} from "react-native";
 import {Stack} from "expo-router";
 import {SystemBars} from "react-native-edge-to-edge";
 import {useThemePalette} from "@/components/styles/useThemedStyles";
@@ -45,6 +45,22 @@ const RootStack = () => {
 const ThemedShell = ({children}: PropsWithChildren) => {
     const palette = useThemePalette();
     const {theme} = useSettings();
+
+    // Android resets the status-bar-hidden flag on the activity window
+    // when the app returns to foreground from background. SystemBars only
+    // writes the flag once on mount, so the JS state and the actual window
+    // state drift apart. Re-push the hidden state on every 'active'
+    // transition to keep them in sync.
+    useEffect(() => {
+        if (Platform.OS !== 'android') return;
+        const sub = AppState.addEventListener('change', (state) => {
+            if (state === 'active') {
+                SystemBars.setHidden({statusBar: true, navigationBar: false});
+            }
+        });
+        return () => sub.remove();
+    }, []);
+
     if (Platform.OS !== 'android') return <>{children}</>;
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: palette.background}}>
