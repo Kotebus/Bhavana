@@ -95,6 +95,7 @@ export default function SettingsScreen() {
                         selectedValue={settings.recitationsAudioSource}
                         onValueChange={ChangeRecitationsSource}
                         style={isAndroid ? styles.pickerAndroid : undefined}
+                        itemStyle={isAndroid ? undefined : styles.pickerItemIos}
                         selectionColor={isAndroid ? palette.pickerSelection : undefined}
                     >
                         <Picker.Item
@@ -134,5 +135,8 @@ const makeStyles = (p: ThemePalette) => StyleSheet.create({
     pickerAndroid: {
         backgroundColor: p.surface,
         color: p.text,
-    }
+    },
+    pickerItemIos: {
+        color: p.text,
+    },
 });
