@@ -116,6 +116,21 @@ The application supports light and dark themes.
 Per-screen local stylesheets that depend on theme colors follow the same pattern: a `makeStyles(palette)` factory
 function plus `React.useMemo(() => makeStyles(palette), [palette])` inside the component.
 
+A few specialised palette tokens worth knowing:
+
+- `pickerSurface` / `pickerText` — shared by the Home time picker and the Settings reciter picker so they look
+  consistent (and brighter than the regular `surface` / `controlBg`). The dark-theme `pickerText` is intentionally
+  `#EDEDED`, not pure white — `#FFFFFF` on top of `pickerSurface` felt too aggressive.
+- `pickerBorder` — Android-only time picker container outline. Stays black on the light theme on purpose.
+- `link` — used by both the markdown engine and the inline links rendered through `useLinkTextStyles()`
+  (`components/common/TextWithLink.tsx`).
+- The meditation timer counter uses `subtleText` rather than `text` for a calmer presence; the dark lotus PNG is
+  recoloured to match that same `#A0A0A0`.
+
+> Note on Android pickers: when `mode='dropdown'` is open, the popup background is controlled by the device's OS theme
+> (light / dark), not by our props. `itemStyle` only colors the item rows inside that popup, not the popup chrome
+> itself. The trigger surface visible on our screen is themed normally.
+
 ## Localization
 
 Localization is implemented using `react-i18next`.
@@ -127,6 +142,18 @@ The app uses the modular [`@react-native-vector-icons`](https://github.com/react
 packages (`@react-native-vector-icons/ionicons`, `@react-native-vector-icons/octicons`,
 `@react-native-vector-icons/fontawesome6`). These integrate with `expo-font` directly and avoid the broken legacy
 `expo-asset → AppDirectories` chain that affected `@expo/vector-icons` on this project's setup.
+
+## Stack navigation
+
+`app/_layout.tsx` renders a single themed `<Stack/>` from `expo-router`. Global `screenOptions` pin:
+
+- `animation: 'ios_from_right'` — iOS-style slide with parallax on both platforms; on Android it also enables the
+  left-edge swipe-back gesture.
+- `animationDuration: 150` — snappy. Tune in `RootStack`'s `screenOptions` if you want a different feel.
+
+`@react-navigation/native` and `@react-navigation/native-stack` are **not** direct dependencies. The former still
+arrives transitively via `expo-router` (and is sufficient for that internal use). Don't `npm install` them — under
+SDK 56 `expo-doctor` flags any direct dep on `@react-navigation/*` as incompatible with `expo-router`.
 
 ## Screens routing
 
@@ -171,11 +198,22 @@ the beginning of the page.
 # Release new version
 
 ### Versioning
-First you need to up version in version `app.json` and `package.json`. This version should match the new version in
+First you need to up `version` in `app.json` and `package.json`. This version should match the new version in
 appstoreconnect.
 
-For example: `"version": "1.2.0"` (`app.json` and `package.json`) and `iOS App Version 1.1.0 - Waiting for review` (in
+For example: `"version": "2.0.0"` (`app.json` and `package.json`) and `iOS App Version 2.0.0 - Waiting for review` (in
 appstoreconnect).
+
+`versionCode` for Android is **managed remotely by EAS** (`eas.json` has `cli.appVersionSource: "remote"` plus
+`build.production.autoIncrement: true`), so it auto-increments on every production build. To re-align with Play
+Store after the EAS counter drifts:
+
+```shell
+eas build:version:get -p android         # current EAS counter
+eas build:version:set -p android         # interactive set; type the last Play Console versionCode here
+```
+
+The next production build will then publish that value + 1.
 
 ## Scripts
 
@@ -249,3 +287,9 @@ glyph to render as empty.
 
 This used to appear under the old setup that mixed `@react-navigation/native-stack` with `expo-router`. The project
 now uses `expo-router`'s file-based routing exclusively — see [Screens routing](#screens-routing).
+
+### EAS Build fails on `npm ci` with TypeScript peer-dep ERESOLVE
+
+Expected — that's what `.npmrc` (`legacy-peer-deps=true`) at the project root is for. Several transitive
+`peerOptional` ranges across Expo SDK 56 and `react-i18next@^15.6.1` don't fully agree on TypeScript 5 vs 6. The
+`.npmrc` flag mirrors how we install locally; without it, `expo doctor` and the EAS install step both fail.
