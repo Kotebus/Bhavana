@@ -93,8 +93,8 @@ const makeStyles = (p: ThemePalette) => StyleSheet.create({
         borderWidth: 2,
         borderColor: p.pickerBorder,
         borderRadius: 8,
-        backgroundColor: p.surface,
-        color: p.text,
+        backgroundColor: p.pickerSurface,
+        color: p.pickerText,
         overflow: 'hidden',
     },
 
@@ -102,8 +102,8 @@ const makeStyles = (p: ThemePalette) => StyleSheet.create({
         flex: 1,
     },
     pickerAndroid: {
-        backgroundColor: p.surface,
-        color: p.text,
+        backgroundColor: p.pickerSurface,
+        color: p.pickerText,
     },
 
     sepCommon: {
@@ -111,18 +111,18 @@ const makeStyles = (p: ThemePalette) => StyleSheet.create({
         paddingBottom: 6,
         position: 'absolute',
         marginLeft: -2,
-        color: p.text,
+        color: p.pickerText,
     },
     sepAndroid: {
         marginHorizontal: 8,
     },
 
     itemAndroid: {
-        color: p.text,
-        backgroundColor: p.controlBg,
+        color: p.pickerText,
+        backgroundColor: p.pickerSurface,
     },
     itemIos: {
-        color: p.text,
+        color: p.pickerText,
     },
 });
 

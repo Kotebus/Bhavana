@@ -18,6 +18,8 @@ export interface ThemePalette {
     markdownHeading: string;
     pickerSelection: string;
     pickerBorder: string;
+    pickerSurface: string;
+    pickerText: string;
     link: string;
 }
 
@@ -39,6 +41,8 @@ export const lightTheme: ThemePalette = {
     markdownHeading: '#000000',
     pickerSelection: 'lightgrey',
     pickerBorder: '#000000',
+    pickerSurface: '#EEEEEE',
+    pickerText: '#000000',
     link: '#2563EB',
 };
 
@@ -63,6 +67,11 @@ export const darkTheme: ThemePalette = {
     markdownHeading: '#FFFFFF',
     pickerSelection: '#333333',
     pickerBorder: '#333333',
+    // Brighter than the regular controlBg (#2A2A2A) so the picker visibly
+    // sits on top of the page; paired with pure white text for high
+    // contrast against the wheel digits.
+    pickerSurface: '#3A3A3A',
+    pickerText: '#FFFFFF',
     // Lighter blue than the default #2563EB so it's readable against the
     // #121212 background without being a tiny dim glyph.
     link: '#60A5FA',

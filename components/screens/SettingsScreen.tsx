@@ -133,10 +133,10 @@ const makeStyles = (p: ThemePalette) => StyleSheet.create({
         marginTop: 2,
     },
     pickerAndroid: {
-        backgroundColor: p.surface,
-        color: p.text,
+        backgroundColor: p.pickerSurface,
+        color: p.pickerText,
     },
     pickerItemIos: {
-        color: p.text,
+        color: p.pickerText,
     },
 });
