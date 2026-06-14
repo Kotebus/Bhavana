@@ -24,7 +24,8 @@ export const createGlobalStyles = (p: ThemePalette) =>
             backgroundColor: p.background,
         },
         scrollContainerIos: {
-            padding: 16,
+            paddingHorizontal: 16,
+            paddingBottom: 16,
             backgroundColor: p.background,
         },
         contentContainerStyle: {
