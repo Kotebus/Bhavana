@@ -3,11 +3,12 @@ import {SettingsProvider} from "@/components/contexts/SettingsContext";
 import {I18nextProvider, useTranslation} from "react-i18next";
 import i18n from "i18next";
 import {AudioProvider} from "@/components/contexts/AudioContext";
-import {StatusBar} from "expo-status-bar";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {Platform} from "react-native";
 import {Stack} from "expo-router";
+import {SystemBars} from "react-native-edge-to-edge";
 import {useThemePalette} from "@/components/styles/useThemedStyles";
+import {useSettings} from "@/components/contexts/SettingsContext";
 
 const RootStack = () => {
     const palette = useThemePalette();
@@ -43,9 +44,15 @@ const RootStack = () => {
 // On iOS no wrapper is needed — the parent UIWindow already shows our content.
 const ThemedShell = ({children}: PropsWithChildren) => {
     const palette = useThemePalette();
+    const {theme} = useSettings();
     if (Platform.OS !== 'android') return <>{children}</>;
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: palette.background}}>
+            {/* SystemBars from react-native-edge-to-edge keeps both bars fully
+                transparent (so palette.background shows through) and only
+                controls the icon tint. Status bar icons match the theme:
+                dark icons in light theme, light icons in dark theme. */}
+            <SystemBars style={theme === 'dark' ? 'light' : 'dark'} hidden={{statusBar: true, navigationBar: false}}/>
             {children}
         </SafeAreaView>
     );
@@ -57,7 +64,6 @@ const AppContainer = () => {
             <SettingsProvider>
                 <I18nextProvider i18n={i18n}>
                     <ThemedShell>
-                        <StatusBar hidden/>
                         <RootStack/>
                     </ThemedShell>
                 </I18nextProvider>

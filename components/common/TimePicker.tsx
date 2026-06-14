@@ -27,7 +27,7 @@ const SinglePicker = ({value, onChange, length, label}: ISinglePickerProps) => {
                     style={pickerStyles}
                     selectedValue={value}
                     onValueChange={onChange}
-                    itemStyle={isAndroid ? styles.itemAndroid : styles.itemIos}
+                    itemStyle={isAndroid ? undefined : styles.itemIos}
                 >
                     {Array.from({ length: length }).map((_, i) => (
                         <Picker.Item key={i} label={`${i} ${label}`} value={i} />
@@ -117,10 +117,6 @@ const makeStyles = (p: ThemePalette) => StyleSheet.create({
         marginHorizontal: 8,
     },
 
-    itemAndroid: {
-        color: p.pickerText,
-        backgroundColor: p.pickerSurface,
-    },
     itemIos: {
         color: p.pickerText,
     },
