@@ -68,10 +68,10 @@ export const darkTheme: ThemePalette = {
     pickerSelection: '#333333',
     pickerBorder: '#333333',
     // Brighter than the regular controlBg (#2A2A2A) so the picker visibly
-    // sits on top of the page; paired with pure white text for high
-    // contrast against the wheel digits.
+    // sits on top of the page. Text matches the regular dark-theme text
+    // tone (#EDEDED) — pure white felt too aggressive against #3A3A3A.
     pickerSurface: '#3A3A3A',
-    pickerText: '#FFFFFF',
+    pickerText: '#EDEDED',
     // Lighter blue than the default #2563EB so it's readable against the
     // #121212 background without being a tiny dim glyph.
     link: '#60A5FA',
