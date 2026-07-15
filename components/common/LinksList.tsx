@@ -1,6 +1,8 @@
 import React, {useCallback} from "react";
 import {Linking, TouchableOpacity, StyleSheet, Text, View} from "react-native";
 import {useSettings} from "@/components/contexts/SettingsContext";
+import {useThemePalette} from "@/components/styles/useThemedStyles";
+import {ThemePalette} from "@/components/styles/theme";
 
 interface IOpenURLButtonProps {
     url: string;
@@ -10,6 +12,8 @@ interface IOpenURLButtonProps {
 
 const OpenURLButton = ({url, deepLink, children}: IOpenURLButtonProps) => {
     const { settings } = useSettings();
+    const palette = useThemePalette();
+    const styles = React.useMemo(() => makeStyles(palette), [palette]);
 
     const handlePress = useCallback(async () => {
         if (deepLink) {
@@ -45,6 +49,8 @@ export interface IUrlText {
 }
 
 export const LinksList = ({ data }: {data: IUrlText[]})=> {
+    const palette = useThemePalette();
+    const styles = React.useMemo(() => makeStyles(palette), [palette]);
     return (
             <View style={styles.container}>
                 {data.map((item, index) => (<OpenURLButton key={index} url={item.url}>{item.text}</OpenURLButton>))}
@@ -52,13 +58,13 @@ export const LinksList = ({ data }: {data: IUrlText[]})=> {
     );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (p: ThemePalette) => StyleSheet.create({
     container: {
         width: '100%',
     },
     linkButton: {
         paddingVertical: 10,
         borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
+        borderBottomColor: p.border,
     },
 });

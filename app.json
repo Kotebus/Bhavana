@@ -2,11 +2,10 @@
   "expo": {
     "name": "Bhavana - Art of The Mind",
     "slug": "bhavana",
-    "version": "1.4.1",
+    "version": "2.0.0",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "bhavana",
-    "newArchEnabled": true,
     "githubUrl": "https://github.com/Kotebus/Bhavana",
     "ios": {
       "supportsTablet": true,
@@ -20,7 +19,6 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
       "package": "com.kotebus.bhavana"
     },
     "web": {
@@ -40,7 +38,9 @@
         }
       ],
       "expo-localization",
-      "expo-font"
+      "expo-font",
+      "expo-asset",
+      "expo-audio"
     ],
     "experiments": {
       "typedRoutes": true

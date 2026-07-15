@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from "react";
 import {Text, TouchableOpacity} from "react-native";
-import {globalStyles} from "@/components/styles/global";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import {StyleProp} from "react-native/Libraries/StyleSheet/StyleSheet";
 import {ViewStyle} from "react-native/Libraries/StyleSheet/StyleSheetTypes";
 
@@ -10,6 +10,7 @@ interface INavButtonProps extends PropsWithChildren {
 }
 
 export const NavButton = ({children, navigate, additionalButtonStyle}: INavButtonProps) => {
+    const globalStyles = useGlobalStyles();
     return (
         <TouchableOpacity
             style={[globalStyles.button, additionalButtonStyle]}

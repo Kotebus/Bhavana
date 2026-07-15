@@ -1,16 +1,16 @@
 import React from 'react';
 import {Text, ScrollView, Platform} from 'react-native';
 import {useTranslation} from "react-i18next";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "@/components/common/AppNavigator";
-import {globalStyles} from "@/components/styles/global";
+import {router} from "expo-router";
 import {MaterialKey} from "@/components/i18n";
-import {TextWithLink, textWithLinkStyles} from "@/components/common/TextWithLink";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
+import {TextWithLink, useLinkTextStyles} from "@/components/common/TextWithLink";
 import {ContactInfo} from "@/components/screens/about/ContactInfo";
 import {SimpleText} from "@/components/screens/about/SimpleText";
 import {CitationText} from "@/components/screens/about/CitationText";
 import {TitleText} from "@/components/screens/about/TitleText";
 import {RU_LANGUAGE} from "@/components/constatnts";
+import {useSettings} from "@/components/contexts/SettingsContext";
 
 type NavigateFuncType = () => Promise<void> | void;
 
@@ -27,6 +27,7 @@ const MainContent = ({
                           onRecitationsPress,
                          isRuLanguage,
                       }: IContentProps)=> {
+    const textWithLinkStyles = useLinkTextStyles();
     if (isRuLanguage) return (
         <>
             <SimpleText>
@@ -131,14 +132,14 @@ const MainContent = ({
 }
 
 
-type Props = NativeStackScreenProps<RootStackParamList, 'AboutScreen'>;
-
-export default function AboutScreen({ route, navigation } : Props) {
-    const {language} = route.params;
+export default function AboutScreen() {
+    const {settings} = useSettings();
+    const language = settings.language;
     const {t} = useTranslation();
+    const globalStyles = useGlobalStyles();
 
     const navigateToSermon = (materialKey: MaterialKey) =>
-        navigation.navigate('MaterialScreen', {materialKey, language});
+        router.navigate(`/material/${materialKey}`);
 
     return (
         <ScrollView contentContainerStyle={globalStyles.scrollContainer}>

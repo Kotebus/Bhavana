@@ -1,5 +1,5 @@
 ## __Namasakāras__
-&nbsp;
+
 >*Namo tassa **bhagavato** arahato **sammāsaṃbuddhassa***   
 *Namo tassa **bhagavato** arahato **sammāsaṃbuddhassa***   
 *Namo tassa **bhagavato** arahato **sammāsaṃbuddhassa***

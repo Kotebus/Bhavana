@@ -1,5 +1,5 @@
 ## __Confession of your Faults before the Three Jewels__
-&nbsp;
+
 >*Kāyena vācā cittena*
 
 By body, speech, and mind

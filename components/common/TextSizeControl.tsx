@@ -2,6 +2,8 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import {useSettings} from "@/components/contexts/SettingsContext";
 import {FONT_SIZE_DEFAULT, FONT_SIZE_HEADER} from "@/components/styles/global";
+import {useThemePalette} from '@/components/styles/useThemedStyles';
+import {ThemePalette} from '@/components/styles/theme';
 
 interface ITextSizeControlProps {
     min?: number;
@@ -17,6 +19,8 @@ export default function TextSizeControl({
                                             onChange,
                                         }: ITextSizeControlProps) {
     const { settings, setSettings } = useSettings();
+    const palette = useThemePalette();
+    const styles = React.useMemo(() => makeStyles(palette), [palette]);
     const value = settings.fontSize;
 
     const updateFontSize = (newVal: number) => {
@@ -41,12 +45,12 @@ export default function TextSizeControl({
     );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (p: ThemePalette) => StyleSheet.create({
     button: {
         width: 36,
         height: 36,
         borderRadius: 18,
-        backgroundColor: '#eee',
+        backgroundColor: p.controlBg,
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 10,
@@ -54,12 +58,12 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: FONT_SIZE_HEADER,
         fontWeight: 'bold',
-        color: '#333',
+        color: p.controlText,
     },
     value: {
         fontSize: FONT_SIZE_DEFAULT,
         fontWeight: '500',
-        color: '#333',
+        color: p.controlText,
         minWidth: 50,
         textAlign: 'center',
     },

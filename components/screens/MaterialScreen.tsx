@@ -1,21 +1,18 @@
 import React, {useEffect, useState} from "react";
 import {ActivityIndicator, ScrollView, StyleSheet, View, Image, Text, Platform} from "react-native";
-import Markdown from "react-native-markdown-display";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import {Markdown, type ImageRendererProps} from "react-native-nitro-markdown";
+import {router, useLocalSearchParams} from 'expo-router';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 
 import {MaterialKey} from "../i18n";
 import {useSettings} from "../contexts/SettingsContext";
-import {RootStackParamList} from "@/components/common/AppNavigator";
 import {loadMarkdownAsset} from "@/components/services/MarkdownLoader";
 import BackNavHeader from "@/components/common/BackNavHeader";
 import TextSizeControl from "@/components/common/TextSizeControl";
-import {globalStyles} from "@/components/styles/global";
 import {SERMONS_MATERIALS_LIST} from "@/components/screens/materials/SermonsRoutingList";
 import {useTranslation} from "react-i18next";
 import {RU_LANGUAGE} from "@/components/constatnts";
-
-type Props = NativeStackScreenProps<RootStackParamList, 'MaterialScreen'>;
+import {useGlobalStyles, useThemePalette} from "@/components/styles/useThemedStyles";
 
 type MaterialEntry = readonly [any, any];
 type MaterialMap = {
@@ -50,18 +47,22 @@ const materialsListMap: MaterialMap = {
 const imgSources: Record<string, any> = {
     'ayatana_scheme_mind_ru': require('@/components/screens/materials/content/images/ayatana_scheme_mind_ru.png'),
     'ayatana_scheme_mind_en': require('@/components/screens/materials/content/images/ayatana_scheme_mind_en.png'),
-    'ayatana_scheme_ru': require('@/components/screens/materials/content/images/ayatana_scheme_ru.jpg'),
+    'ayatana_scheme_ru': require('@/components/screens/materials/content/images/ayatana_scheme_ru.png'),
     'ayatana_scheme_en': require('@/components/screens/materials/content/images/ayatana_scheme_en.png'),
     'sri_bodhiraja_center': require('@/components/screens/materials/content/images/sri_bodhiraja_center.jpg'),
     'vase_faces': require('@/components/screens/materials/content/images/vase_faces.png'),
     'Tapchan_the_cat_my_friend': require('@/components/screens/materials/content/images/Tapchan_the_cat_best_friend.png'),
 };
 
-export default function MaterialScreen({route, navigation}: Props) {
-    const {materialKey, language} = route.params;
+export default function MaterialScreen() {
+    const {key} = useLocalSearchParams<{key: MaterialKey}>();
+    const materialKey = key as MaterialKey;
     const {t} = useTranslation();
+    const globalStyles = useGlobalStyles();
+    const palette = useThemePalette();
     const [content, setContent] = useState<string | null>(null);
     const {settings} = useSettings();
+    const language = settings.language;
     const [textSize, setTextSize] = useState(settings.fontSize);
 
     useEffect(() => {
@@ -96,71 +97,63 @@ export default function MaterialScreen({route, navigation}: Props) {
 
     return (
         <ScrollView style={containerStyles}>
-            <BackNavHeader onBack={() => navigation.goBack()}>
+            <BackNavHeader onBack={() => router.back()}>
                 <TextSizeControl onChange={setTextSize}/>
             </BackNavHeader>
             {isSermon &&
                 <Text style={{
                     alignSelf: 'flex-end',
-                    fontSize: textSize
+                    fontSize: textSize,
+                    color: palette.text,
                 }}>
                     {t('TeacherName')}
                 </Text>
             }
                 <Markdown
-                    style={{
-                        body: {
-                            fontSize: textSize,
-                            textAlign: "justify",
-                            padding: 3,
-                        }
+                    theme={{
+                        colors: {
+                            text: palette.markdownText,
+                            heading: palette.markdownHeading,
+                            border: palette.border,
+                            surface: palette.surface,
+                            surfaceLight: palette.surface,
+                            code: palette.controlText,
+                            codeBackground: palette.controlBg,
+                            blockquote: palette.border,
+                            link: palette.link,
+                            accent: palette.link,
+                        },
+                        fontSizes: {m: textSize},
                     }}
-                    rules={{
-                        //FIX for MD renderer: without it sometimes the end of a paragraph gets cut off.
-                        text: (node) => (
-                            <Text selectable={true} key={node.key} style={[{fontSize: textSize, flexShrink: 1}]}>
-                                {node.content}
-                            </Text>
-                        ),
-                        textgroup: (node, children, styles) => (
-                            <Text key={node.key} style={[styles.textgroup, {width: '95%'}]}>
-                                {children}
-                            </Text>
-                        ),
-                        //End if FIX
-                        image: (node) => {
-                            const src = node.attributes.src || '';
-                            if (imgSources[src]) {
-                                const imgSrc = imgSources[src];
-
-                                //To render image on full page width and then height calculated base on that
+                    styles={{
+                        paragraph: {padding: 3},
+                        text: {textAlign: 'justify'},
+                    }}
+                    renderers={{
+                        image: ({url}: ImageRendererProps) => {
+                            if (imgSources[url]) {
+                                const imgSrc = imgSources[url];
                                 const {width, height} = Image.resolveAssetSource(imgSrc);
-
                                 return (
                                     <Image
-                                        key={src}
                                         source={imgSrc}
                                         style={{
                                             resizeMode: 'contain',
                                             flex: 1,
-                                            aspectRatio: width / height
+                                            aspectRatio: width / height,
                                         }}
                                     />
                                 );
                             }
-                            return (
-                                <Image
-                                    key={src}
-                                    source={{uri: src}}
-                                />
-                            );
+                            return <Image source={{uri: url}}/>;
                         },
                     }}
+                    options={{gfm: true}}
                 >
                     {content}
                 </Markdown>
             <View style={styles.icon}>
-                <FontAwesome6 name="dharmachakra" size={24} color="black"/>
+                <FontAwesome6 name="dharmachakra" iconStyle="solid" size={24} color={palette.icon}/>
             </View>
         </ScrollView>
     );

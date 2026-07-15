@@ -5,6 +5,7 @@ import {
     RECITATION_SOURCE_BHANTE_GNANASEEHA,
     RU_LANGUAGE
 } from "@/components/constatnts";
+import {Theme} from "@/components/styles/theme";
 
 const SETTINGS_KEY = 'bhavana_app_settings_v4';
 
@@ -24,6 +25,7 @@ export type AppSettings = {
     recitationsSoundEnabled: boolean
     fontSize: number;
     recitationsAudioSource: RecitationsAudioSource;
+    theme?: Theme;
 };
 
 export async function saveSettings(settings: AppSettings) {

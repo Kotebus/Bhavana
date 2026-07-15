@@ -1,8 +1,10 @@
 import React, {createContext, PropsWithChildren, useContext, useEffect, useState} from 'react';
+import {Appearance} from 'react-native';
 import { getLocales } from 'expo-localization';
 import {AppSettings, loadSettings, saveSettings} from '../storage/storage';
 import i18n from '../i18n';
 import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
+import {Theme} from "@/components/styles/theme";
 import {
     RU_LANGUAGE,
     EN_LANGUAGE,
@@ -22,6 +24,8 @@ type ContextType = {
     settings: AppSettings;
     setSettings: (s: AppSettings) => void;
     toggleLanguage: () => void;
+    theme: Theme;
+    toggleTheme: () => void;
     inited: boolean;
 };
 
@@ -34,8 +38,9 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
         .includes('ru');
 
     const systemLang = isRuLangDevice ? RU_LANGUAGE : EN_LANGUAGE;
+    const systemTheme: Theme = Appearance.getColorScheme() === 'dark' ? 'dark' : 'light';
 
-    const [settings, setSettingsState] = useState<AppSettings>({ ...DEFAULT_SETTINGS, language: systemLang});
+    const [settings, setSettingsState] = useState<AppSettings>({ ...DEFAULT_SETTINGS, language: systemLang, theme: systemTheme});
     const [inited, setInited] = useState(false);
 
     useEffect(() => {
@@ -44,7 +49,10 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
 
             const saved = await loadSettings();
             if (saved) {
-                setSettingsState(saved);
+                // Migration: settings persisted before the dark-theme feature lack `theme`.
+                // Initialize from the current system color scheme exactly once, then it persists.
+                const migrated: AppSettings = saved.theme === undefined ? { ...saved, theme: systemTheme } : saved;
+                setSettingsState(migrated);
                 setInited(true);
                 //Our default language is ru, so we need to change language anyway if it's not ru
                 if (saved.language !== settings.language || saved.language !== RU_LANGUAGE) {
@@ -77,8 +85,16 @@ export const SettingsProvider= ({ children } : PropsWithChildren) => {
             language: settings.language === RU_LANGUAGE ? EN_LANGUAGE : RU_LANGUAGE,
         });
 
+    const toggleTheme = () =>
+        setSettings({
+            ...settings,
+            theme: (settings.theme ?? systemTheme) === 'dark' ? 'light' : 'dark',
+        });
+
+    const theme: Theme = settings.theme ?? 'light';
+
     return (
-        <SettingsContext.Provider value={{settings, setSettings, toggleLanguage, inited}}>
+        <SettingsContext.Provider value={{settings, setSettings, toggleLanguage, theme, toggleTheme, inited}}>
             {children}
         </SettingsContext.Provider>
     );

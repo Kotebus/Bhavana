@@ -2,9 +2,13 @@ import {useTranslation} from "react-i18next";
 import {Linking, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {FONT_SIZE_DEFAULT} from "@/components/styles/global";
+import {useThemePalette} from "@/components/styles/useThemedStyles";
+import {ThemePalette} from "@/components/styles/theme";
 
 export const ContactInfo = () => {
     const {t} = useTranslation();
+    const palette = useThemePalette();
+    const styles = React.useMemo(() => makeStyles(palette), [palette]);
 
     const openTelegram = () => Linking.openURL('https://t.me/Max_Kotebus');
     const openEmail = () => Linking.openURL('mailto:kotebus666@gmail.com');
@@ -26,18 +30,19 @@ export const ContactInfo = () => {
 };
 
 
-const styles = StyleSheet.create({
+const makeStyles = (p: ThemePalette) => StyleSheet.create({
     contactBlock: {
         marginTop: 20,
         alignItems: 'center',
         borderTopWidth: 1,
-        borderTopColor: '#ccc',
+        borderTopColor: p.border,
         paddingVertical: 16,
     },
     contactLabel: {
         fontSize: FONT_SIZE_DEFAULT,
         fontWeight: '500',
         marginBottom: 5,
+        color: p.text,
     },
     contactRow: {
         flexDirection: 'row',
@@ -51,6 +56,6 @@ const styles = StyleSheet.create({
     separator: {
         marginHorizontal: 8,
         fontSize: FONT_SIZE_DEFAULT,
-        color: '#888',
+        color: p.subtleText,
     },
 });

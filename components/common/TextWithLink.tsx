@@ -1,6 +1,8 @@
 import {Linking, StyleSheet, Text} from "react-native";
 import React, {useCallback} from "react";
 import {useSettings} from "@/components/contexts/SettingsContext";
+import {useThemePalette} from "@/components/styles/useThemedStyles";
+import {ThemePalette} from "@/components/styles/theme";
 
 export interface ITextWithLink {
     url: string;
@@ -8,8 +10,26 @@ export interface ITextWithLink {
     isRightAligned?: boolean;
 }
 
+const makeLinkStyles = (p: ThemePalette) => StyleSheet.create({
+    linkButtonText: {
+        color: p.link,
+        textAlignVertical: 'center', // выравнивание по центру
+        includeFontPadding: false,   // убирает лишние отступы Android
+    },
+    linkButtonTextAlignedRight: {
+        color: p.link,
+        alignSelf: 'flex-end',
+    },
+});
+
+export const useLinkTextStyles = () => {
+    const palette = useThemePalette();
+    return React.useMemo(() => makeLinkStyles(palette), [palette]);
+};
+
 export const TextWithLink = ({url, children, isRightAligned = false}: ITextWithLink) => {
     const {settings} = useSettings();
+    const styles = useLinkTextStyles();
 
     const handlePress = useCallback(async () => {
         // Checking if the link is supported for links with custom URL scheme.
@@ -26,8 +46,8 @@ export const TextWithLink = ({url, children, isRightAligned = false}: ITextWithL
         <Text
             style={[
                 isRightAligned ?
-                    textWithLinkStyles.linkButtonTextAlignedRight :
-                    textWithLinkStyles.linkButtonText,
+                    styles.linkButtonTextAlignedRight :
+                    styles.linkButtonText,
                 {
                     fontSize: settings.fontSize,
                 }
@@ -38,15 +58,3 @@ export const TextWithLink = ({url, children, isRightAligned = false}: ITextWithL
         </Text>
     );
 };
-
-export const textWithLinkStyles = StyleSheet.create({
-    linkButtonText: {
-        color: '#007AFF',
-        textAlignVertical: 'center', // выравнивание по центру
-        includeFontPadding: false,   // убирает лишние отступы Android
-    },
-    linkButtonTextAlignedRight: {
-        color: '#007AFF',
-        alignSelf: 'flex-end',
-    },
-});

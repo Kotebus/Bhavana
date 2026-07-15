@@ -1,12 +1,9 @@
 import React from "react";
 import {ScrollView, Platform} from "react-native";
-import {globalStyles} from "@/components/styles/global";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "@/components/common/AppNavigator";
+import {router} from "expo-router";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 import BackNavHeader from "@/components/common/BackNavHeader";
 import {IUrlText, LinksList} from "@/components/common/LinksList";
-
-type Props = NativeStackScreenProps<RootStackParamList, 'LinksListScreen'>;
 
 const linksData: IUrlText[] = [
     {url: 'https://samatha-vipassana.com/', text: 'Chittaviveka monastery: samatha-vipassana.com'},
@@ -38,11 +35,12 @@ const linksData: IUrlText[] = [
     {url: 'https://theravada.ru/', text: 'theravada.ru'},
 ];
 
-export default function LinksListScreen({ navigation }: Props) {
+export default function LinksListScreen() {
     const isIos = Platform.OS === 'ios';
+    const globalStyles = useGlobalStyles();
     return (
         <ScrollView contentContainerStyle={[globalStyles.scrollContainer, {paddingVertical: 40}]}>
-            {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
+            {isIos && <BackNavHeader onBack={() => router.back()}/>}
             <LinksList data={linksData}/>
         </ScrollView>
     );

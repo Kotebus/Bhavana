@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, FlatList, StyleSheet, Platform} from 'react-native';
-import {useNavigation} from "expo-router";
+import {router} from "expo-router";
 import {useTranslation} from "react-i18next";
 import {IMaterial} from "@/components/screens/materials/SermonsRoutingList";
 import BackNavHeader from "@/components/common/BackNavHeader";
 import {NavButton} from "@/components/common/NavButton";
 import {MaterialKey} from "@/components/i18n";
-import {globalStyles} from "@/components/styles/global";
+import {useGlobalStyles} from "@/components/styles/useThemedStyles";
 
 export interface IMaterialsListProps {
     contentList: IMaterial[];
@@ -14,19 +14,25 @@ export interface IMaterialsListProps {
 }
 
 export const MaterialsList = ({ contentList, navigate } : IMaterialsListProps)=> {
-    const navigation = useNavigation();
     const {t} = useTranslation();
+    const globalStyles = useGlobalStyles();
 
     const isIos = Platform.OS === 'ios';
     const containerStyles = [globalStyles.container, isIos ? styles.containerIos : undefined];
     return (
         <View style={containerStyles}>
-            {isIos && <BackNavHeader onBack={() => navigation.goBack()}/>}
+            {isIos && <BackNavHeader onBack={() => router.back()}/>}
             <FlatList
                 data={contentList}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({item}) => (
-                    <NavButton navigate={() => navigate(item.materialKey)} additionalButtonStyle={styles.button}>
+                renderItem={({item, index}) => (
+                    <NavButton
+                        navigate={() => navigate(item.materialKey)}
+                        additionalButtonStyle={[
+                            styles.button,
+                            isIos && index === 0 ? styles.firstButtonIos : undefined,
+                        ]}
+                    >
                         {t(item.materialKey)}
                     </NavButton>
                 )}
@@ -42,5 +48,12 @@ const styles = StyleSheet.create({
     button: {
         width: '90%',
         paddingHorizontal: 5,
-    }
+    },
+    // globalStyles.button ships with marginTop: 30 which leaves an oversized
+    // gap under BackNavHeader for the first material. Tighten only the first
+    // row on iOS — pulling the whole list up with negative margin made list
+    // items render under BackNavHeader during scroll.
+    firstButtonIos: {
+        marginTop: 10,
+    },
 });
