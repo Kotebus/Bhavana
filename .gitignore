@@ -40,3 +40,7 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Agent skills
+.agents/
+skills-lock.json
