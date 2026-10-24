@@ -19,7 +19,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.kotebus.bhavana"
+      "package": "com.kotebus.bhavana",
+      "targetSdkVersion": 36
     },
     "web": {
       "bundler": "metro",
